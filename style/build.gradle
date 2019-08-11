@@ -1,0 +1,12 @@
+import dependencies.Dependencies
+
+apply plugin: 'com.android.library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Dependencies.Android.APP_COMPAT
+    testImplementation Dependencies.Test.JUNIT
+    androidTestImplementation Dependencies.Test.RUNNER
+    androidTestImplementation Dependencies.Test.ESPRESSO
+}

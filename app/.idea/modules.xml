@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/../buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../features/card/card.iml" filepath="$PROJECT_DIR$/../features/card/card.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../commons/commons.iml" filepath="$PROJECT_DIR$/../commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../features/contacts/contacts.iml" filepath="$PROJECT_DIR$/../features/contacts/contacts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../data/data.iml" filepath="$PROJECT_DIR$/../data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../domain/domain.iml" filepath="$PROJECT_DIR$/../domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../features/features.iml" filepath="$PROJECT_DIR$/../features/features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../features/payment/payment.iml" filepath="$PROJECT_DIR$/../features/payment/payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../picpay.iml" filepath="$PROJECT_DIR$/../picpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../features/receipt/receipt.iml" filepath="$PROJECT_DIR$/../features/receipt/receipt.iml" />
+    </modules>
+  </component>
+</project>

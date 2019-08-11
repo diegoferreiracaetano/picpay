@@ -1,0 +1,22 @@
+import dependencies.Dependencies
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":style")
+    implementation project(":features:contacts")
+    implementation Dependencies.Android.APP_COMPAT
+    implementation Dependencies.Android.CORE_COMMON
+    implementation Dependencies.Android.CORE_RUNTIME
+    implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Navigation.UI
+    implementation Dependencies.Navigation.FRAGMENT
+    testImplementation Dependencies.Test.JUNIT
+    androidTestImplementation Dependencies.Test.RUNNER
+    androidTestImplementation Dependencies.Test.ESPRESSO
+}

@@ -1,0 +1,9 @@
+include ':app', ':style',
+        ':buildSrc',
+        ':commons',
+        ':domain',
+        ':data',
+        ':features:payment',
+        ':features:receipt',
+        ':features:card',
+        ':features:contacts'
