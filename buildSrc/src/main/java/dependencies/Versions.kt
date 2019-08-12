@@ -10,7 +10,7 @@ internal object Versions {
     const val PAGING = "1.0.1"
     const val CONSTRAINT_LAYOUT = "1.1.3"
     const val OKHTTP = "3.8.1"
-    const val RETROFIT = "2.3.0"
+    const val RETROFIT = "2.6.1"
     const val JUNIT = "4.12"
     const val REQUEST_MATCHER = "2.2.0"
     const val MOCKWEB_SERVER = "3.8.1"
@@ -31,4 +31,5 @@ internal object Versions {
     const val NAVIGATION_SAFE_ARGS = "1.0.0"
     const val GRADLE = "3.4.2"
     const val CIRCLE_IMAGE = "3.0.0"
+    const val KOIN = "2.0.1"
 }

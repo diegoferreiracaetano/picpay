@@ -13,6 +13,7 @@ object Dependencies {
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val CIRCLE_IMAGE = "de.hdodenhof:circleimageview:${Versions.CIRCLE_IMAGE}"
 
+
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
@@ -47,5 +48,10 @@ object Dependencies {
         const val JUNIT = "junit:junit:${Versions.JUNIT}"
         const val RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO}"
+    }
+
+    object Koin {
+        const val SCOPE = "org.koin:koin-androidx-scope:${Versions.KOIN}"
+        const val VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
     }
 }
