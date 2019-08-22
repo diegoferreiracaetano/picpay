@@ -8,6 +8,6 @@
 
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.diegoferreiracaetano.contacts.ContactsFragment"
+        android:name="com.diegoferreiracaetano.contacts.view.ContactsFragment"
         android:label="ContactsFragment" />
 </navigation>

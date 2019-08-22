@@ -12,7 +12,7 @@ object Dependencies {
     const val PAGING = "android.arch.paging:runtime:${Versions.PAGING}"
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val CIRCLE_IMAGE = "de.hdodenhof:circleimageview:${Versions.CIRCLE_IMAGE}"
-
+    const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
 
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
@@ -26,12 +26,17 @@ object Dependencies {
         const val CORE_RUNTIME = "androidx.arch.core:core-runtime:${Versions.CORE_ARCH}"
     }
 
+    object COROUTINES {
+        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
+        const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+    }
+
     object Lifecycle {
-        const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel:${Versions.LIFECYCLE}"
-        const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata:${Versions.LIFECYCLE}"
-        const val RUNTIME = "androidx.lifecycle:lifecycle-runtime:${Versions.LIFECYCLE}"
-        const val EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:${Versions.LIFECYCLE}"
-        const val COMPILER = "androidx.lifecycle:lifecycle-compiler:${Versions.LIFECYCLE}"
+        const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
+        const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE}"
+        const val RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
+        const val EXTENSIONS = "androidx.lifecycle:lifecycle-extensions-ktx:${Versions.LIFECYCLE}"
+        const val COMPILER = "androidx.lifecycle:lifecycle-compiler-ktx:${Versions.LIFECYCLE}"
     }
 
     object Navigation {
@@ -52,6 +57,7 @@ object Dependencies {
 
     object Koin {
         const val SCOPE = "org.koin:koin-androidx-scope:${Versions.KOIN}"
+        const val ANDROID = "org.koin:koin-android:${Versions.KOIN}"
         const val VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
     }
 }

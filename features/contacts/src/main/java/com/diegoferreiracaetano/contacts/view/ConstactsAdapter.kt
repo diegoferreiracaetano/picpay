@@ -1,15 +1,16 @@
-package com.diegoferreiracaetano.contacts
+package com.diegoferreiracaetano.contacts.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_contacts.view.contact_image
-import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_name
-import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_nickname
+import com.diegoferreiracaetano.contacts.R
+import com.diegoferreiracaetano.contacts.setImageUrl
+import com.diegoferreiracaetano.domain.user.User
+import kotlinx.android.synthetic.main.item_contacts.view.*
 
 internal class ConstactsAdapter(
-    private var items: List<ContactsFragment.User>
+    private var items: List<User>
 ): RecyclerView.Adapter<ConstactsAdapter.ViewHolder>() {
 
 
@@ -24,9 +25,9 @@ internal class ConstactsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = items[position]
-        holder.image.setImageResource(R.drawable.contact)
+        holder.image.setImageUrl(user.img)
         holder.nickname.text = user.name
-        holder.name.text = user.nickname
+        holder.name.text = user.username
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

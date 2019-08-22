@@ -1,10 +1,10 @@
 package com.diegoferreiracaetano.data.remote
 
-import com.diegoferreiracaetano.data.remote.user.UserDTO
+import com.diegoferreiracaetano.data.remote.user.UserEntity
 import retrofit2.http.GET
 
 internal interface PicpayApi {
 
     @GET("tests/mobdev/users")
-    suspend fun getUsers(): List<UserDTO>
+    suspend fun getUsers(): List<UserEntity>
 }

@@ -1,8 +1,12 @@
 package com.diegoferreiracaetano.data.di
 
 import com.diegoferreiracaetano.data.BuildConfig
+import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
+import com.diegoferreiracaetano.domain.di.domainModule
+import com.diegoferreiracaetano.domain.user.UserRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -48,4 +52,6 @@ val dataModule: Module = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    single<UserRepository>{ UserRepositoryRemote(get()) }
 }

@@ -5,7 +5,7 @@ internal object Versions {
     const val KOTLIN = "1.3.41"
     const val SUPPORT_LIBRARY = "1.0.0"
     const val APP_COMPAT = "1.0.2"
-    const val LIFECYCLE = "2.0.0"
+    const val LIFECYCLE = "2.1.0-beta01"
     const val ARCH = "1.1.1"
     const val PAGING = "1.0.1"
     const val CONSTRAINT_LAYOUT = "1.1.3"
@@ -32,4 +32,6 @@ internal object Versions {
     const val GRADLE = "3.4.2"
     const val CIRCLE_IMAGE = "3.0.0"
     const val KOIN = "2.0.1"
+    const val COROUTINES = "1.3.0-RC2"
+    const val GLIDE = "4.9.0"
 }

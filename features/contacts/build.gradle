@@ -2,17 +2,25 @@ import dependencies.Dependencies
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":style")
+    implementation project(":domain")
     implementation Dependencies.Android.APP_COMPAT
     implementation Dependencies.Android.DESIGN
     implementation Dependencies.Android.RECYCLER_VIEW
     implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Lifecycle.VIEW_MODEL
     implementation Dependencies.CIRCLE_IMAGE
+    implementation Dependencies.GLIDE
+    implementation Dependencies.COROUTINES.CORE
+    implementation Dependencies.COROUTINES.ANDROID
     testImplementation Dependencies.Test.JUNIT
     androidTestImplementation Dependencies.Test.RUNNER
     androidTestImplementation Dependencies.Test.ESPRESSO
+    implementation Dependencies.Koin.VIEW_MODEL
 }

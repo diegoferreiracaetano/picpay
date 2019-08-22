@@ -28,8 +28,6 @@ allprojects {
 
 subprojects {
 
-    apply plugin: 'kotlin-android-extensions'
-
     afterEvaluate {
         if (!project.hasProperty("android")) return
 
@@ -47,10 +45,6 @@ subprojects {
             compileOptions {
                 sourceCompatibility AndroidConfig.JAVA_VERSION
                 targetCompatibility AndroidConfig.JAVA_VERSION
-            }
-
-            androidExtensions {
-                experimental = true
             }
 
             buildTypes {
