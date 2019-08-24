@@ -26,11 +26,6 @@ object Dependencies {
         const val CORE_RUNTIME = "androidx.arch.core:core-runtime:${Versions.CORE_ARCH}"
     }
 
-    object COROUTINES {
-        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
-        const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
-    }
-
     object Lifecycle {
         const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
         const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE}"
@@ -38,6 +33,13 @@ object Dependencies {
         const val EXTENSIONS = "androidx.lifecycle:lifecycle-extensions-ktx:${Versions.LIFECYCLE}"
         const val COMPILER = "androidx.lifecycle:lifecycle-compiler-ktx:${Versions.LIFECYCLE}"
     }
+
+
+    object COROUTINES {
+        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
+        const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+    }
+
 
     object Navigation {
         const val UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"

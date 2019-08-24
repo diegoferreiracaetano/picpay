@@ -4,7 +4,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -14,6 +13,7 @@ dependencies {
     implementation Dependencies.Android.DESIGN
     implementation Dependencies.Android.RECYCLER_VIEW
     implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Lifecycle.LIVEDATA
     implementation Dependencies.Lifecycle.VIEW_MODEL
     implementation Dependencies.CIRCLE_IMAGE
     implementation Dependencies.GLIDE
