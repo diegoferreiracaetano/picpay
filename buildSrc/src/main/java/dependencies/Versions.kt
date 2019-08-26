@@ -21,6 +21,7 @@ internal object Versions {
     const val ROBOLECTRIC = "4.2.1"
     const val ROBOLECTRIC_SHAOW = "3.3.2"
     const val ANDROIDX_TEST = "1.0.0"
+    const val JUNIT_EXT = "1.1.0"
     const val ROOM = "2.0.0"
     const val CORE_TEST = "1.1.0"
     const val CORE_TEST_ARCH = "2.0.1"
@@ -34,4 +35,7 @@ internal object Versions {
     const val KOIN = "2.0.1"
     const val COROUTINES = "1.3.0-RC2"
     const val GLIDE = "4.9.0"
+    const val MOCKK = "1.9.3"
+    const val SHIMMER = "0.4.0"
+    const val FRAGMENT_TEST = "1.2.0-alpha02"
 }

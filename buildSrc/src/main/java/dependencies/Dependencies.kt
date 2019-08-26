@@ -13,6 +13,7 @@ object Dependencies {
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val CIRCLE_IMAGE = "de.hdodenhof:circleimageview:${Versions.CIRCLE_IMAGE}"
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
+    const val SHIMMER = "com.facebook.shimmer:shimmer:${Versions.SHIMMER}"
 
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
@@ -53,8 +54,17 @@ object Dependencies {
 
     object Test {
         const val JUNIT = "junit:junit:${Versions.JUNIT}"
+        const val JUNIT_EXT = "androidx.test.ext:junit:${Versions.JUNIT_EXT}"
+        const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
         const val RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO}"
+        const val CORE = "android.arch.core:core-testing:${Versions.CORE_TEST}"
+        const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
+        const val ROBOELETRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
+        const val FRAGMENT_TEST = "androidx.fragment:fragment-testing:${Versions.FRAGMENT_TEST}"
+        const val KOIN = "org.koin:koin-test:${Versions.KOIN}"
+
+        const val MOCKK_ANDROID = "io.mockk:mockk-android:${Versions.MOCKK}"
     }
 
     object Koin {

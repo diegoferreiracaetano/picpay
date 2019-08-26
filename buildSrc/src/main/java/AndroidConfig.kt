@@ -2,7 +2,7 @@ object AndroidConfig {
 
     const val APPLICATION_ID = "com.diegofrerreiracaetano.picpay"
     const val COMPILE_SDK = 28
-    const val MIN_SDK = 21
+    const val MIN_SDK = 26
     const val TARGET_SDK = COMPILE_SDK
     const val JAVA_VERSION = 1.8
     const val VERSION_NAME = "0.0.1"

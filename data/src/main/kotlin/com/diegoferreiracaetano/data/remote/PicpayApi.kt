@@ -6,5 +6,5 @@ import retrofit2.http.GET
 internal interface PicpayApi {
 
     @GET("tests/mobdev/users")
-    suspend fun getUsers(): List<UserEntity>
+    suspend fun users(): List<UserEntity>
 }

@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.data.di
 
 import com.diegoferreiracaetano.data.BuildConfig
+import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
 import com.diegoferreiracaetano.domain.di.domainModule
 import com.diegoferreiracaetano.domain.user.UserRepository
@@ -52,6 +53,8 @@ val dataModule: Module = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    single<PicpayApi> { get<Retrofit>().create(PicpayApi::class.java) }
 
     single<UserRepository>{ UserRepositoryRemote(get()) }
 }

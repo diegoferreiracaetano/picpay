@@ -65,6 +65,18 @@ subprojects {
                     assets.srcDirs  += [Source.SHARED_TEST_RESOURCES]
                 }
             }
+
+            testOptions {
+                unitTests {
+                    includeAndroidResources = true
+                }
+            }
+
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+                kotlinOptions {
+                    jvmTarget = '1.8'
+                }
+            }
         }
 
         dependencies {

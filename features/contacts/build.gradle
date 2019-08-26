@@ -4,6 +4,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -13,14 +14,31 @@ dependencies {
     implementation Dependencies.Android.DESIGN
     implementation Dependencies.Android.RECYCLER_VIEW
     implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Android.FRAGMENT
     implementation Dependencies.Lifecycle.LIVEDATA
     implementation Dependencies.Lifecycle.VIEW_MODEL
     implementation Dependencies.CIRCLE_IMAGE
     implementation Dependencies.GLIDE
     implementation Dependencies.COROUTINES.CORE
     implementation Dependencies.COROUTINES.ANDROID
+    implementation Dependencies.Koin.VIEW_MODEL
+    implementation Dependencies.SHIMMER
+
     testImplementation Dependencies.Test.JUNIT
+    testImplementation Dependencies.Test.JUNIT_EXT
+    testImplementation Dependencies.Test.MOCKK
+    testImplementation Dependencies.Test.CORE
+    testImplementation Dependencies.Test.COROUTINES
+    testImplementation Dependencies.Test.ROBOELETRIC
+    testImplementation Dependencies.Test.RUNNER
+    testImplementation Dependencies.Test.ESPRESSO
+    testImplementation Dependencies.Test.KOIN
+
+    debugImplementation Dependencies.Test.FRAGMENT_TEST
+
     androidTestImplementation Dependencies.Test.RUNNER
     androidTestImplementation Dependencies.Test.ESPRESSO
-    implementation Dependencies.Koin.VIEW_MODEL
+    androidTestImplementation Dependencies.Test.JUNIT_EXT
+    androidTestImplementation Dependencies.Test.KOIN
+    androidTestImplementation (Dependencies.Test.MOCKK_ANDROID)
 }

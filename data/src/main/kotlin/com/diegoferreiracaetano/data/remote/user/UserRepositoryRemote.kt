@@ -5,9 +5,7 @@ import com.diegoferreiracaetano.data.remote.transform
 import com.diegoferreiracaetano.domain.user.UserRepository
 import retrofit2.Retrofit
 
-internal class UserRepositoryRemote(retrofit: Retrofit) : UserRepository {
+internal class UserRepositoryRemote(private val api: PicpayApi) : UserRepository {
 
-    private val api = retrofit.create(PicpayApi::class.java)
-
-    override suspend fun getUsers() = api.getUsers().transform()
+    override suspend fun users() = api.users().transform()
 }

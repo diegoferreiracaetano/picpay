@@ -3,5 +3,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation Dependencies.Koin.SCOPE
+    implementation Dependencies.COROUTINES.CORE
     testImplementation Dependencies.Test.JUNIT
+    testImplementation Dependencies.Test.MOCKK
 }
