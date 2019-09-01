@@ -18,7 +18,7 @@ internal object Versions {
     const val MOCKITO_KOTLIN = "2.1.0"
     const val ESPRESSO = "3.1.1"
     const val TEST_RUNNER = "1.1.1"
-    const val ROBOLECTRIC = "4.2.1"
+    const val ROBOLECTRIC = "4.3"
     const val ROBOLECTRIC_SHAOW = "3.3.2"
     const val ANDROIDX_TEST = "1.0.0"
     const val JUNIT_EXT = "1.1.0"
@@ -38,4 +38,5 @@ internal object Versions {
     const val MOCKK = "1.9.3"
     const val SHIMMER = "0.4.0"
     const val FRAGMENT_TEST = "1.2.0-alpha02"
+    const val MOCKITO_KOTLLIN = "2.1.0"
 }

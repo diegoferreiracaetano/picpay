@@ -67,9 +67,8 @@ subprojects {
             }
 
             testOptions {
-                unitTests {
-                    includeAndroidResources = true
-                }
+                unitTests.includeAndroidResources = true
+                animationsDisabled = true
             }
 
             tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

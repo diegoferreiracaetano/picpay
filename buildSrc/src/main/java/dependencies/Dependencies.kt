@@ -53,6 +53,7 @@ object Dependencies {
     }
 
     object Test {
+        const val KOTLIN = "org.jetbrains.kotlin:kotlin-test:${Versions.KOTLIN}"
         const val JUNIT = "junit:junit:${Versions.JUNIT}"
         const val JUNIT_EXT = "androidx.test.ext:junit:${Versions.JUNIT_EXT}"
         const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
@@ -63,8 +64,9 @@ object Dependencies {
         const val ROBOELETRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
         const val FRAGMENT_TEST = "androidx.fragment:fragment-testing:${Versions.FRAGMENT_TEST}"
         const val KOIN = "org.koin:koin-test:${Versions.KOIN}"
-
         const val MOCKK_ANDROID = "io.mockk:mockk-android:${Versions.MOCKK}"
+        const val MOCKITO = "org.mockito:mockito-android:${Versions.MOCKITO}"
+        const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLLIN}"
     }
 
     object Koin {

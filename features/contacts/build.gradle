@@ -4,7 +4,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
+android{
+    testOptions.unitTests.includeAndroidResources = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -40,5 +42,6 @@ dependencies {
     androidTestImplementation Dependencies.Test.ESPRESSO
     androidTestImplementation Dependencies.Test.JUNIT_EXT
     androidTestImplementation Dependencies.Test.KOIN
-    androidTestImplementation (Dependencies.Test.MOCKK_ANDROID)
+    androidTestImplementation Dependencies.Test.MOCKK_ANDROID
+    androidTestImplementation Dependencies.Test.KOTLIN
 }
