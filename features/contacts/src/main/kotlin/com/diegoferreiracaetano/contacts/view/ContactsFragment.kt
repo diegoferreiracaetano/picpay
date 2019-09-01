@@ -35,7 +35,6 @@ class ContactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startShimmer()
-        vm.fetchContacts()
         setupAdapter()
         setupSearchView()
         setupRefresh()
@@ -67,17 +66,20 @@ class ContactsFragment : Fragment() {
         })
     }
 
-    private fun setupRefresh(){
+    private fun setupRefresh() {
         swipe_contacts.setOnRefreshListener {
-            
+            swipe_contacts.isRefreshing = true
+            startShimmer()
         }
     }
 
     private fun startShimmer() {
         shimmer_view_container.startShimmer()
+        vm.fetchContacts()
     }
 
     private fun stopShimmer() {
+        swipe_contacts.isRefreshing = false
         shimmer_view_container.visibility = GONE
         shimmer_view_container.stopShimmer()
     }
@@ -89,6 +91,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun showError(error: Throwable) {
+        stopShimmer()
         Toast.makeText(requireContext(), R.string.contacts_msg_error, Toast.LENGTH_LONG).show()
     }
 }
