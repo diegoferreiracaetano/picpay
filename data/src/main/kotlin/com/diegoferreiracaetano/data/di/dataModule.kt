@@ -3,16 +3,14 @@ package com.diegoferreiracaetano.data.di
 import com.diegoferreiracaetano.data.BuildConfig
 import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
-import com.diegoferreiracaetano.domain.di.domainModule
 import com.diegoferreiracaetano.domain.user.UserRepository
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 private const val REQUEST_TIMEOUT: Long = 60
 
@@ -56,5 +54,5 @@ val dataModule: Module = module {
 
     single<PicpayApi> { get<Retrofit>().create(PicpayApi::class.java) }
 
-    single<UserRepository>{ UserRepositoryRemote(get()) }
+    single<UserRepository> { UserRepositoryRemote(get()) }
 }

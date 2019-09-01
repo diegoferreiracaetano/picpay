@@ -10,7 +10,7 @@ import com.diegoferreiracaetano.domain.user.User
 class ContactsViewModel(private val contactsInteractor: ContactsInteractor) : ViewModel() {
 
     private val _contacts = MediatorLiveData<Result<List<User>>>()
-    val contacts : LiveData<Result<List<User>>> = _contacts
+    val contacts: LiveData<Result<List<User>>> = _contacts
 
     fun fetchContacts() {
         execute(_contacts, contactsInteractor)

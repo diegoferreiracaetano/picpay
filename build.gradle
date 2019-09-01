@@ -28,6 +28,8 @@ allprojects {
 
 subprojects {
 
+    apply from: "$rootDir/tools/ktlint.gradle"
+
     afterEvaluate {
         if (!project.hasProperty("android")) return
 

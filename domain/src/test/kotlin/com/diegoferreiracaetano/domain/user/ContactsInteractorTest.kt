@@ -4,10 +4,9 @@ import com.diegoferreiracaetano.domain.Mock
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
 
 internal class ContactsInteractorTest {
 

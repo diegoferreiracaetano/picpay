@@ -26,17 +26,17 @@ import org.koin.dsl.module
 import org.koin.test.AutoCloseKoinTest
 
 @RunWith(AndroidJUnit4::class)
-class ContactsFragmentTest: AutoCloseKoinTest() {
+class ContactsFragmentTest : AutoCloseKoinTest() {
 
     private val repository = mockk<UserRepository>()
-    private lateinit var interactor : ContactsInteractor
+    private lateinit var interactor: ContactsInteractor
     private lateinit var viewModel: ContactsViewModel
 
     @Before
     fun before() {
         interactor = ContactsInteractor(repository)
         viewModel = ContactsViewModel(interactor)
-        startKoin {  }
+        startKoin { }
 
         loadKoinModules(module(override = true) {
             single { repository }
@@ -47,7 +47,7 @@ class ContactsFragmentTest: AutoCloseKoinTest() {
 
     @Test
     fun givenStartScreen_shouldTextTitle() {
-        coEvery{ repository.users() } returns Mock.users()
+        coEvery { repository.users() } returns Mock.users()
 
         launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
@@ -57,18 +57,17 @@ class ContactsFragmentTest: AutoCloseKoinTest() {
 
     @Test
     fun givenStartScreen_whenRepositoryListSuccess_shouldDisplayList() {
-        coEvery{ repository.users() } returns Mock.users()
+        coEvery { repository.users() } returns Mock.users()
 
         launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
         onView(withId(R.id.contact_recycle)).check(matches(isDisplayed()))
     }
 
-
     @Test(expected = Throwable::class)
     fun givenStartScreen_whenRepositoryListError_shouldDisplayToastError() {
 
-        coEvery{ repository.users() } throws Throwable("error")
+        coEvery { repository.users() } throws Throwable("error")
 
         val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
         var activity: FragmentActivity? = null

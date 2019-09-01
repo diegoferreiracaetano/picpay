@@ -49,11 +49,12 @@
                 style="@style/TextSmall"
                 android:textColor="@color/primary_text"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 app:iconifiedByDefault="false"
                 app:defaultQueryHint="@string/contact_title_search"
+                android:focusable="false"
                 android:background="@drawable/around_search"
                 android:queryBackground="@android:color/transparent">
 

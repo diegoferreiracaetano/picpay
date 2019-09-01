@@ -18,7 +18,7 @@ object Dependencies {
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
-        const val FRAGMENT =  "androidx.fragment:fragment:${Versions.SUPPORT_LIBRARY}"
+        const val FRAGMENT = "androidx.fragment:fragment:${Versions.SUPPORT_LIBRARY}"
         const val CARD_VIEW = "androidx.cardview:cardview:${Versions.SUPPORT_LIBRARY}"
         const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.SUPPORT_LIBRARY}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
@@ -35,12 +35,10 @@ object Dependencies {
         const val COMPILER = "androidx.lifecycle:lifecycle-compiler-ktx:${Versions.LIFECYCLE}"
     }
 
-
     object COROUTINES {
         const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
         const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
     }
-
 
     object Navigation {
         const val UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"

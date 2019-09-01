@@ -10,38 +10,38 @@
       android:id="@+id/contact_image"
       android:layout_width="56dp"
       android:layout_height="56dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginStart="20dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="16dp"
       app:civ_border_color="#2B2C2F"
       app:civ_border_width="1dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      tools:src="@tools:sample/avatars"/>
+      tools:src="@tools:sample/avatars" />
 
     <TextView
       android:id="@+id/contact_txt_nickname"
       style="@style/TextMedium"
-      android:textColor="@color/primary_text"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="20dp"
+      android:layout_marginEnd="16dp"
+      android:textColor="@color/primary_text"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/contact_image"
       app:layout_constraintTop_toTopOf="parent"
-      tools:text="diegoferreiracaetano"/>
+      tools:text="diegoferreiracaetano" />
 
     <TextView
       android:id="@+id/contact_txt_name"
       style="@style/TextSmall"
-      android:textColor="@color/secondary_text"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
       android:layout_marginTop="3dp"
-      android:layout_marginEnd="20dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="16dp"
+      android:textColor="@color/secondary_text"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/contact_image"
       app:layout_constraintTop_toBottomOf="@+id/contact_txt_nickname"

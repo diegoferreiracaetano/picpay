@@ -11,8 +11,7 @@ import kotlinx.android.synthetic.main.item_contacts.view.*
 
 internal class ConstactsAdapter(
     private var items: List<User>
-): RecyclerView.Adapter<ConstactsAdapter.ViewHolder>() {
-
+) : RecyclerView.Adapter<ConstactsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
