@@ -28,14 +28,14 @@ stages:
 lintDebug:
   stage: build
   tags:
-    - runner01
+    - runner04
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 assembleDebug:
   stage: build
   tags:
-    - runner01
+    - runner04
   script:
     - ./gradlew assembleDebug
   artifacts:
@@ -45,6 +45,6 @@ assembleDebug:
 debugTests:
   stage: test
   tags:
-    - runner01
+    - runner04
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
