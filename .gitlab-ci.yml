@@ -1,4 +1,4 @@
-image: openjdk:8-jdk
+image: circleci/android:api-28
 
 variables:
   ANDROID_COMPILE_SDK: "28"
