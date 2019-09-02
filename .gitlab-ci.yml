@@ -1,0 +1,46 @@
+image: circleci/android:api-28
+
+#runner01 -> Docker runner
+#GPU -> Mac mini runner
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=false -Dorg.gradle.parallel=false -Dandroid.enableBuildCache=false -Dorg.gradle.caching=false -Dorg.gradle.jvmargs=-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
+
+cache:
+  paths:
+  - .m2/
+  - .gradle/
+
+stages:
+- lint
+- test
+
+lint:
+  stage: lint
+  tags:
+  - runner01
+  script:
+    - ./gradlew checkLint
+  except:
+  - master
+  - schedules
+  - tags
+  - /^release.*$/
+
+Unit:
+  stage: test
+  tags:
+  - runner01
+  script:
+  - ./gradlew testDebugUnitTest testCartaobrancoDebugUnitTest
+  except:
+  - master
+  - schedules
+  - tags
+  - /^release.*$/
+  artifacts:
+    name: "junit_test_report_$CI_JOB_NAME"
+    when: on_failure
+    expire_in: 1 week
+    paths:
+    - contacts/build/reports/tests/testDebugUnitTest/
