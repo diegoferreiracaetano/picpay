@@ -84,7 +84,7 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun test(){
+    fun test() {
         assert(false)
     }
 }
