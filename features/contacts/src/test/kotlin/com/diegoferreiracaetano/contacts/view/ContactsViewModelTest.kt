@@ -8,6 +8,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -16,6 +17,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 internal class ContactsViewModelTest {
 
     @get:Rule
