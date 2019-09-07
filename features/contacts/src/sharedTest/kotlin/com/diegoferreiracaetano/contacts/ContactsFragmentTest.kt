@@ -29,7 +29,7 @@ import org.koin.test.AutoCloseKoinTest
 class ContactsFragmentTest : AutoCloseKoinTest() {
 
     private val repository = mockk<UserRepository>()
-    private lateinit var interactor:                                                          ContactsInteractor
+    private lateinit var interactor: ContactsInteractor
     private lateinit var viewModel: ContactsViewModel
 
     @Before

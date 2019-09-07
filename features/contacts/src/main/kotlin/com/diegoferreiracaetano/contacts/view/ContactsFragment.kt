@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ContactsFragment : Fragment() {
 
-    val vm: ContactsViewModel by viewModel()
+    private val viewModel: ContactsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +60,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        vm.contacts.observe(this, Observer {
+        viewModel.contacts.observe(this, Observer {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         })
@@ -75,7 +75,7 @@ class ContactsFragment : Fragment() {
 
     private fun startShimmer() {
         shimmer_view_container.startShimmer()
-        vm.fetchContacts()
+        viewModel.fetchContacts()
     }
 
     private fun stopShimmer() {
