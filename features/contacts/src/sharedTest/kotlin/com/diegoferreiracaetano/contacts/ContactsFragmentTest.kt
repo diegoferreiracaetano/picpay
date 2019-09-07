@@ -82,4 +82,9 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
                 .check(matches(isDisplayed()))
         }
     }
+
+    @Test
+    fun test(){
+        assert(false)
+    }
 }
