@@ -28,7 +28,7 @@ before_script:
 lintDebug:
   stage: build
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+    - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
     - ./gradlew -Pci --console=plain ktlint
 
 
