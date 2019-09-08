@@ -1,11 +1,3 @@
-import dependencies.Versions
-
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = Versions.JACOCO
-}
-
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
@@ -55,3 +47,4 @@ task jacocoTestReport(type: JacocoReport) {
         println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
     }
 }
+

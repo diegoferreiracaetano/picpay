@@ -1,4 +1,5 @@
 import dependencies.Dependencies
+import dependencies.Versions
 
 buildscript {
 
@@ -12,7 +13,6 @@ buildscript {
         classpath BuildPlugins.GRADLE
         classpath BuildPlugins.KOTLIN
         classpath BuildPlugins.NAVIGATION
-        classpath BuildPlugins.JACOCO
     }
 }
 
@@ -28,6 +28,7 @@ allprojects {
 subprojects {
 
     apply from: "$rootDir/tools/ktlint.gradle"
+    apply plugin: 'jacoco'
 
     afterEvaluate {
         if (!project.hasProperty("android")) return
@@ -81,6 +82,11 @@ subprojects {
                     jvmTarget = AndroidConfig.JAVA_VERSION
                 }
             }
+        }
+
+        jacoco {
+            toolVersion = Versions.JACOCO
+            reportsDir = file("$rootProject.buildDir/report/$project.name")
         }
 
         dependencies {

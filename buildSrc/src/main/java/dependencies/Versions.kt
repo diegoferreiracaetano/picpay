@@ -1,6 +1,6 @@
 package dependencies
 
-internal object Versions {
+object Versions {
 
     const val KOTLIN = "1.3.50"
     const val SUPPORT_LIBRARY = "1.0.0"
