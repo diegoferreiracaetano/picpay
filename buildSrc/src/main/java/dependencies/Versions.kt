@@ -39,4 +39,5 @@ internal object Versions {
     const val SHIMMER = "0.4.0"
     const val FRAGMENT_TEST = "1.2.0-alpha02"
     const val MOCKITO_KOTLLIN = "2.1.0"
+    const val JACOCO = "0.8.4"
 }

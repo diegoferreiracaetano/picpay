@@ -3,6 +3,7 @@ import dependencies.Dependencies
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: "$rootDir/tools/base.gradle"
 
 android{
     testOptions.unitTests.includeAndroidResources = true
@@ -35,6 +36,9 @@ dependencies {
     testImplementation Dependencies.Test.RUNNER
     testImplementation Dependencies.Test.ESPRESSO
     testImplementation Dependencies.Test.KOIN
+
+    androidTestUtil 'com.android.support.test:orchestrator:1.0.2'
+
 
     debugImplementation Dependencies.Test.FRAGMENT_TEST
 

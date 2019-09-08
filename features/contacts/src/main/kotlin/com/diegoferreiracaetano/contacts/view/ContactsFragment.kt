@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView.GONE
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +15,6 @@ import com.diegoferreiracaetano.domain.user.User
 import kotlinx.android.synthetic.main.fragment_contacts.contact_recycle
 import kotlinx.android.synthetic.main.fragment_contacts.scroll_contacts
 import kotlinx.android.synthetic.main.fragment_contacts.searchView
-import kotlinx.android.synthetic.main.fragment_contacts.swipe_contacts
 import kotlinx.android.synthetic.main.fragment_contacts_loading.shimmer_view_container
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,7 +35,6 @@ class ContactsFragment : Fragment() {
         startShimmer()
         setupAdapter()
         setupSearchView()
-        setupRefresh()
     }
 
     override fun onStop() {
@@ -47,16 +44,6 @@ class ContactsFragment : Fragment() {
 
     private fun setupSearchView() {
         searchView.applyBackground()
-        searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                // Your Logic
-                return false
-            }
-        })
     }
 
     private fun setupAdapter() {
@@ -66,27 +53,18 @@ class ContactsFragment : Fragment() {
         })
     }
 
-    private fun setupRefresh() {
-        swipe_contacts.setOnRefreshListener {
-            swipe_contacts.isRefreshing = true
-            startShimmer()
-        }
-    }
-
     private fun startShimmer() {
         shimmer_view_container.startShimmer()
         viewModel.fetchContacts()
     }
 
     private fun stopShimmer() {
-        swipe_contacts.isRefreshing = false
         shimmer_view_container.visibility = GONE
         shimmer_view_container.stopShimmer()
     }
 
     private fun showUser(users: List<User>) {
         stopShimmer()
-        scroll_contacts.visibility = VISIBLE
         contact_recycle.adapter = ConstactsAdapter(users)
     }
 

@@ -1,0 +1,57 @@
+import dependencies.Versions
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = Versions.JACOCO
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport) {
+    group 'Reporting'
+    description 'Run tests and generate coverage report for instrumented and jvm testes'
+    dependsOn 'testDebugUnitTest'
+    dependsOn 'createDebugCoverageReport'
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/di/**'
+    ]
+
+    def javaTree = fileTree(
+            dir: "${buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
+
+    def kotlinTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+
+    classDirectories.from = files([javaTree], [kotlinTree])
+    def coverageSourceDirs = [
+            "src/main/kotlin"
+    ]
+    additionalSourceDirs.from = files(coverageSourceDirs)
+    sourceDirectories.from = files(coverageSourceDirs)
+
+    executionData.from = fileTree(dir: "$buildDir", includes: [
+            "jacoco/*.exec",
+            "outputs/code_coverage/**/connected/*.ec",
+            "tmp/tests/*.exec",
+            "tmp/tests/*.ec",
+    ])
+
+    doLast {
+        println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
+    }
+}
