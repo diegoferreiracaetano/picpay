@@ -64,10 +64,10 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
         onView(withId(R.id.contact_recycle)).check(matches(isDisplayed()))
     }
 
-    @Test
     fun givenStartScreen_whenRepositoryListError_shouldDisplayToastError() {
+
         try {
-            coEvery { repository.users() } throws Throwable("error")
+            coEvery { repository.users() } throws  Throwable("error")
 
             val scenario =
                 launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
@@ -82,8 +82,6 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
                     .inRoot(withDecorView(not(it.window.decorView)))
                     .check(matches(isDisplayed()))
             }
-        } catch (e: Exception) {
-
-        }
+        } catch (e: Exception) { }
     }
 }
