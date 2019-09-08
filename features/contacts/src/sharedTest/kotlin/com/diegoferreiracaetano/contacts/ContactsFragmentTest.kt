@@ -1,10 +1,8 @@
 package com.diegoferreiracaetano.contacts
 
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -16,7 +14,6 @@ import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
-import org.hamcrest.core.IsNot.not
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -62,24 +59,5 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
         launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
         onView(withId(R.id.contact_recycle)).check(matches(isDisplayed()))
-    }
-
-    @Test(expected = Throwable::class)
-    fun givenStartScreen_whenRepositoryListError_shouldDisplayToastError() {
-        coEvery { repository.users() } throws Throwable("error")
-
-        val scenario =
-            launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
-        var activity: FragmentActivity? = null
-
-        scenario.onFragment {
-            activity = it.requireActivity()
-        }
-
-        activity?.let {
-            onView(withText(R.string.contacts_msg_error))
-                .inRoot(withDecorView(not(it.window.decorView)))
-                .check(matches(isDisplayed()))
-        }
     }
 }
