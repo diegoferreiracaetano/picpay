@@ -29,14 +29,14 @@ task jacocoTestReport(type: JacocoReport) {
 
     def kotlinTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
 
-    classDirectories.from = files([javaTree], [kotlinTree])
+    classDirectories.from += files([javaTree], [kotlinTree])
     def coverageSourceDirs = [
             "src/main/kotlin"
     ]
-    additionalSourceDirs.from = files(coverageSourceDirs)
-    sourceDirectories.from = files(coverageSourceDirs)
+    additionalSourceDirs.from += files(coverageSourceDirs)
+    sourceDirectories.from += files(coverageSourceDirs)
 
-    executionData.from = fileTree(dir: "$buildDir", includes: [
+    executionData.from += fileTree(dir: "$buildDir", includes: [
             "jacoco/*.exec",
             "outputs/code_coverage/**/connected/*.ec",
             "tmp/tests/*.exec",
@@ -47,4 +47,3 @@ task jacocoTestReport(type: JacocoReport) {
         println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
     }
 }
-

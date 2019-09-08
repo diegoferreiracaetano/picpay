@@ -86,7 +86,7 @@ subprojects {
 
         jacoco {
             toolVersion = Versions.JACOCO
-            reportsDir = file("$rootProject.buildDir/report/$project.name")
+            reportsDir = file("$rootProject.buildDir/report/")
         }
 
         dependencies {
