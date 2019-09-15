@@ -65,6 +65,7 @@ object Dependencies {
         const val MOCKK_ANDROID = "io.mockk:mockk-android:${Versions.MOCKK}"
         const val MOCKITO = "org.mockito:mockito-android:${Versions.MOCKITO}"
         const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLLIN}"
+        const val ORCHESTRATOR = "com.android.support.test:orchestrator:${Versions.ORCHESTRATOR}"
     }
 
     object Koin {

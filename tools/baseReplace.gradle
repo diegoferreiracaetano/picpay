@@ -1,0 +1,4 @@
+apply {
+    from( "$rootDir/tools/jacocoReplace.gradle")
+    from( "$rootDir/tools/sonar.gradle")
+}

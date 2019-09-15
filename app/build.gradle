@@ -21,6 +21,7 @@ dependencies {
     implementation Dependencies.Navigation.FRAGMENT
     implementation Dependencies.Koin.SCOPE
     testImplementation Dependencies.Test.JUNIT
+    androidTestUtil Dependencies.Test.ORCHESTRATOR
     androidTestImplementation Dependencies.Test.RUNNER
     androidTestImplementation Dependencies.Test.ESPRESSO
 }

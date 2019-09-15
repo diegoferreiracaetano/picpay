@@ -13,6 +13,7 @@ buildscript {
         classpath BuildPlugins.GRADLE
         classpath BuildPlugins.KOTLIN
         classpath BuildPlugins.NAVIGATION
+        classpath BuildPlugins.JACOCO
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
     }
 }
@@ -73,7 +74,6 @@ subprojects {
             }
 
             testOptions {
-                execution 'ANDROIDX_TEST_ORCHESTRATOR'
                 unitTests.includeAndroidResources = true
                 animationsDisabled = true
             }
@@ -87,7 +87,6 @@ subprojects {
 
         jacoco {
             toolVersion = Versions.JACOCO
-            reportsDir = file("${rootProject.buildDir}/reports/${project.name}")
         }
 
         dependencies {

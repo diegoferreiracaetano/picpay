@@ -37,11 +37,9 @@ dependencies {
     testImplementation Dependencies.Test.ESPRESSO
     testImplementation Dependencies.Test.KOIN
 
-    androidTestUtil 'com.android.support.test:orchestrator:1.0.2'
-
-
     debugImplementation Dependencies.Test.FRAGMENT_TEST
 
+    androidTestUtil Dependencies.Test.ORCHESTRATOR
     androidTestImplementation Dependencies.Test.RUNNER
     androidTestImplementation Dependencies.Test.ESPRESSO
     androidTestImplementation Dependencies.Test.JUNIT_EXT

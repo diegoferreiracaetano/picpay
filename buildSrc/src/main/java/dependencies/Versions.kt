@@ -23,6 +23,7 @@ object Versions {
     const val ANDROIDX_TEST = "1.0.0"
     const val JUNIT_EXT = "1.1.0"
     const val ROOM = "2.0.0"
+    const val ORCHESTRATOR = "1.0.2"
     const val CORE_TEST = "1.1.0"
     const val CORE_TEST_ARCH = "2.0.1"
     const val CORE_ARCH = "2.0.1"
