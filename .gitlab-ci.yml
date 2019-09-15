@@ -44,3 +44,13 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebugUnitTest
+
+
+reports:
+  stage: report
+  script:
+    - ./gradlew -Pci --console=plain jacocoTestReport
+    - ./gradlew sonarqube \
+  -Dsonar.organization=diegoferreiracaetano \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=6f0071b75d8669dbd7c33d870e38dcfd2499c7db
