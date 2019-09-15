@@ -4,6 +4,13 @@
 
 image: openjdk:8-jdk
 
+stages:
+  - build
+  - test
+  - report
+  - deploy
+
+
 variables:
   ANDROID_COMPILE_SDK: "28"
   ANDROID_BUILD_TOOLS: "28.0.2"
