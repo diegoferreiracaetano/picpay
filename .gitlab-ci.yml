@@ -40,5 +40,6 @@ debugTests:
      expire_in: 1 week
      paths:
       - app/build/reports/tests/testDebugUnitTest/
+      - app/build//tmp/kotlin-classes/debug
       - $CI_BUILDS_DIR/reports/app/
 
