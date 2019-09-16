@@ -35,11 +35,11 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain app:testDebugUnitTest
-    - ./gradlew -Pci --console=plain sonarqube  -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
+    - ./gradlew -Pci --console=plain app:sonarqube  -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
   artifacts:
      expire_in: 1 week
      paths:
-      - app/build/reports/tests/testCartaobrancoDebugUnitTest/
-      - data/build/reports/tests/testCartaobrancoDebugUnitTest/
-      - domain/build/reports/tests/testCartaobrancoDebugUnitTest/
-      - features/contacts/build/reports/tests/testCartaobrancoDebugUnitTest/
+      - app/build/reports/tests/testDebugUnitTest/
+      - data/build/reports/tests/testDebugUnitTest/
+      - domain/build/reports/tests/testDebugUnitTest/
+      - features/contacts/build/reports/tests/testDebugUnitTest/
