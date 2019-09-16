@@ -10,7 +10,7 @@ task jacocoTestReport(type: JacocoReport,  overwrite: true) {
 
     reports {
         xml.enabled = true
-        xml.destination = file("${buildDir}/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
+        xml.destination = file("${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
         html.enabled = true
     }
 
