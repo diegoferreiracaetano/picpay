@@ -57,4 +57,4 @@ reports:
   stage: report
   script:
     - ./gradlew -Pci --console=plain jacocoTestReport
-    - ./gradlew sonarqube \ -Dsonar.organization=diegoferreiracaetano \  -Dsonar.host.url=https://sonarcloud.io \  -Dsonar.login=6f0071b75d8669dbd7c33d870e38dcfd2499c7db
+    - ./gradlew sonarqube \ -Dsonar.organization=$SONAR_ORGANIZATION \  -Dsonar.host.url=$SONAR_URL \  -Dsonar.login=$SONAR_LOGIN
