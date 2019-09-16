@@ -11,6 +11,7 @@ task jacocoTestReport(type: JacocoReport) {
 
     reports {
         xml.enabled = true
+        xml.destination = file("${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
         html.enabled = true
     }
 
