@@ -31,24 +31,15 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
-lintDebug:
-  stage: build
-  script:
-    - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
-    - ./gradlew -Pci --console=plain ktlint
-
-
-assembleDebug:
-  stage: build
-  script:
-    - ./gradlew assembleDebug
-  artifacts:
-    paths:
-    - app/build/outputs/
-
 debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebugUnitTest
     - ./gradlew -Pci --console=plain sonarqube  -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
+  artifacts:
+    paths:
+    - /builds/diegoferreiracaetano/picpay/app/build/reports/jacoco/jacocoTestReport/
+    - /builds/diegoferreiracaetano/picpay/data/build/reports/jacoco/jacocoTestReport/
+    - /builds/diegoferreiracaetano/picpay/domain/build/reports/jacoco/jacocoTestReport/
+    - /builds/diegoferreiracaetano/picpay/features/contacts/build/reports/jacoco/jacocoTestReport/
 
