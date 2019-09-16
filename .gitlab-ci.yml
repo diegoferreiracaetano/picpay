@@ -50,4 +50,5 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebugUnitTest
-    - ./gradlew sonarqube \ -Dsonar.projectKey=diegoferreiracaetano_picpay \ -Dsonar.organization=diegoferreiracaetano \ -Dsonar.hoasonar.login=140cb1e0317a9ca9ea0e9502b078cb0a84102459
+    - ./gradlew -Pci --console=plain sonarqube  -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
+
