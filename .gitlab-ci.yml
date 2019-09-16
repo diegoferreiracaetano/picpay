@@ -7,7 +7,6 @@ image: openjdk:8-jdk
 stages:
   - build
   - test
-  - report
   - deploy
 
 
@@ -51,8 +50,4 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebugUnitTest
-
-reports:
-  stage: report
-  script:
     - ./gradlew sonarqube \ -Dsonar.organization=$SONAR_ORGANIZATION \  -Dsonar.host.url=$SONAR_URL \  -Dsonar.login=$SONAR_LOGIN
