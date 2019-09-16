@@ -44,14 +44,10 @@ assembleDebug:
     - ./gradlew assembleDebug
   artifacts:
     paths:
-      - app/build/outputs/
+    - app/build/outputs/
 
 debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebugUnitTest
-  ./gradlew sonarqube \
-  -Dsonar.projectKey=diegoferreiracaetano_picpay \
-  -Dsonar.organization=diegoferreiracaetano \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=075da613173c5afe2e767cea01777598f0a19632
+    - ./gradlew sonarqube \ -Dsonar.projectKey=diegoferreiracaetano_picpay \ -Dsonar.organization=diegoferreiracaetano \ -Dsonar.hoasonar.login=140cb1e0317a9ca9ea0e9502b078cb0a84102459
