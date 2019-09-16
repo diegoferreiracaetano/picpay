@@ -40,5 +40,5 @@ debugTests:
      expire_in: 1 week
      paths:
       - app/build/reports/tests/testDebugUnitTest/
-      - /builds/diegoferreiracaetano/picpay/build/reports/app/
+      - $CI_BUILDS_DIR/reports/app/
 
