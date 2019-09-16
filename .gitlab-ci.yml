@@ -40,6 +40,5 @@ debugTests:
      expire_in: 1 week
      paths:
       - app/build/reports/tests/testDebugUnitTest/
-      - data/build/reports/tests/testDebugUnitTest/
-      - domain/build/reports/tests/testDebugUnitTest/
-      - features/contacts/build/reports/tests/testDebugUnitTest/
+      - app/build/reports/jacoco/jacocoTestReport/
+
