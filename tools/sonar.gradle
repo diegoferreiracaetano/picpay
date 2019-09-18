@@ -9,4 +9,3 @@ sonarqube {
         property "sonar.android.lint.report", "build/outputs/lint-results.xml"
     }
 }
-
