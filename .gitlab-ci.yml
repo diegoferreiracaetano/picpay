@@ -35,6 +35,7 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain app:testDebugUnitTest
+    - cat $CI_PROJECT_DIR/reports/jacocoTestReport.xml
     - ./gradlew -Pci --console=plain app:sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
   artifacts:
      expire_in: 1 week
