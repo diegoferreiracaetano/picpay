@@ -37,7 +37,7 @@ debugTests:
     - ./gradlew -Pci --console=plain app:testDebugUnitTest
     - ./gradlew -Pci --console=plain app:sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
   artifacts:
-     expire_in: 1 week„
+     expire_in: 1 week
      paths:
       - app/build/reports/tests/testDebugUnitTest/
       - app/build/tmp/kotlin-classes/debug
