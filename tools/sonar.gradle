@@ -6,8 +6,5 @@ sonarqube {
     properties {
         property "sonar.exclusions", "**/*Module.kt"
         property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.android.lint.report", "build/outputs/lint-results.xml"
     }
 }
-
-
