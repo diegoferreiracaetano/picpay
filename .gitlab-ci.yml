@@ -41,7 +41,7 @@ debugTests:
     when: on_failure
     expire_in: 1 week
     paths:
-    - $CI_PROJECT_DIR/build/reports
+    - build/reports/app/
     
 reports:
   stage: report
