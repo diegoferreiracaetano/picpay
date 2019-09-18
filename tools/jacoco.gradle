@@ -7,11 +7,11 @@ task jacocoTestReport(type: JacocoReport) {
     group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'
     dependsOn 'testDebugUnitTest'
-    dependsOn 'createDebugCoverageReport'
+   // dependsOn 'createDebugCoverageReport'
 
     reports {
         xml.enabled = true
-        xml.destination = file("${buildDir}/reports/jacocoTestReport.xml")
+        xml.destination = file("${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
         html.enabled = true
     }
 

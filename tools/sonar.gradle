@@ -5,7 +5,7 @@ sonarqube {
 
     properties {
         property "sonar.exclusions", "**/*Module.kt"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacocoTestReport.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml"
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.android.lint.report", "build/outputs/lint-results.xml"
     }

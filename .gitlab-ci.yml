@@ -34,15 +34,6 @@ before_script:
 debugTests:
   stage: test
   script:
-    - ./gradlew -Pci --console=plain app:testDebugUnitTest
-    - ls
-    - cat $CI_PROJECT_DIR/reports/jacocoTestReport.xml
-    - echo $CI_PROJECT_DIR/reports/jacocoTestReport.xml
-    - ./gradlew -Pci --console=plain app:sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
-  artifacts:
-     expire_in: 1 week
-     paths:
-      - app/build/reports/tests/testDebugUnitTest/
-      - app/build/tmp/kotlin-classes/debug
-      - app/build/reports/
+    - ./gradlew -Pci --console=plain jacocoTestReport
+    - ./gradlew -Pci --console=plain sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
 
