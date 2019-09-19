@@ -11,7 +11,7 @@ task jacocoTestReport(type: JacocoReport) {
 
     reports {
         xml.enabled = true
-        xml.destination = file("build/reports/app/jacocoTestReport.xml")
+        xml.destination = file("${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
         html.enabled = true
     }
 
@@ -47,6 +47,6 @@ task jacocoTestReport(type: JacocoReport) {
     ])
 
     doLast {
-        println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
+        println "Jacoco report has been generated to file://${reports.xml.destination}"
     }
 }

@@ -41,6 +41,6 @@ task jacocoTestReport(type: JacocoReport,  overwrite: true) {
     }
 
     doLast {
-        println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
+        println "Jacoco report has been generated to file://${reports.xml.destination}"
     }
 }
