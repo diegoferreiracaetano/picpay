@@ -6,7 +6,7 @@ tasks.withType(Test) {
 task jacocoTestReport(type: JacocoReport) {
     group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'
-    dependsOn 'testDebugUnitTest'
+   // dependsOn 'testDebugUnitTest'
    // dependsOn 'createDebugCoverageReport'
 
     reports {
