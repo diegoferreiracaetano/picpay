@@ -4,7 +4,7 @@ tasks.withType(Test) {
 }
 
 task jacocoTestReport(type: JacocoReport,  overwrite: true) {
-    group 'Reporting'
+   /* group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'
     dependsOn 'test'
 
@@ -42,5 +42,5 @@ task jacocoTestReport(type: JacocoReport,  overwrite: true) {
 
     doLast {
         println "Jacoco report has been generated to file://${reports.xml.destination}"
-    }
+    }*/
 }
