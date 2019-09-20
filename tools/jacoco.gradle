@@ -26,27 +26,29 @@ task jacocoTestReport(type: JacocoReport) {
             '**/di/**'
     ]
 
-    def javaTree = fileTree(
-            dir: "${buildDir}/intermediates/classes/debug",
-            excludes: fileFilter)
-
     def kotlinTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
 
-    classDirectories.from += files([javaTree], [kotlinTree])
-    def coverageSourceDirs = [
-            "src/main/kotlin"
-    ]
-    additionalSourceDirs.from += files(coverageSourceDirs)
-    sourceDirectories.from += files(coverageSourceDirs)
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            kotlinTree
+        })
 
-    executionData.from += fileTree(dir: "$buildDir", includes: [
-            "jacoco/*.exec",
-            "outputs/code_coverage/**/connected/*.ec",
-            "tmp/tests/*.exec",
-            "tmp/tests/*.ec",
-    ])
+        def coverageSourceDirs = [
+                "src/main/kotlin"
+        ]
 
-    doLast {
-        println "Jacoco report has been generated to file://${reports.xml.destination}"
+        additionalSourceDirs.from += files(coverageSourceDirs)
+        sourceDirectories.from += files(coverageSourceDirs)
+
+        executionData.from += fileTree(dir: "$buildDir", includes: [
+                "jacoco/*.exec",
+                "outputs/code_coverage/**/connected/*.ec",
+                "tmp/tests/*.exec",
+                "tmp/tests/*.ec",
+        ])
+
+        doLast {
+            println "Jacoco report has been generated to file://${reports.xml.destination}"
+        }
     }
 }
