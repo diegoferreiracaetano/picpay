@@ -7,7 +7,7 @@ task jacocoTestReport(type: JacocoReport) {
     group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'
     dependsOn 'testDebugUnitTest'
-    dependsOn 'createDebugCoverageReport'
+    //dependsOn 'createDebugCoverageReport'
 
     reports {
         xml.enabled = true
@@ -41,7 +41,7 @@ task jacocoTestReport(type: JacocoReport) {
 
     executionData.from += fileTree(dir: "$buildDir", includes: [
             "jacoco/*.exec",
-           // "outputs/code_coverage/**/connected/*.ec",
+            "outputs/code_coverage/**/connected/*.ec",
             "tmp/tests/*.exec",
             "tmp/tests/*.ec",
     ])
