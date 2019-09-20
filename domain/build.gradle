@@ -1,6 +1,5 @@
 import dependencies.Dependencies
 apply plugin: 'kotlin'
-apply from: "$rootDir/tools/baseReplace.gradle"
 
 dependencies {
     implementation Dependencies.Koin.SCOPE
