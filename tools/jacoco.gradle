@@ -40,6 +40,12 @@ task jacocoTestReport(type: JacocoReport) {
         additionalSourceDirs.from += files(coverageSourceDirs)
         sourceDirectories.from += files(coverageSourceDirs)
 
+        executionData.from += fileTree(dir: "$buildDir", includes: [
+                "jacoco/*.exec",
+                "outputs/code_coverage/**/connected/*.ec",
+                "tmp/tests/*.exec",
+                "tmp/tests/*.ec",
+        ])
 
         doLast {
             println "Jacoco report has been generated to file://${reports.xml.destination}"
