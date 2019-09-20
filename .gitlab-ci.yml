@@ -7,6 +7,7 @@ image: openjdk:8-jdk
 stages:
   - build
   - test
+  - report
   - deploy
 
 
@@ -35,8 +36,17 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain clean
-    - ./gradlew -Pci --console=plain features:contacts:testDebugUnitTest --stacktrace
-    - ./gradlew -Pci --console=plain features:contacts:jacocoTestReport --stacktrace
-    - ./gradlew -Pci --console=plain features:contacts:sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
+    - ./gradlew -Pci --console=plain testDebugUnitTest --stacktrace
+    artifacts:
+    name: "junit_test_report_$CI_JOB_NAME"
+    when: on_failure
+    expire_in: 1 week
+    paths:
+      - build/reports/
 
+reports:
+  stage: report
+  script:
+    - ./gradlew -Pci --console=plain jacocoTestReport --stacktrace
+    - ./gradlew -Pci --console=plain sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
 
