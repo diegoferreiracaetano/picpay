@@ -3,8 +3,13 @@ tasks.withType(Test) {
     jacoco.excludes = ['jdk.internal.*']
 }
 
+
 task jacocoTestReport(type: JacocoReport,  overwrite: true) {
-   /* group 'Reporting'
+
+}
+
+task jacocoTestReports(type: JacocoReport,  overwrite: true) {
+    group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'
     dependsOn 'test'
 
@@ -42,5 +47,5 @@ task jacocoTestReport(type: JacocoReport,  overwrite: true) {
 
     doLast {
         println "Jacoco report has been generated to file://${reports.xml.destination}"
-    }*/
+    }
 }
