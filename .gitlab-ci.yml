@@ -34,6 +34,8 @@ before_script:
 debugTests:
   stage: test
   script:
-    - ./gradlew -Pci --console=plain clean testDebugUnitTest jacocoTestReport
+    - ./gradlew -Pci --console=plain clean testDebugUnitTest
+    - ./gradlew -Pci --console=plain clean domain:test
+    - ./gradlew -Pci --console=plaib jacocoTestReport
     - ./gradlew -Pci --console=plain sonarqube --stacktrace -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
 
