@@ -5,9 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: "$rootDir/tools/base.gradle"
 
-android{
-    testOptions.unitTests.includeAndroidResources = true
-}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
