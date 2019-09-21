@@ -2,6 +2,7 @@ import dependencies.Dependencies
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/tools/base.gradle"
 
 android {
     defaultConfig {
