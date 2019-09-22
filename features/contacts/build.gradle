@@ -10,6 +10,7 @@ dependencies {
 
     implementation project(":style")
     implementation project(":domain")
+    implementation project(":commons")
     implementation Dependencies.Android.APP_COMPAT
     implementation Dependencies.Android.DESIGN
     implementation Dependencies.Android.RECYCLER_VIEW
@@ -23,6 +24,7 @@ dependencies {
     implementation Dependencies.COROUTINES.ANDROID
     implementation Dependencies.Koin.VIEW_MODEL
     implementation Dependencies.SHIMMER
+    implementation Dependencies.TIMBER
 
     testImplementation Dependencies.Test.JUNIT
     testImplementation Dependencies.Test.JUNIT_EXT

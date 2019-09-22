@@ -20,8 +20,14 @@ dependencies {
     implementation Dependencies.Navigation.UI
     implementation Dependencies.Navigation.FRAGMENT
     implementation Dependencies.Koin.SCOPE
+
     testImplementation Dependencies.Test.JUNIT
+
     androidTestUtil Dependencies.Test.ORCHESTRATOR
     androidTestImplementation Dependencies.Test.RUNNER
     androidTestImplementation Dependencies.Test.ESPRESSO
+    androidTestImplementation Dependencies.Test.JUNIT_EXT
+    androidTestImplementation Dependencies.Test.KOIN
+    androidTestImplementation Dependencies.Test.MOCKK_ANDROID
+    androidTestImplementation Dependencies.Test.KOTLIN
 }

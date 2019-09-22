@@ -1,8 +1,10 @@
 package com.diegoferreiracaetano.contacts.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView.GONE
@@ -11,10 +13,13 @@ import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.applyBackground
 import com.diegoferreiracaetano.domain.user.User
+import kotlinx.android.synthetic.main.fragment_contacts.contact_container
+import kotlinx.android.synthetic.main.fragment_contacts.contact_error
 import kotlinx.android.synthetic.main.fragment_contacts.contact_recycle
 import kotlinx.android.synthetic.main.fragment_contacts.searchView
 import kotlinx.android.synthetic.main.fragment_contacts_loading.shimmer_view_container
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class ContactsFragment : Fragment() {
 
@@ -52,6 +57,8 @@ class ContactsFragment : Fragment() {
     }
 
     private fun startShimmer() {
+        contact_error.visibility = GONE
+        contact_container.visibility = VISIBLE
         shimmer_view_container.startShimmer()
         viewModel.fetchContacts()
     }
@@ -68,6 +75,11 @@ class ContactsFragment : Fragment() {
 
     private fun showError(error: Throwable) {
         stopShimmer()
-        Toast.makeText(requireContext(), R.string.contacts_msg_error, Toast.LENGTH_LONG).show()
+        contact_error.visibility = VISIBLE
+        contact_container.visibility = GONE
+        contact_error.retry(View.OnClickListener {
+            startShimmer()
+        })
+        Timber.e(error)
     }
 }

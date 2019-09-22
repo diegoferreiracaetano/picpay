@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">commons</string>
+    <string name="error_default_title">Não foi possivel carregar as informações</string>
+    <string name="retry">Tente novamente</string>
 </resources>
