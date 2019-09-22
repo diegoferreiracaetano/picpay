@@ -13,8 +13,8 @@ fun <T> execute(mediator: MediatorLiveData<Result<T>>, interactor: Interactor<T>
     val liveData = liveData {
         try {
             emit(Result.success(interactor.execute()))
-        } catch (e: Exception) {
-            emit(Result.failure(e))
+        } catch (e: Throwable) {
+            emit(Result.failure<T>(e))
         }
     }
 

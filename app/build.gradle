@@ -1,9 +1,7 @@
 import dependencies.Dependencies
 
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 apply from: "$rootDir/tools/base.gradle"
 
@@ -22,6 +20,14 @@ dependencies {
     implementation Dependencies.Koin.SCOPE
 
     testImplementation Dependencies.Test.JUNIT
+    testImplementation Dependencies.Test.JUNIT_EXT
+    testImplementation Dependencies.Test.CORE
+    testImplementation Dependencies.Test.COROUTINES
+    testImplementation Dependencies.Test.ROBOELETRIC
+    testImplementation Dependencies.Test.RUNNER
+    testImplementation Dependencies.Test.ESPRESSO
+
+    debugImplementation Dependencies.Test.FRAGMENT_TEST
 
     androidTestUtil Dependencies.Test.ORCHESTRATOR
     androidTestImplementation Dependencies.Test.RUNNER
