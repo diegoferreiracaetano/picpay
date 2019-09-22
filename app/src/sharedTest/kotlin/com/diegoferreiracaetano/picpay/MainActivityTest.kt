@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 import org.koin.test.AutoCloseKoinTest
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest: AutoCloseKoinTest() {
+class MainActivityTest : AutoCloseKoinTest() {
 
     @Test
     fun whenInitScreen_verifyIdNavHost() {
