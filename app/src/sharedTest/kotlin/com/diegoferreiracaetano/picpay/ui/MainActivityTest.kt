@@ -8,10 +8,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.diegoferreiracaetano.picpay.R
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
@@ -23,8 +21,8 @@ class MainActivityTest {
 
         scenario = launch(MainActivity::class.java)
 
-        scenario.moveToState(Lifecycle.State.RESUMED)
+        scenario.moveToState(Lifecycle.State.CREATED)
 
-        onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
+        onView(withId(16908310)).check(matches(isDisplayed()))
     }
 }
