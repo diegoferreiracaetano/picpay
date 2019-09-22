@@ -1,7 +1,8 @@
-package com.diegoferreiracaetano.picpay
+package com.diegoferreiracaetano.picpay.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.diegoferreiracaetano.picpay.R
 
 class MainActivity : AppCompatActivity() {
 
