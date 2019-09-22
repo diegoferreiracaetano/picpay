@@ -1,6 +1,5 @@
 package com.diegoferreiracaetano.picpay.ui
 
-import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.espresso.Espresso.onView
@@ -9,13 +8,11 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.picpay.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.LooperMode
-import org.robolectric.annotation.LooperMode.Mode.PAUSED
 
-
-@LooperMode(PAUSED)
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
@@ -23,13 +20,12 @@ class MainActivityTest {
 
     @Test
     fun useAppContext() {
+        runBlocking(Dispatchers.Main) {
+            scenario = launch(MainActivity::class.java)
 
-        scenario = launch(MainActivity::class.java)
+            scenario.recreate()
 
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
-        scenario.recreate()
-
-        onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
+            onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
+        }
     }
 }
