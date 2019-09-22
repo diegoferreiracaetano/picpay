@@ -3,9 +3,7 @@ package com.diegoferreiracaetano.contacts
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.Mock
 import com.diegoferreiracaetano.contacts.view.ContactsFragment
@@ -14,6 +12,7 @@ import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
+import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -68,5 +67,18 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
         launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
         onView(withId(R.id.contact_error)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun whenCallingonStop_shouldSimmerNotVisible() {
+        coEvery { repository.users() } returns Mock.users()
+
+        val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+
+        scenario.onFragment {
+            it.onStop()
+        }
+
+        onView(withId(R.id.shimmer_view_container)).check(matches(not(isDisplayed())))
     }
 }
