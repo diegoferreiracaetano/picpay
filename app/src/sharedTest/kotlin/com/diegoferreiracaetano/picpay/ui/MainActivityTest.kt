@@ -8,9 +8,14 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.diegoferreiracaetano.picpay.R
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.LooperMode
+import org.robolectric.annotation.LooperMode.Mode.PAUSED
 
+
+@LooperMode(PAUSED)
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
@@ -21,8 +26,10 @@ class MainActivityTest {
 
         scenario = launch(MainActivity::class.java)
 
-        scenario.moveToState(Lifecycle.State.CREATED)
+        scenario.moveToState(Lifecycle.State.RESUMED)
 
-        onView(withId(16908310)).check(matches(isDisplayed()))
+        scenario.recreate()
+
+        onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
     }
 }
