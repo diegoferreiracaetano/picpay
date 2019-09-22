@@ -9,7 +9,6 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.picpay.R
-import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -17,11 +16,6 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     private lateinit var scenario: ActivityScenario<MainActivity>
-
-    @After
-    fun after() {
-        scenario.close()
-    }
 
     @Test
     fun useAppContext() {
