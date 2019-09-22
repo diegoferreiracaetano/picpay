@@ -12,7 +12,6 @@ class ErrorView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-
     init {
         LayoutInflater.from(context).inflate(R.layout.view_error, this)
     }
