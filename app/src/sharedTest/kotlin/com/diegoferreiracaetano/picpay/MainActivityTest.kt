@@ -7,9 +7,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.test.AutoCloseKoinTest
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class MainActivityTest: AutoCloseKoinTest() {
 
     @Test
     fun whenInitScreen_verifyIdNavHost() {

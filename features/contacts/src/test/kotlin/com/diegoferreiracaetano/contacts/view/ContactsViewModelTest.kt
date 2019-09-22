@@ -1,7 +1,8 @@
+package com.diegoferreiracaetano.contacts.view
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.Mock
-import com.diegoferreiracaetano.contacts.view.ContactsViewModel
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.User
 import io.mockk.coEvery
@@ -52,7 +53,7 @@ internal class ContactsViewModelTest {
         verify { observe.onChanged(Result.success(Mock.users())) }
     }
 
-    @Test(expected = Throwable::class)
+    @Test
     fun `Given interactor contacts When call fetchContacts Then verify result error`() {
 
         val error = Throwable("error")

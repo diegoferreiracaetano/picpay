@@ -26,6 +26,7 @@ dependencies {
     testImplementation Dependencies.Test.ROBOELETRIC
     testImplementation Dependencies.Test.RUNNER
     testImplementation Dependencies.Test.ESPRESSO
+    testImplementation Dependencies.Test.KOIN
 
     debugImplementation Dependencies.Test.FRAGMENT_TEST
 
