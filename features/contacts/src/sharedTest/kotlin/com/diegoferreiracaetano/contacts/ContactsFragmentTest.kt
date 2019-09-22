@@ -2,6 +2,7 @@ package com.diegoferreiracaetano.contacts
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -15,6 +16,7 @@ import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.android.synthetic.main.fragment_contacts.contact_error
 import kotlinx.android.synthetic.main.fragment_contacts.searchView
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
@@ -102,5 +104,14 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
         launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
         onView(withId(androidx.appcompat.R.id.search_src_text)).perform(typeText("something"))
+    }
+
+    @Test
+    fun givenStartScreen_whenRepositoryListError_shouldVerifyNotNullListener() {
+        coEvery { repository.users() } throws Exception()
+
+        launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+
+        onView(withId(R.id.error_btn)).perform(click())
     }
 }
