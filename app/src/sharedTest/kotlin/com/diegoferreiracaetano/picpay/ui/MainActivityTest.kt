@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.picpay.ui
 
+import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -29,6 +30,9 @@ class MainActivityTest {
 
     @Test
     fun useAppContext() {
+
+        scenario.moveToState(Lifecycle.State.CREATED)
+
         onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
     }
 }
