@@ -12,7 +12,9 @@ import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.android.synthetic.main.fragment_contacts.searchView
 import org.hamcrest.CoreMatchers.not
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -80,5 +82,31 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
         }
 
         onView(withId(R.id.shimmer_view_container)).check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun givenStartScreen_searchIsFocusable_verifySearchBackground() {
+        coEvery { repository.users() } returns Mock.users()
+
+        val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+
+        scenario.onFragment {
+            it.searchView.isFocusable = true
+
+            assertNotNull(it.searchView.background)
+        }
+    }
+
+    @Test
+    fun givenStartScreen_searchIsNotFocusable_verifySearchBackground() {
+        coEvery { repository.users() } returns Mock.users()
+
+        val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+
+        scenario.onFragment {
+            it.searchView.isFocusable = false
+
+            assertNotNull(it.searchView.background)
+        }
     }
 }
