@@ -38,7 +38,7 @@ before_script:
 debugTests:
   stage: test
   script:
-    - ./gradlew clean app:testDebugUnitTest
+    - ./gradlew clean app:testDebugUnitTest --stacktrace
     - ./gradlew app:jacocoTestReport
     - ./gradlew app:sonarqube -Dsonar.organization=$SONAR_ORGANIZATION   -Dsonar.host.url=$SONAR_URL   -Dsonar.login=$SONAR_LOGIN
 
