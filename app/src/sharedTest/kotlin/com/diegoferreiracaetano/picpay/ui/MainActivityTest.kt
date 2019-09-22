@@ -1,17 +1,26 @@
 package com.diegoferreiracaetano.picpay.ui
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert.assertEquals
+import com.diegoferreiracaetano.picpay.R
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
+
+    @get:Rule
+    val rule = lazyActivityScenarioRule<MainActivity>(launchActivity = false)
+
     @Test
     fun useAppContext() {
-        val appContext = ApplicationProvider.getApplicationContext<Context>()
-        assertEquals("com.diegoferreiracaetano.picpay", appContext.packageName)
+
+        rule.launch()
+
+        onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
     }
 }
