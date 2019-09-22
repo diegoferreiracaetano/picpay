@@ -2,8 +2,11 @@ package com.diegoferreiracaetano.contacts
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.Mock
 import com.diegoferreiracaetano.contacts.view.ContactsFragment
@@ -14,7 +17,6 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.android.synthetic.main.fragment_contacts.searchView
 import org.hamcrest.CoreMatchers.not
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -85,28 +87,20 @@ class ContactsFragmentTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun givenStartScreen_searchIsFocusable_verifySearchBackground() {
+    fun givenStartScreen_whenRepositoryListSuccess_verifySearchIsVisible() {
         coEvery { repository.users() } returns Mock.users()
 
-        val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
-        scenario.onFragment {
-            it.searchView.isFocusable = true
-
-            assertNotNull(it.searchView.background)
-        }
+        onView(withId(R.id.searchView)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun givenStartScreen_searchIsNotFocusable_verifySearchBackground() {
+    fun givenStartScreen_whenIsWriteSearch_shouldSomething() {
         coEvery { repository.users() } returns Mock.users()
 
-        val scenario = launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<ContactsFragment>(themeResId = R.style.AppTheme)
 
-        scenario.onFragment {
-            it.searchView.isFocusable = false
-
-            assertNotNull(it.searchView.background)
-        }
+        onView(withId(androidx.appcompat.R.id.search_src_text)).perform(typeText("something"))
     }
 }
