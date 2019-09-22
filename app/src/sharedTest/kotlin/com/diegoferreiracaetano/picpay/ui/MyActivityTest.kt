@@ -22,5 +22,7 @@ class MyActivityTest {
         scenario = launch(MyActivity::class.java)
 
         onView(withId(R.id.nav_host_fragment)).check(matches(isDisplayed()))
+
+        scenario.close()
     }
 }
