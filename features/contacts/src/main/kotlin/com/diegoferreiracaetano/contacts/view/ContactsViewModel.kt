@@ -2,6 +2,7 @@ package com.diegoferreiracaetano.contacts.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.diegoferreiracaetano.contacts.execute
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
@@ -12,7 +13,14 @@ class ContactsViewModel(private val contactsInteractor: ContactsInteractor) : Vi
     private val _contacts = MediatorLiveData<Result<List<User>>>()
     val contacts: LiveData<Result<List<User>>> = _contacts
 
+    private val _search = MutableLiveData<String>()
+    val search: LiveData<String> = _search
+
     fun fetchContacts() {
         execute(_contacts, contactsInteractor)
+    }
+
+    fun search(newText: String) {
+        _search.postValue(newText)
     }
 }

@@ -7,6 +7,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.domain.Interactor
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.Normalizer
+
+private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 
 fun <T> execute(mediator: MediatorLiveData<Result<T>>, interactor: Interactor<T>) {
 
@@ -38,4 +41,9 @@ fun SearchView.applyBackground() {
         else
             setBackgroundResource(R.drawable.around_search)
     }
+}
+
+fun CharSequence.unaccent(): String {
+    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
+    return REGEX_UNACCENT.replace(temp, "")
 }

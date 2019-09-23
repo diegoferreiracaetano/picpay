@@ -6,6 +6,7 @@ import com.diegoferreiracaetano.Mock
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.User
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,7 @@ internal class ContactsViewModelTest {
 
     private val interactor = mockk<ContactsInteractor>()
     private val observe = mockk<Observer<Result<List<User>>>>()
+    private val observeString = mockk<Observer<String>>()
     private lateinit var viewModel: ContactsViewModel
 
     private val testDispatcher = TestCoroutineDispatcher()
@@ -64,5 +66,17 @@ internal class ContactsViewModelTest {
         viewModel.contacts.observeForever(observe)
 
         verify { observe.onChanged(Result.failure(error)) }
+    }
+
+    @Test
+    fun `Given interactor contacts When call search Then verify search`() {
+
+        every { observeString.onChanged(any()) } returns Unit
+
+        viewModel.search("string")
+
+        viewModel.search.observeForever(observeString)
+
+        verify { observeString.onChanged("string") }
     }
 }
