@@ -16,8 +16,6 @@ import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.android.synthetic.main.fragment_contacts.contact_error
-import kotlinx.android.synthetic.main.fragment_contacts.searchView
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 import org.junit.Test
