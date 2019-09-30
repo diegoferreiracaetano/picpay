@@ -29,7 +29,7 @@ object Versions {
     const val CORE_ARCH = "2.0.1"
     const val GSON = "2.8.5"
     const val TIMBER = "4.7.1"
-    const val NAVIGATION = "2.0.0"
+    const val NAVIGATION = "2.1.0"
     const val NAVIGATION_SAFE_ARGS = "1.0.0"
     const val GRADLE = "3.4.2"
     const val CIRCLE_IMAGE = "3.0.0"

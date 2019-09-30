@@ -9,9 +9,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.GONE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.diegoferreiracaetano.contacts.R
+    import com.diegoferreiracaetano.commons.unaccent
+    import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.applyBackground
-import com.diegoferreiracaetano.contacts.unaccent
 import com.diegoferreiracaetano.domain.user.User
 import kotlinx.android.synthetic.main.fragment_contacts.contact_container
 import kotlinx.android.synthetic.main.fragment_contacts.contact_error
@@ -81,14 +81,14 @@ import timber.log.Timber
 
         private fun showUser(users: List<User>) {
             stopShimmer()
-            contact_recycle.adapter = ConstactsAdapter(users)
+            contact_recycle.adapter = ContactsAdapter(users)
             filter(users)
         }
 
         private fun filter(users: List<User>) {
             viewModel.search.observe(this, Observer {
                 val filter = users.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
-                contact_recycle.adapter = ConstactsAdapter(filter)
+                contact_recycle.adapter = ContactsAdapter(filter)
             })
         }
 

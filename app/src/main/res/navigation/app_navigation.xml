@@ -9,5 +9,20 @@
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.diegoferreiracaetano.contacts.view.ContactsFragment"
-        android:label="ContactsFragment" />
+        tools:layout="@layout/fragment_contacts"
+        android:label="ContactsFragment" >
+    </fragment>
+    <fragment
+      android:id="@+id/paymentFragment"
+      android:name="com.diegoferreiracaetano.payment.PaymentFragment"
+      android:label="PaymentFragment"
+      tools:layout="@layout/fragment_blank">
+        <deepLink
+          android:id="@+id/deepLink4"
+          app:uri="android-app://payment/id/{id}"
+          android:autoVerify="true" />
+        <argument
+          android:name="id"
+          app:argType="integer" />
+    </fragment>
 </navigation>

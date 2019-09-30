@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/primary_dark"
+  tools:context=".PaymentFragment">
+
+  <de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/mask"
+    android:layout_width="44dp"
+    android:layout_height="44dp"
+    android:layout_marginTop="40dp"
+    app:layout_constraintDimensionRatio="w,1:1"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:src="@tools:sample/avatars" />
+
+  <TextView
+    android:id="@+id/username"
+    style="@style/TextSmall"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:textColor="@color/primary_text"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/mask"
+    tools:text="nickbame" />
+
+  <EditText
+    android:id="@+id/value"
+    android:digits="0123456789.,"
+    android:inputType="numberDecimal"
+    style="@style/TextExtraLarge"
+    android:textColor="@color/accent"
+    android:textColorHint="@color/primary_light"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
+    app:layout_constraintEnd_toEndOf="@+id/username"
+    app:layout_constraintStart_toEndOf="@+id/real"
+    app:layout_constraintTop_toBottomOf="@+id/username"
+    android:hint="@string/default_value"
+    android:autofillHints="" />
+
+  <TextView
+    android:id="@+id/real"
+    style="@style/TextMedium"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/primary_light"
+    app:layout_constraintBottom_toBottomOf="@+id/value"
+    app:layout_constraintEnd_toStartOf="@+id/value"
+    app:layout_constraintStart_toStartOf="@+id/username"
+    app:layout_constraintTop_toTopOf="@+id/value"
+    android:text="@string/current_fomart" />
+
+  <TextView
+    android:id="@+id/card"
+    style="@style/TextSmall"
+    android:textColor="@color/primary_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
+    app:layout_constraintEnd_toStartOf="@+id/edit"
+    app:layout_constraintStart_toStartOf="@+id/username"
+    app:layout_constraintTop_toBottomOf="@+id/value"
+    tools:text="mastercard"
+    />
+
+  <TextView
+    android:id="@+id/edit"
+    style="@style/TextSmall"
+    android:textColor="@color/accent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="32dp"
+    app:layout_constraintEnd_toEndOf="@+id/username"
+    app:layout_constraintStart_toEndOf="@+id/card"
+    app:layout_constraintTop_toBottomOf="@+id/value"
+    android:text="@string/editar" />
+
+  <Button
+    android:id="@+id/pay"
+    style="@style/ButtonDisable"
+    android:enabled="false"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="16dp"
+    android:text="@string/pay"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,5 +13,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(":style")
+    implementation project(":domain")
+    implementation Dependencies.Lifecycle.LIVEDATA
+    implementation Dependencies.Lifecycle.VIEW_MODEL
+    implementation Dependencies.CIRCLE_IMAGE
+    implementation Dependencies.GLIDE
     implementation Dependencies.Android.CONSTRAINT_LAYOUT
 }

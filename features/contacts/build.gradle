@@ -19,12 +19,14 @@ dependencies {
     implementation Dependencies.Lifecycle.LIVEDATA
     implementation Dependencies.Lifecycle.VIEW_MODEL
     implementation Dependencies.CIRCLE_IMAGE
-    implementation Dependencies.GLIDE
     implementation Dependencies.COROUTINES.CORE
     implementation Dependencies.COROUTINES.ANDROID
     implementation Dependencies.Koin.VIEW_MODEL
     implementation Dependencies.SHIMMER
     implementation Dependencies.TIMBER
+    implementation Dependencies.Navigation.UI
+    implementation Dependencies.Navigation.FRAGMENT
+
 
     testImplementation Dependencies.Test.JUNIT
     testImplementation Dependencies.Test.JUNIT_EXT

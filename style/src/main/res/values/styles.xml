@@ -6,6 +6,10 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="TextExtraLarge">
+        <item name="android:textSize">54sp</item>
+    </style>
+
     <style name="TextHuge">
         <item name="android:textSize">28sp</item>
     </style>
@@ -20,6 +24,16 @@
 
     <style name="TextSmall">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonDisable" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/around</item>
+    </style>
+
+    <style name="ButtonAccent" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/around_accent</item>
     </style>
 
 </resources>

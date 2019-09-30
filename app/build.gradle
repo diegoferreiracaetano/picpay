@@ -11,6 +11,7 @@ dependencies {
     implementation project(":data")
     implementation project(":domain")
     implementation project(":features:contacts")
+    implementation project(":features:payment")
     implementation Dependencies.Android.APP_COMPAT
     implementation Dependencies.Android.CORE_COMMON
     implementation Dependencies.Android.CORE_RUNTIME
