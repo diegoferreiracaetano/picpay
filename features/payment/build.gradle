@@ -3,6 +3,7 @@ import dependencies.Dependencies
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: "$rootDir/tools/base.gradle"
 
 dependencies {
     implementation project(":style")
