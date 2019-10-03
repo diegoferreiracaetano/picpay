@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.contacts
+package com.diegoferreiracaetano.contacts.ui
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
@@ -10,8 +10,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.Mock
-import com.diegoferreiracaetano.contacts.view.ContactsFragment
-import com.diegoferreiracaetano.contacts.view.ContactsViewModel
+import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery

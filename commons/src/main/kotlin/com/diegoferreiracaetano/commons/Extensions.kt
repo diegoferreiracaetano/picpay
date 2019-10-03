@@ -10,15 +10,15 @@ import com.diegoferreiracaetano.domain.Interactor
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.Normalizer
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 
-fun <T> execute(mediator: MediatorLiveData<Result<T>>, interactor: Interactor<T>) {
+fun <R, T> execute(mediator: MediatorLiveData<Result<T>>, request: R, interactor: Interactor<R, T>) {
 
     val liveData = liveData {
         try {
-            emit(Result.success(interactor.execute()))
+            emit(Result.success(interactor.execute(request)))
         } catch (e: Throwable) {
             emit(Result.failure<T>(e))
         }
@@ -44,7 +44,6 @@ fun CharSequence.unaccent(): String {
 
 fun Float.fomart() = NumberFormat
     .getCurrencyInstance(Locale("pt", "BR")).format(this / 100)
-
 
 fun EditText.moneyMask(textWatcher: TextWatcher) {
     val s = this.text.toString()

@@ -4,11 +4,10 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/primary_dark"
-  tools:context=".PaymentFragment">
+  tools:context=".ui.PaymentFragment">
 
   <de.hdodenhof.circleimageview.CircleImageView
-    android:id="@+id/mask"
+    android:id="@+id/payment_img_mask"
     android:layout_width="44dp"
     android:layout_height="44dp"
     android:layout_marginTop="40dp"
@@ -19,7 +18,7 @@
     tools:src="@tools:sample/avatars" />
 
   <TextView
-    android:id="@+id/username"
+    android:id="@+id/payment_txt_username"
     style="@style/TextSmall"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -27,11 +26,11 @@
     android:textColor="@color/primary_text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/mask"
+    app:layout_constraintTop_toBottomOf="@+id/payment_img_mask"
     tools:text="nickbame" />
 
   <EditText
-    android:id="@+id/value"
+    android:id="@+id/payment_txt_value"
     android:digits="0123456789.,"
     android:inputType="numberDecimal"
     style="@style/TextExtraLarge"
@@ -40,52 +39,52 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="32dp"
-    app:layout_constraintEnd_toEndOf="@+id/username"
-    app:layout_constraintStart_toEndOf="@+id/real"
-    app:layout_constraintTop_toBottomOf="@+id/username"
+    app:layout_constraintEnd_toEndOf="@+id/payment_txt_username"
+    app:layout_constraintStart_toEndOf="@+id/payment_txt_real"
+    app:layout_constraintTop_toBottomOf="@+id/payment_txt_username"
     android:hint="@string/default_value"
     android:autofillHints="" />
 
   <TextView
-    android:id="@+id/real"
+    android:id="@+id/payment_txt_real"
     style="@style/TextMedium"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@color/primary_light"
-    app:layout_constraintBottom_toBottomOf="@+id/value"
-    app:layout_constraintEnd_toStartOf="@+id/value"
-    app:layout_constraintStart_toStartOf="@+id/username"
-    app:layout_constraintTop_toTopOf="@+id/value"
+    app:layout_constraintBottom_toBottomOf="@+id/payment_txt_value"
+    app:layout_constraintEnd_toStartOf="@+id/payment_txt_value"
+    app:layout_constraintStart_toStartOf="@+id/payment_txt_username"
+    app:layout_constraintTop_toTopOf="@+id/payment_txt_value"
     android:text="@string/current_fomart" />
 
   <TextView
-    android:id="@+id/card"
+    android:id="@+id/payment_txt_card"
     style="@style/TextSmall"
     android:textColor="@color/primary_text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="32dp"
-    app:layout_constraintEnd_toStartOf="@+id/edit"
-    app:layout_constraintStart_toStartOf="@+id/username"
-    app:layout_constraintTop_toBottomOf="@+id/value"
+    app:layout_constraintEnd_toStartOf="@+id/payment_txt_edit"
+    app:layout_constraintStart_toStartOf="@+id/payment_txt_username"
+    app:layout_constraintTop_toBottomOf="@+id/payment_txt_value"
     tools:text="mastercard"
     />
 
   <TextView
-    android:id="@+id/edit"
+    android:id="@+id/payment_txt_edit"
     style="@style/TextSmall"
     android:textColor="@color/accent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginTop="32dp"
-    app:layout_constraintEnd_toEndOf="@+id/username"
-    app:layout_constraintStart_toEndOf="@+id/card"
-    app:layout_constraintTop_toBottomOf="@+id/value"
+    app:layout_constraintEnd_toEndOf="@+id/payment_txt_username"
+    app:layout_constraintStart_toEndOf="@+id/payment_txt_card"
+    app:layout_constraintTop_toBottomOf="@+id/payment_txt_value"
     android:text="@string/editar" />
 
   <Button
-    android:id="@+id/pay"
+    android:id="@+id/payment_btn_pay"
     style="@style/ButtonDisable"
     android:enabled="false"
     android:layout_width="0dp"

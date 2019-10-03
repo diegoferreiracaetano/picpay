@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.contacts.view
+package com.diegoferreiracaetano.contacts.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +38,8 @@ internal class ContactsAdapter(
     }
 
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: CircleImageView = view.contact_image
+        val image: CircleImageView = view.contact_img_user
         val nickname: TextView = view.contact_txt_nickname
-        val name: TextView  = view.contact_txt_name
+        val name: TextView = view.contact_txt_name
     }
 }

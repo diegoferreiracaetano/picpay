@@ -3,6 +3,8 @@ package com.diegoferreiracaetano.contacts
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.diegoferreiracaetano.commons.setImageUrl
+import com.diegoferreiracaetano.commons.unaccent
 import de.hdodenhof.circleimageview.CircleImageView
 import org.junit.Assert.assertNotNull
 import org.junit.Test

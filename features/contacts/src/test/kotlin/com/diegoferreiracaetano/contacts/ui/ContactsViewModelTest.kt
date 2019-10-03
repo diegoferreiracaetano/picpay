@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.contacts.view
+package com.diegoferreiracaetano.contacts.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -47,7 +47,7 @@ internal class ContactsViewModelTest {
     @Test
     fun `Given interactor contacts When call fetchContacts Then verify result success`() {
 
-        coEvery { interactor.execute() } returns Mock.users()
+        coEvery { interactor.execute(Unit) } returns Mock.users()
 
         viewModel.fetchContacts()
         viewModel.contacts.observeForever(observe)
@@ -60,7 +60,7 @@ internal class ContactsViewModelTest {
 
         val error = Throwable("error")
 
-        coEvery { interactor.execute() } throws error
+        coEvery { interactor.execute(Unit) } throws error
 
         viewModel.fetchContacts()
         viewModel.contacts.observeForever(observe)

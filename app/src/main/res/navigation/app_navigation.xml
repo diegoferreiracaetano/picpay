@@ -8,15 +8,15 @@
 
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.diegoferreiracaetano.contacts.view.ContactsFragment"
+        android:name="com.diegoferreiracaetano.contacts.ui.ContactsFragment"
         tools:layout="@layout/fragment_contacts"
         android:label="ContactsFragment" >
     </fragment>
     <fragment
       android:id="@+id/paymentFragment"
-      android:name="com.diegoferreiracaetano.payment.PaymentFragment"
+      android:name="com.diegoferreiracaetano.payment.ui.PaymentFragment"
       android:label="PaymentFragment"
-      tools:layout="@layout/fragment_blank">
+      tools:layout="@layout/fragment_payment">
         <deepLink
           android:id="@+id/deepLink4"
           app:uri="android-app://payment/id/{id}"

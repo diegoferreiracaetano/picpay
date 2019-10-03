@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.domain.user
 
+import com.diegoferreiracaetano.domain.Mock.user
 import com.diegoferreiracaetano.domain.Mock.users
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -8,14 +9,13 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-internal class ContactsInteractorTest {
-
+internal class FindContactsByIdInteractorTest {
     private val repository = mockk<UserRepository>()
-    private lateinit var interactor: ContactsInteractor
+    private lateinit var interactor: FindContactsByIdInteractor
 
     @Before
     fun setUp() {
-        interactor = ContactsInteractor(repository)
+        interactor = FindContactsByIdInteractor(repository)
     }
 
     @Test
@@ -25,9 +25,9 @@ internal class ContactsInteractorTest {
 
             coEvery { repository.users() } returns users()
 
-            val result = interactor.execute(Unit)
+            val result = interactor.execute(1)
 
-            assertEquals(result, users())
+            assertEquals(result, user())
         }
     }
 }

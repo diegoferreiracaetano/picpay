@@ -1,5 +1,5 @@
 package com.diegoferreiracaetano.domain
 
-interface Interactor<T> {
-    suspend fun execute(): T
+interface Interactor<R, T> {
+    suspend fun execute(request: R): T
 }
