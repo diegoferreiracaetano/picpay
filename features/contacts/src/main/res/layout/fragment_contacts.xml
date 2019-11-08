@@ -58,6 +58,7 @@
                     <androidx.appcompat.widget.SearchView
                       android:id="@+id/searchView"
                       style="@style/TextSmall"
+                      android:theme="@style/SearchViewStyle"
                       android:textColor="@color/primary_text"
                       android:layout_width="match_parent"
                       android:layout_height="44dp"
