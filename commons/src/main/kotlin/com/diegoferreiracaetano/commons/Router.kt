@@ -8,4 +8,8 @@ class Router(private val context: Context) {
     inner class Contacts {
         fun next(id: Int): Uri = Uri.parse(context.getString(R.string.router_contacts_next, id))
     }
+
+    inner class Receipt {
+        fun next(id: Int): Uri = Uri.parse(context.getString(R.string.router_receipt_next, id))
+    }
 }

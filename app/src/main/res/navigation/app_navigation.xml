@@ -25,4 +25,17 @@
           android:name="id"
           app:argType="integer" />
     </fragment>
+    <fragment
+      android:id="@+id/receiptFragment"
+      android:name="com.diegoferreiracaetano.receipt.ui.ReceiptFragment"
+      android:label="ReceiptFragment"
+      tools:layout="@layout/fragment_receipt">
+        <deepLink
+          android:id="@+id/deepLink4"
+          app:uri="android-app://receipt/id/{id}"
+          android:autoVerify="true" />
+        <argument
+          android:name="id"
+          app:argType="integer" />
+    </fragment>
 </navigation>

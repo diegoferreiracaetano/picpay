@@ -4,4 +4,5 @@
     <string name="retry">Tente novamente</string>
 
     <string name="router_contacts_next">android-app://payment/id/%d</string>
+    <string name="router_receipt_next">android-app://receipt/id/%d</string>
 </resources>

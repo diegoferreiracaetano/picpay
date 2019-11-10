@@ -1,10 +1,48 @@
+import dependencies.Dependencies
+
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "$rootDir/tools/base.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":style")
+    implementation project(":domain")
+    implementation project(":commons")
+    implementation Dependencies.Android.APP_COMPAT
+    implementation Dependencies.Android.DESIGN
+    implementation Dependencies.Android.RECYCLER_VIEW
+    implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Android.FRAGMENT
+    implementation Dependencies.Lifecycle.LIVEDATA
+    implementation Dependencies.Lifecycle.VIEW_MODEL
+    implementation Dependencies.CIRCLE_IMAGE
+    implementation Dependencies.COROUTINES.CORE
+    implementation Dependencies.COROUTINES.ANDROID
+    implementation Dependencies.Koin.VIEW_MODEL
+    implementation Dependencies.SHIMMER
+    implementation Dependencies.TIMBER
+    implementation Dependencies.Navigation.UI
+    implementation Dependencies.Navigation.FRAGMENT
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    testImplementation Dependencies.Test.JUNIT
+    testImplementation Dependencies.Test.JUNIT_EXT
+    testImplementation Dependencies.Test.MOCKK
+    testImplementation Dependencies.Test.CORE
+    testImplementation Dependencies.Test.COROUTINES
+    testImplementation Dependencies.Test.ROBOELETRIC
+    testImplementation Dependencies.Test.RUNNER
+    testImplementation Dependencies.Test.ESPRESSO
+    testImplementation Dependencies.Test.KOIN
+
+    debugImplementation Dependencies.Test.FRAGMENT_TEST
+
+    androidTestUtil Dependencies.Test.ORCHESTRATOR
+    androidTestImplementation Dependencies.Test.RUNNER
+    androidTestImplementation Dependencies.Test.ESPRESSO
+    androidTestImplementation Dependencies.Test.JUNIT_EXT
+    androidTestImplementation Dependencies.Test.KOIN
+    androidTestImplementation Dependencies.Test.MOCKK_ANDROID
+    androidTestImplementation Dependencies.Test.KOTLIN
 }

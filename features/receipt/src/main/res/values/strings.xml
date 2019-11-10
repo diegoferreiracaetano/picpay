@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">receipt</string>
+  <string name="title_receipt">Recibo</string>
+  <string name="receipet_total_pago">Total pago</string>
 </resources>

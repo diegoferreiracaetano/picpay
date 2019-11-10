@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.diegoferreiracaetano.commons.Router
 import com.diegoferreiracaetano.commons.removeMask
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.user.User
@@ -57,6 +59,10 @@ class PaymentFragment : Fragment() {
                     payment_btn_pay.applyColorDisable()
                 }
             }
+        }
+        payment_btn_pay.setOnClickListener {
+            val url = Router(it.context).Receipt().next(user.id)
+            it.findNavController().navigate(url)
         }
     }
 
