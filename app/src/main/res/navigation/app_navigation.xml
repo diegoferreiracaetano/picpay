@@ -18,7 +18,7 @@
       android:label="PaymentFragment"
       tools:layout="@layout/fragment_payment">
         <deepLink
-          android:id="@+id/deepLink4"
+          android:id="@+id/deepLinkPayment"
           app:uri="android-app://payment/id/{id}"
           android:autoVerify="true" />
         <argument
@@ -31,11 +31,39 @@
       android:label="ReceiptFragment"
       tools:layout="@layout/fragment_receipt">
         <deepLink
-          android:id="@+id/deepLink4"
+          android:id="@+id/deepLinkReceipt"
           app:uri="android-app://receipt/id/{id}"
           android:autoVerify="true" />
         <argument
           android:name="id"
           app:argType="integer" />
     </fragment>
+    <fragment
+      android:id="@+id/welcomeCardFragment"
+      android:name="com.diegoferreiracaetano.card.ui.WelcomeCardFragment"
+      android:label="WelcomeCardFragment"
+      tools:layout="@layout/fragment_welcome_card">
+        <deepLink
+          android:id="@+id/deepLinkWelcomeCard"
+          app:uri="android-app://card/welcome/{id}"
+          android:autoVerify="true" />
+        <argument
+          android:name="id"
+          app:argType="integer" />
+    </fragment>
+
+    <fragment
+      android:id="@+id/cardFragment"
+      android:name="com.diegoferreiracaetano.card.ui.CardFragment"
+      android:label="CardFragment"
+      tools:layout="@layout/fragment_card">
+        <deepLink
+          android:id="@+id/deepLinkCard"
+          app:uri="android-app://card/id/{id}"
+          android:autoVerify="true" />
+        <argument
+          android:name="id"
+          app:argType="integer" />
+    </fragment>
+
 </navigation>

@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.picpay
 
 import android.app.Application
+import com.diegoferreiracaetano.card.di.cardModule
 import com.diegoferreiracaetano.contacts.di.contactsModule
 import com.diegoferreiracaetano.data.di.dataModule
 import com.diegoferreiracaetano.domain.di.domainModule
@@ -16,7 +17,14 @@ class MainApplication : Application() {
 
         startKoin {
             androidContext(this@MainApplication)
-            loadKoinModules(listOf(contactsModule, domainModule, dataModule, paymentModule, receiptModule))
+            loadKoinModules(listOf(
+                contactsModule,
+                domainModule,
+                dataModule,
+                paymentModule,
+                receiptModule,
+                cardModule
+            ))
         }
     }
 }

@@ -13,6 +13,7 @@ dependencies {
     implementation project(":features:contacts")
     implementation project(":features:payment")
     implementation project(":features:receipt")
+    implementation project(":features:card")
     implementation Dependencies.Android.APP_COMPAT
     implementation Dependencies.Android.CORE_COMMON
     implementation Dependencies.Android.CORE_RUNTIME

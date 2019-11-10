@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.CardFragment">
+
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/card_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+
+  <ImageView
+    android:id="@+id/card_img"
+    android:layout_width="100dp"
+    android:layout_height="71dp"
+    android:layout_marginTop="78dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/card_toolbar"
+    app:srcCompat="@drawable/ic_fill_1"
+    android:contentDescription="@string/card_create_credit"
+    />
+
+  <TextView
+    android:id="@+id/card_title"
+    style="@style/TextHuge"
+    android:gravity="center"
+    android:textStyle="bold"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginEnd="16dp"
+    android:text="@string/card_create_credit"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/card_img" />
+
+  <TextView
+    android:id="@+id/card_info"
+    style="@style/TextSmall"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:gravity="center"
+    android:text="@string/card_title"
+    android:textColor="@color/secondary_text"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+  <Button
+    android:id="@+id/card_btn_create"
+    style="@style/ButtonAccent"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="16dp"
+    android:text="@string/card_create"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

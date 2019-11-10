@@ -1,21 +1,22 @@
 package com.diegoferreiracaetano.commons
 
+import android.content.Context
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.liveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.diegoferreiracaetano.domain.Interactor
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import java.text.DateFormat
 import java.text.Normalizer
 import java.text.NumberFormat
-import java.util.Locale
+import java.util.*
 
 private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
+private val DEFAULT_LOCALE = Locale("pt", "BR")
 
 fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {
     return liveData { collect {
@@ -42,15 +43,15 @@ fun CharSequence.unaccent(): String {
     return REGEX_UNACCENT.replace(temp, "")
 }
 
-fun Float.fomart() = NumberFormat
-    .getCurrencyInstance(Locale("pt", "BR")).format(this / 100)
+fun Float.format(): String = NumberFormat
+    .getCurrencyInstance(DEFAULT_LOCALE).format(this )
 
 fun EditText.moneyMask(textWatcher: TextWatcher) {
     val s = this.text.toString()
     if (s.isEmpty()) return
     removeTextChangedListener(textWatcher)
-    val parsed = s.removeMask().toFloat()
-    val formatted = parsed.fomart().removeSymbol()
+    val parsed = s.removeMask().toFloat().div(100)
+    val formatted = parsed.format().removeSymbol()
     setText(formatted)
     setSelection(formatted.length)
     addTextChangedListener(textWatcher)
@@ -59,3 +60,11 @@ fun EditText.moneyMask(textWatcher: TextWatcher) {
 fun String.removeSymbol() = replace("[R$]".toRegex(), "").trim()
 
 fun String.removeMask() = replace("[R$,.]".toRegex(), "").trim()
+
+fun Date.format(formatDate: Int) = DateFormat.getDateInstance(formatDate, DEFAULT_LOCALE).format(this)
+
+fun Date.formatTime(formatDate: Int) = DateFormat.getTimeInstance(formatDate, DEFAULT_LOCALE).format(this)
+
+fun Date.format(formatDate: Int, formatTime: Int) = DateFormat.getDateTimeInstance(formatDate, formatTime, DEFAULT_LOCALE).format(this)
+
+fun Long.formatCard() = this.toString().replace("\\d{4}".toRegex(), "$0 ")

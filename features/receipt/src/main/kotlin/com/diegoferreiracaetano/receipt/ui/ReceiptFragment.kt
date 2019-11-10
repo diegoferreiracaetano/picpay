@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.diegoferreiracaetano.commons.format
+import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.receipt.Receipt
 import com.diegoferreiracaetano.receipt.R
 import kotlinx.android.synthetic.main.fragment_receipt.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DateFormat
 
 class ReceiptFragment : Fragment() {
 
@@ -35,11 +38,11 @@ class ReceiptFragment : Fragment() {
     private fun showReceipt(receipt: Receipt) {
         receipt_name.text = receipt.user.name
         receipt_image.setImageUrl(receipt.user.img)
-        receipt_date.text = receipt.date.toString()
+        receipt_date.text = receipt.date.format(DateFormat.SHORT, DateFormat.SHORT)
         receipt_transaction.text = receipt.transaction.toString()
-        receipt_card.text = receipt.card.number.toString()
-        receipt_value.text = receipt.value.toString()
-        receipt_amount.text = receipt.total.toString()
+        receipt_card.text = receipt.card.number.formatCard()
+        receipt_value.text = receipt.value.format()
+        receipt_amount.text = receipt.total.format()
     }
 
     private fun showError(throwable: Throwable) {

@@ -55,15 +55,26 @@
     tools:text="1570472022 as 16:30" />
 
   <TextView
+    android:id="@+id/receipt_transaction_title"
+    style="@style/TextMin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/receipt_transaction"
+    android:textColor="@color/secondary_text"
+    app:layout_constraintEnd_toStartOf="@+id/receipt_transaction"
+    app:layout_constraintStart_toStartOf="@+id/receipt_date"
+    app:layout_constraintTop_toBottomOf="@+id/receipt_date" />
+
+  <TextView
     android:id="@+id/receipt_transaction"
     style="@style/TextMin"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@color/secondary_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/receipt_date"
+    app:layout_constraintStart_toEndOf="@+id/receipt_transaction_title"
     app:layout_constraintTop_toBottomOf="@+id/receipt_date"
-    tools:text="Transação: 23000" />
+    tools:text="23000"/>
 
   <View
     android:id="@+id/view2"
@@ -75,7 +86,7 @@
     android:background="@color/secondary_text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/receipt_transaction" />
+    app:layout_constraintTop_toBottomOf="@+id/receipt_transaction_title" />
 
   <View
     android:id="@+id/view3"
