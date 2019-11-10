@@ -22,6 +22,7 @@ dependencies {
     implementation Dependencies.OKHTTP_LOGGER
     implementation Dependencies.Koin.SCOPE
     implementation Dependencies.COROUTINES.CORE
+    implementation Dependencies.FLOW_ADAPTER
     testImplementation Dependencies.Test.JUNIT
     testImplementation Dependencies.Test.MOCKK
     androidTestImplementation Dependencies.Test.RUNNER

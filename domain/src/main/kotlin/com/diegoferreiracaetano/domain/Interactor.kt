@@ -1,5 +1,7 @@
 package com.diegoferreiracaetano.domain
 
+import kotlinx.coroutines.flow.Flow
+
 interface Interactor<R, T> {
-    suspend fun execute(request: R): T
+    fun execute(request: R): Flow<T>
 }

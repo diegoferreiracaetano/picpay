@@ -35,8 +35,7 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = requireArguments().getInt(EXTRA_ID)
-        viewModel.fetchContact(id)
-        viewModel.contact.observeForever {
+        viewModel.fetchContact(id).observeForever {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         }

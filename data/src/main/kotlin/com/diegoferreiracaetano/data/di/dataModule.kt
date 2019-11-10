@@ -4,6 +4,8 @@ import com.diegoferreiracaetano.data.BuildConfig
 import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
 import com.diegoferreiracaetano.domain.user.UserRepository
+import kotlinx.coroutines.flow.asFlow
+import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
 import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,10 +51,11 @@ val dataModule: Module = module {
             .client(get())
             .baseUrl(BuildConfig.END_POINT)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(FlowCallAdapterFactory.create())
             .build()
     }
 
-    single<PicpayApi> { get<Retrofit>().create(PicpayApi::class.java) }
+    single { get<Retrofit>().create(PicpayApi::class.java) }
 
     single<UserRepository> { UserRepositoryRemote(get()) }
 }

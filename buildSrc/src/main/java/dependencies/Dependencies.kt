@@ -14,6 +14,7 @@ object Dependencies {
     const val CIRCLE_IMAGE = "de.hdodenhof:circleimageview:${Versions.CIRCLE_IMAGE}"
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     const val SHIMMER = "com.facebook.shimmer:shimmer:${Versions.SHIMMER}"
+    const val FLOW_ADAPTER = "com.github.MohammadSianaki:Retrofit2-Flow-Call-Adapter:${Versions.FLOW_ADAPTER}"
 
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"

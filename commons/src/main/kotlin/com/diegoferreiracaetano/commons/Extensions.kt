@@ -2,29 +2,29 @@ package com.diegoferreiracaetano.commons
 
 import android.text.TextWatcher
 import android.widget.EditText
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.liveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.domain.Interactor
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import java.text.Normalizer
 import java.text.NumberFormat
 import java.util.Locale
 
 private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 
-fun <R, T> execute(mediator: MediatorLiveData<Result<T>>, request: R, interactor: Interactor<R, T>) {
-
-    val liveData = liveData {
+fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {
+    return liveData { collect {
         try {
-            emit(Result.success(interactor.execute(request)))
+            emit(Result.success(it))
         } catch (e: Throwable) {
-            emit(Result.failure<T>(e))
+            emit(Result.failure(e))
         }
-    }
-
-    mediator.addSource(liveData, mediator::postValue)
+    } }
 }
 
 fun CircleImageView.setImageUrl(url: String?) {

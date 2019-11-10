@@ -34,11 +34,12 @@ object Versions {
     const val GRADLE = "3.4.2"
     const val CIRCLE_IMAGE = "3.0.0"
     const val KOIN = "2.0.1"
-    const val COROUTINES = "1.3.0-RC2"
+    const val COROUTINES = "1.3.2"
     const val GLIDE = "4.9.0"
     const val MOCKK = "1.9.3"
     const val SHIMMER = "0.4.0"
     const val FRAGMENT_TEST = "1.2.0-alpha02"
     const val MOCKITO_KOTLLIN = "2.1.0"
     const val JACOCO = "0.8.4"
+    const val FLOW_ADAPTER = "0.2.0"
 }

@@ -6,5 +6,5 @@ class ContactsInteractor(
     private val userRepository: UserRepository
 ) : Interactor<Unit, List<User>> {
 
-    override suspend fun execute(request: Unit) = userRepository.users()
+    override fun execute(request: Unit) = userRepository.users()
 }

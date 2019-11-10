@@ -1,5 +1,7 @@
 package com.diegoferreiracaetano.domain.user
 
+import kotlinx.coroutines.flow.Flow
+
 interface UserRepository {
-    suspend fun users(): List<User>
+    fun users(): Flow<List<User>>
 }

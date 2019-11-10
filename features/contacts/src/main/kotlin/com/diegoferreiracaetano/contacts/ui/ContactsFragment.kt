@@ -61,7 +61,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        viewModel.contacts.observe(this, Observer {
+        viewModel.fetchContacts().observe(this, Observer {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         })

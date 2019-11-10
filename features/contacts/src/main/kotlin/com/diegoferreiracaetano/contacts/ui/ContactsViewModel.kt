@@ -1,24 +1,17 @@
 package com.diegoferreiracaetano.contacts.ui
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.diegoferreiracaetano.commons.execute
+import com.diegoferreiracaetano.commons.asLiveData
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
-import com.diegoferreiracaetano.domain.user.User
 
 internal class ContactsViewModel(private val contactsInteractor: ContactsInteractor) : ViewModel() {
-
-    private val _contacts = MediatorLiveData<Result<List<User>>>()
-    val contacts: LiveData<Result<List<User>>> = _contacts
 
     private val _search = MutableLiveData<String>()
     val search: LiveData<String> = _search
 
-    fun fetchContacts() {
-        execute(_contacts, Unit, contactsInteractor)
-    }
+    fun fetchContacts() = contactsInteractor.execute(Unit).asLiveData()
 
     fun search(newText: String) {
         _search.postValue(newText)
