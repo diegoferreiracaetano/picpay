@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.diegoferreiracaetano.commons.Router
 import com.diegoferreiracaetano.commons.removeMask
@@ -37,10 +38,10 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = requireArguments().getInt(EXTRA_ID)
-        viewModel.fetchContact(id).observeForever {
+        viewModel.fetchContact(id).observe(this, Observer {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
-        }
+        })
     }
 
     private fun showUser(user: User) {

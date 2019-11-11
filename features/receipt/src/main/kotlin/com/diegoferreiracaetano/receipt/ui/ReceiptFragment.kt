@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.commons.format
 import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
@@ -29,10 +30,10 @@ class ReceiptFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = requireArguments().getInt(EXTRA_ID)
-        viewModel.receipt().observeForever {
+        viewModel.receipt().observe(this, Observer {
             it.onSuccess(::showReceipt)
                 .onFailure(::showError)
-        }
+        })
     }
 
     private fun showReceipt(receipt: Receipt) {

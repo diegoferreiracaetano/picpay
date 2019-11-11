@@ -6,5 +6,5 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val cardModule: Module = module {
-    viewModel { CardViewModel(get()) }
+    viewModel { CardViewModel(get(), get()) }
 }

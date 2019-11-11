@@ -3,4 +3,9 @@
   <string name="card_create">Cadastrar cartão</string>
   <string name="card_create_credit">Cadastre um cartão de crédito</string>
   <string name="card_title">Para fazer pagamentos para outras pessoas você precisa cadastrar um cartão de crédito pessoal.</string>
+  <string name="card_salve">Salvar</string>
+  <string name="card_number">Número do cartão</string>
+  <string name="card_name">Nome do Titular</string>
+  <string name="card_cvv">CVV</string>
+  <string name="card_date">Vencimento</string>
 </resources>
