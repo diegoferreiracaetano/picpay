@@ -1,7 +1,5 @@
 import dependencies.Dependencies
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply from: "$rootDir/tools/base.gradle"
+apply plugin: 'kotlin'
 
 dependencies {
     implementation Dependencies.Koin.SCOPE

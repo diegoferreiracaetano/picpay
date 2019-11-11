@@ -4,9 +4,8 @@ import com.diegoferreiracaetano.data.BuildConfig
 import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
 import com.diegoferreiracaetano.domain.user.UserRepository
-import kotlinx.coroutines.flow.asFlow
-import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
 import java.util.concurrent.TimeUnit
+import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module

@@ -11,9 +11,9 @@ import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.receipt.Receipt
 import com.diegoferreiracaetano.receipt.R
+import java.text.DateFormat
 import kotlinx.android.synthetic.main.fragment_receipt.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.DateFormat
 
 class ReceiptFragment : Fragment() {
 

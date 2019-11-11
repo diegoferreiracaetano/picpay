@@ -7,5 +7,4 @@ import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 internal class PaymentViewModel(private val interactor: FindContactsByIdInteractor) : ViewModel() {
 
     fun fetchContact(int: Int) = interactor.execute(int).asLiveData()
-
 }

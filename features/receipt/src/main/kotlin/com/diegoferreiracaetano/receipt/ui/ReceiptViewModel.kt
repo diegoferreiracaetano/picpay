@@ -7,5 +7,4 @@ import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
 internal class ReceiptViewModel(private val interactor: ReceiptInteractor) : ViewModel() {
 
     fun receipt() = interactor.execute(Unit).asLiveData()
-
 }

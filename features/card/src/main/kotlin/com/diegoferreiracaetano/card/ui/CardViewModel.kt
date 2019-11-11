@@ -5,13 +5,13 @@ import com.diegoferreiracaetano.commons.asLiveData
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.card.CardInteractor
 import com.diegoferreiracaetano.domain.card.SaveCardInteractor
-import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 
-internal class CardViewModel(private val cardInteractor: CardInteractor,
-                             private val saveCardInteractor: SaveCardInteractor) : ViewModel() {
+internal class CardViewModel(
+    private val cardInteractor: CardInteractor,
+    private val saveCardInteractor: SaveCardInteractor
+) : ViewModel() {
 
     fun card(userId: Int) = cardInteractor.execute(userId).asLiveData()
 
-    fun saveCard(card: Card)  = saveCardInteractor.execute(card).asLiveData()
-
+    fun saveCard(card: Card) = saveCardInteractor.execute(card).asLiveData()
 }

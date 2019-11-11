@@ -1,6 +1,5 @@
 package com.diegoferreiracaetano.commons
 
-import android.content.Context
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.lifecycle.LiveData
@@ -8,12 +7,13 @@ import androidx.lifecycle.liveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import java.text.DateFormat
 import java.text.Normalizer
 import java.text.NumberFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 
 private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 private val DEFAULT_LOCALE = Locale("pt", "BR")
@@ -44,7 +44,7 @@ fun CharSequence.unaccent(): String {
 }
 
 fun Float.format(): String = NumberFormat
-    .getCurrencyInstance(DEFAULT_LOCALE).format(this )
+    .getCurrencyInstance(DEFAULT_LOCALE).format(this)
 
 fun EditText.moneyMask(textWatcher: TextWatcher) {
     val s = this.text.toString()
