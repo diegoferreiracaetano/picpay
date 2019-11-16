@@ -1,6 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <JavaCodeStyleSettings>
+      <option name="CLASS_NAMES_IN_JAVADOC" value="3" />
       <option name="LAYOUT_STATIC_IMPORTS_SEPARATELY" value="false" />
       <option name="IMPORT_LAYOUT_TABLE">
         <value>

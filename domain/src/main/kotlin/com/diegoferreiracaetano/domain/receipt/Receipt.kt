@@ -2,7 +2,7 @@ package com.diegoferreiracaetano.domain.receipt
 
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.user.User
-import java.util.Date
+import java.util.*
 
 data class Receipt(
     val user: User,

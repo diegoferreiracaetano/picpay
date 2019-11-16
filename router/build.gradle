@@ -3,15 +3,8 @@ import dependencies.Dependencies
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: "$rootDir/tools/base.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation project(":style")
-    implementation project(":domain")
-    implementation project(":commons")
-    implementation project(":router")
     implementation Dependencies.Android.APP_COMPAT
     implementation Dependencies.Android.DESIGN
     implementation Dependencies.Android.RECYCLER_VIEW
@@ -41,11 +34,4 @@ dependencies {
 
     debugImplementation Dependencies.Test.FRAGMENT_TEST
 
-    androidTestUtil Dependencies.Test.ORCHESTRATOR
-    androidTestImplementation Dependencies.Test.RUNNER
-    androidTestImplementation Dependencies.Test.ESPRESSO
-    androidTestImplementation Dependencies.Test.JUNIT_EXT
-    androidTestImplementation Dependencies.Test.KOIN
-    androidTestImplementation Dependencies.Test.MOCKK_ANDROID
-    androidTestImplementation Dependencies.Test.KOTLIN
 }

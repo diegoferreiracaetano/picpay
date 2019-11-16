@@ -2,6 +2,6 @@ package com.diegoferreiracaetano.domain
 
 import kotlinx.coroutines.flow.Flow
 
-interface Interactor<R, T> {
-    fun execute(request: R): Flow<T>
+interface Interactor<P, T> {
+    fun execute(request: P): Flow<T>
 }

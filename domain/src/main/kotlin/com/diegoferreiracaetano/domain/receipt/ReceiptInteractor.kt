@@ -3,7 +3,7 @@ package com.diegoferreiracaetano.domain.receipt
 import com.diegoferreiracaetano.domain.Interactor
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.user.User
-import java.util.Date
+import java.util.*
 import kotlinx.coroutines.flow.flow
 
 class ReceiptInteractor : Interactor<Unit, Receipt> {

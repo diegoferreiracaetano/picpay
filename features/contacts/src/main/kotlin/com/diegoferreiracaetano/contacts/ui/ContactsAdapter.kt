@@ -3,14 +3,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.commons.Router
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.domain.user.User
+import com.diegoferreiracaetano.router.contact.ContactRouter
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.item_contacts.view.*
+import kotlinx.android.synthetic.main.item_contacts.view.contact_img_user
+import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_name
+import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_nickname
 
 internal class ContactsAdapter(
     private var items: List<User>
@@ -30,11 +31,7 @@ internal class ContactsAdapter(
         holder.image.setImageUrl(user.img)
         holder.nickname.text = user.name
         holder.name.text = user.username
-
-        holder.itemView.setOnClickListener {
-            val url = Router(it.context).Contacts().next(user.id)
-            it.findNavController().navigate(url)
-        }
+        holder.itemView.setOnClickListener(ContactRouter().welcomeCard(user.id))
     }
 
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
