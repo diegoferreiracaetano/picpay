@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
-import com.diegoferreiracaetano.commons.Router
 import com.diegoferreiracaetano.commons.removeMask
 import com.diegoferreiracaetano.commons.setImageUrl
-import com.diegoferreiracaetano.domain.user.User
+import com.diegoferreiracaetano.domain.order.Order
+import com.diegoferreiracaetano.domain.payment.Payment
 import com.diegoferreiracaetano.payment.R
 import com.diegoferreiracaetano.payment.util.afterTextChanged
 import com.diegoferreiracaetano.payment.util.applyColorDisable
 import com.diegoferreiracaetano.payment.util.applyColorEnable
+import com.diegoferreiracaetano.router.Router
 import kotlinx.android.synthetic.main.fragment_payment.payment_btn_pay
 import kotlinx.android.synthetic.main.fragment_payment.payment_img_mask
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_card
@@ -38,33 +38,42 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = requireArguments().getInt(EXTRA_ID)
-        viewModel.fetchContact(id).observe(this, Observer {
-            it.onSuccess(::showUser)
+        viewModel.user(id).observe(this, Observer {
+            it.onSuccess(::showOrder)
                 .onFailure(::showError)
         })
     }
 
-    private fun showUser(user: User) {
-        payment_img_mask.setImageUrl(user.img)
-        payment_txt_username.text = user.username
-        payment_txt_card.text = "mastercard 1234"
-        payment_txt_value.afterTextChanged {
-            it.removeMask().toFloat().let {
-                if (it > 0) {
-                    payment_txt_value.applyColorEnable()
-                    payment_txt_real.applyColorEnable()
-                    payment_btn_pay.applyColorEnable()
-                } else {
-                    payment_txt_value.applyColorDisable()
-                    payment_txt_real.applyColorDisable()
-                    payment_btn_pay.applyColorDisable()
+    private fun showOrder(order: Order?) {
+        order?.let {
+            payment_img_mask.setImageUrl(order.user.img)
+            payment_txt_username.text = order.user.name
+            payment_txt_value.afterTextChanged {
+                it.removeMask().toFloat().let {
+                    order.value = it
+                    if (it > 0) {
+                        payment_txt_value.applyColorEnable()
+                        payment_txt_real.applyColorEnable()
+                        payment_btn_pay.applyColorEnable()
+                    } else {
+                        payment_txt_value.applyColorDisable()
+                        payment_txt_real.applyColorDisable()
+                        payment_btn_pay.applyColorDisable()
+                    }
                 }
             }
+            payment_txt_card.text = order.card.brand.plus(order.card.number.toString().takeLast(4))
+            payment_btn_pay.setOnClickListener {
+                viewModel.savePayment(order)
+                    .observe(this, Observer {
+                        it.onSuccess(::showPayment).onFailure (::showError)
+                    })
+            }
         }
-        payment_btn_pay.setOnClickListener {
-            val url = Router(it.context).Receipt().next(user.id)
-            it.findNavController().navigate(url)
-        }
+    }
+
+    private fun showPayment(pair: Pair<Payment, Router>) {
+        pair.second.navigate(pair.first.id)
     }
 
     private fun showError(throwable: Throwable) {

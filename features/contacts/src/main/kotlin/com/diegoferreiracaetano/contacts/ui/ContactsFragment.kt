@@ -13,6 +13,7 @@ import com.diegoferreiracaetano.commons.unaccent
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.util.applyBackground
 import com.diegoferreiracaetano.domain.user.User
+import com.diegoferreiracaetano.router.Router
 import kotlinx.android.synthetic.main.fragment_contacts.contact_container
 import kotlinx.android.synthetic.main.fragment_contacts.contact_error
 import kotlinx.android.synthetic.main.fragment_contacts.contact_recycle
@@ -79,16 +80,16 @@ class ContactsFragment : Fragment() {
         shimmer_view_container.stopShimmer()
     }
 
-    private fun showUser(users: List<User>) {
+    private fun showUser(users: Pair<List<User>, Router>) {
         stopShimmer()
         contact_recycle.adapter = ContactsAdapter(users)
         filter(users)
     }
 
-    private fun filter(users: List<User>) {
+    private fun filter(users: Pair<List<User>, Router>) {
         viewModel.search.observe(this, Observer {
-            val filter = users.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
-            contact_recycle.adapter = ContactsAdapter(filter)
+            val filter = users.first.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
+            contact_recycle.adapter = ContactsAdapter(Pair(filter, users.second))
         })
     }
 

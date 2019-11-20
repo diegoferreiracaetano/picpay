@@ -1,7 +1,6 @@
 package com.diegoferreiracaetano.data.remote.user
 
 import com.diegoferreiracaetano.data.remote.PicpayApi
-import com.diegoferreiracaetano.data.remote.transform
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.domain.user.UserRepository
 import kotlinx.coroutines.flow.Flow

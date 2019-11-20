@@ -1,8 +1,12 @@
 package com.diegoferreiracaetano.data.di
 
 import com.diegoferreiracaetano.data.BuildConfig
+import com.diegoferreiracaetano.data.local.card.CardRepositoryLocal
 import com.diegoferreiracaetano.data.remote.PicpayApi
+import com.diegoferreiracaetano.data.remote.payment.PaymentRepositoryRemote
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
+import com.diegoferreiracaetano.domain.card.CardRepository
+import com.diegoferreiracaetano.domain.payment.PaymentRepository
 import com.diegoferreiracaetano.domain.user.UserRepository
 import java.util.concurrent.TimeUnit
 import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
@@ -57,4 +61,8 @@ val dataModule: Module = module {
     single { get<Retrofit>().create(PicpayApi::class.java) }
 
     single<UserRepository> { UserRepositoryRemote(get()) }
+
+    single<PaymentRepository> { PaymentRepositoryRemote(get()) }
+
+    single<CardRepository> { CardRepositoryLocal(get()) }
 }

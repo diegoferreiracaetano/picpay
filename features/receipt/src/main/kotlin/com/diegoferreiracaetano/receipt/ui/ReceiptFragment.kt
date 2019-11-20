@@ -29,21 +29,19 @@ class ReceiptFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = requireArguments().getInt(EXTRA_ID)
-        viewModel.receipt().observe(this, Observer {
-            it.onSuccess(::showReceipt)
-                .onFailure(::showError)
+        viewModel.payment   ().observe(this, Observer {
+
         })
     }
 
-    private fun showReceipt(receipt: Receipt) {
-        receipt_name.text = receipt.user.name
-        receipt_image.setImageUrl(receipt.user.img)
-        receipt_date.text = receipt.date.format(DateFormat.SHORT, DateFormat.SHORT)
-        receipt_transaction.text = receipt.transaction.toString()
-        receipt_card.text = receipt.card.number.formatCard()
-        receipt_value.text = receipt.value.format()
-        receipt_amount.text = receipt.total.format()
+    private fun showPayment(payment: Receipt) {
+        receipt_name.text = payment.user.name
+        receipt_image.setImageUrl(payment.user.img)
+        receipt_date.text = payment.date.format(DateFormat.SHORT, DateFormat.SHORT)
+        receipt_transaction.text = payment.transaction.toString()
+        receipt_card.text = payment.card.number.formatCard()
+        receipt_value.text = payment.value.format()
+        receipt_amount.text = payment.total.format()
     }
 
     private fun showError(throwable: Throwable) {

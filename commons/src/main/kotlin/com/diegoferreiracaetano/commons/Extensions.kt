@@ -1,23 +1,25 @@
 package com.diegoferreiracaetano.commons
 
+import android.net.Uri
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.diegoferreiracaetano.router.Router
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import java.text.DateFormat
 import java.text.Normalizer
 import java.text.NumberFormat
-import java.util.Date
-import java.util.Locale
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import java.util.*
 
 private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 private val DEFAULT_LOCALE = Locale("pt", "BR")
@@ -73,13 +75,12 @@ fun Date.format(formatDate: Int, formatTime: Int) = DateFormat.getDateTimeInstan
 
 fun Long.formatCard() = this.toString().replace("\\d{4}".toRegex(), "$0 ")
 
-
-fun View.setOnClick(action: suspend () -> Unit) {
-    // launch one actor as a parent of the context job
-    val scope = (context as? CoroutineScope)
-    val eventActor = scope?.actor<Unit>(capacity = Channel.CONFLATED) {
-        for (event in channel) action()
+fun View.navigate(router: Router, any: Any) {
+    setOnClickListener {
+        findNavController().navigate(Uri.parse(router.navigate(any)))
     }
-    // install a listener to activate this actor
-    setOnClickListener { eventActor?.offer(Unit) }
+}
+
+fun Fragment.navigate(router: Router, any: Any) {
+    findNavController().navigate(Uri.parse(router.navigate(any)))
 }

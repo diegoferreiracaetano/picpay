@@ -10,8 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.diegoferreiracaetano.card.R
 import com.diegoferreiracaetano.card.util.CreditCardDateFormattingTextWatcher
 import com.diegoferreiracaetano.card.util.CreditCardNumberFormattingTextWatcher
-import com.diegoferreiracaetano.commons.Router
+import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.domain.card.Card
+import com.diegoferreiracaetano.router.Router
 import kotlinx.android.synthetic.main.fragment_card.card_btn
 import kotlinx.android.synthetic.main.fragment_card.card_cvv
 import kotlinx.android.synthetic.main.fragment_card.card_date
@@ -43,27 +44,19 @@ class CardFragment : Fragment() {
                     number = card_number.editText?.text.toString().replace("\\s".toRegex(), "").toLong(),
                     name = card_name.editText?.text.toString(),
                     date = card_date.editText?.text.toString(),
-                    cvv = card_cvv.editText?.text.toString().toInt()
+                    cvv = card_cvv.editText?.text.toString().toInt(),
+                    brand = "MASTERCARD"
                 )).observe(this, Observer {
                     it.onSuccess(::showSaveCard)
                         .onFailure(::showError)
                 })
             }
         }
-
-        viewModel.card(id).observe(this, Observer {
-            it.onSuccess(::showCard)
-                .onFailure(::showError)
-        })
     }
 
-    private fun showCard(card: Card) {
-    }
-
-    private fun showSaveCard(boolean: Boolean) {
+    private fun showSaveCard(card: Pair<Boolean, Router>) {
         val id = requireArguments().getInt(EXTRA_ID)
-        val url = Router(requireContext()).Card().next(id)
-        findNavController().navigate(url)
+        navigate(card.second, id)
     }
 
     private fun showError(throwable: Throwable) {

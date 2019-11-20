@@ -1,13 +1,15 @@
 package com.diegoferreiracaetano.domain.card
 
 import com.diegoferreiracaetano.domain.Interactor
-import kotlinx.coroutines.flow.flow
+import com.diegoferreiracaetano.router.Router
+import kotlinx.coroutines.flow.map
 
-class SaveCardInteractor : Interactor<Card, Boolean> {
+class SaveCardInteractor(
+    private val cardRepository: CardRepository,
+    private val router: Router
+) : Interactor<Card, Pair<Boolean, Router>> {
 
-    override fun execute(request: Card) = flow {
-        emit(
-            true
-        )
+    override fun execute(request: Card) = cardRepository.save(request).map{
+        it to router
     }
 }

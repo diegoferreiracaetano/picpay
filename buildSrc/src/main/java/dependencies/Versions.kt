@@ -2,6 +2,7 @@ package dependencies
 
 object Versions {
 
+    const val HAWK = "2.0.1"
     const val KOTLIN = "1.3.50"
     const val SUPPORT_LIBRARY = "1.0.0"
     const val APP_COMPAT = "1.0.2"

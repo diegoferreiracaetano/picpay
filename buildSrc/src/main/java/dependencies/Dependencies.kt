@@ -15,6 +15,7 @@ object Dependencies {
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     const val SHIMMER = "com.facebook.shimmer:shimmer:${Versions.SHIMMER}"
     const val FLOW_ADAPTER = "com.github.MohammadSianaki:Retrofit2-Flow-Call-Adapter:${Versions.FLOW_ADAPTER}"
+    const val HAWK = "com.orhanobut:hawk:${Versions.HAWK}"
 
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"

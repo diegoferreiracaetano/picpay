@@ -1,7 +1,6 @@
 package com.diegoferreiracaetano.data.remote.user
 
 import com.diegoferreiracaetano.data.remote.PicpayApi
-import com.diegoferreiracaetano.data.remote.transform
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -12,11 +11,11 @@ import org.junit.Test
 internal class UserRepositoryRemoteTest {
 
     private val service = mockk<PicpayApi>()
-    private lateinit var repositoryRemote: UserRepositoryRemote
+    private lateinit var repositoryRemote: OrderRepositoryRemote
 
     @Before
     fun setup() {
-        repositoryRemote = UserRepositoryRemote(service)
+        repositoryRemote = OrderRepositoryRemote(service)
     }
 
     @Test

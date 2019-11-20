@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.diegoferreiracaetano.card.R
-import com.diegoferreiracaetano.commons.Router
+import com.diegoferreiracaetano.commons.navigate
 import kotlinx.android.synthetic.main.fragment_welcome_card.card_btn_create
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeCardFragment : Fragment() {
+
+    private val viewModel: CardViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,12 +26,13 @@ class WelcomeCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val id = requireArguments().getInt(EXTRA_ID)
-        card_btn_create.setOnClickListener {
-            val url = Router(it.context).Card().welcome(id)
-            it.findNavController().navigate(url)
-        }
+
+        viewModel.welcomeCard(id).observe(this, Observer {
+            it.onSuccess {
+                card_btn_create.navigate(it.second, it.first)
+            }
+        })
     }
 
     companion object {

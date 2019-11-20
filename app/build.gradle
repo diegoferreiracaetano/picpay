@@ -9,6 +9,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":style")
     implementation project(":data")
+    implementation project(":router")
     implementation project(":domain")
     implementation project(":features:contacts")
     implementation project(":features:payment")

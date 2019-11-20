@@ -14,7 +14,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":domain")
-    implementation Dependencies.RETROFIT
+    implementation Dependencies.HAWK
     implementation Dependencies.RETROFIT
     implementation Dependencies.RETROFIT_GSON
     implementation Dependencies.GSON
