@@ -56,7 +56,7 @@ fun EditText.moneyMask(textWatcher: TextWatcher) {
     val s = this.text.toString()
     if (s.isEmpty()) return
     removeTextChangedListener(textWatcher)
-    val parsed = s.removeMask().toFloat().div(100)
+    val parsed = s.removeMask()
     val formatted = parsed.format().removeSymbol()
     setText(formatted)
     setSelection(formatted.length)
@@ -65,7 +65,7 @@ fun EditText.moneyMask(textWatcher: TextWatcher) {
 
 fun String.removeSymbol() = replace("[R$]".toRegex(), "").trim()
 
-fun String.removeMask() = replace("[R$,.]".toRegex(), "").trim()
+fun String.removeMask() = replace("[R$,.]".toRegex(), "").trim().toFloat().div(100)
 
 fun Date.format(formatDate: Int) = DateFormat.getDateInstance(formatDate, DEFAULT_LOCALE).format(this)
 

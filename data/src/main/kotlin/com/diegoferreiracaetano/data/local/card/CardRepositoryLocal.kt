@@ -17,7 +17,7 @@ internal class CardRepositoryLocal(context: Context): CardRepository {
     }
 
     override fun card() = flow {
-        emit(if(Hawk.contains(CARD)) Hawk.get<Card>(CARD)  else null)
+        emit(if(Hawk.contains(CARD)) Hawk.get<CardEntity>(CARD).transform()  else null)
     }
 
     companion object {

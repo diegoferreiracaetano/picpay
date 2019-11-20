@@ -3,6 +3,7 @@ package com.diegoferreiracaetano.domain.di
 import com.diegoferreiracaetano.domain.card.CardInteractor
 import com.diegoferreiracaetano.domain.card.SaveCardInteractor
 import com.diegoferreiracaetano.domain.card.WelcomdCardInteractor
+import com.diegoferreiracaetano.domain.payment.SavePaymentInteractor
 import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
@@ -20,6 +21,8 @@ val domainModule: Module = module {
     single { CardInteractor(get()) }
 
     single { SaveCardInteractor(get(), get(named("payment"))) }
+
+    single { SavePaymentInteractor(get(), get(named("receipt"))) }
 
     single { ReceiptInteractor() }
 }

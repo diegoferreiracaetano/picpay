@@ -1,8 +1,8 @@
 package com.diegoferreiracaetano.domain.payment
 
-import com.diegoferreiracaetano.domain.order.Order
+import com.diegoferreiracaetano.domain.transaction.Transaction
 import kotlinx.coroutines.flow.Flow
 
 interface PaymentRepository {
-    fun payment(order: Order): Flow<Boolean>
+    fun payment(payment: Payment): Flow<Transaction>
 }

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.commons.removeMask
+import com.diegoferreiracaetano.commons.removeSymbol
 import com.diegoferreiracaetano.commons.setImageUrl
-import com.diegoferreiracaetano.domain.order.Order
 import com.diegoferreiracaetano.domain.payment.Payment
+import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.payment.R
 import com.diegoferreiracaetano.payment.util.afterTextChanged
 import com.diegoferreiracaetano.payment.util.applyColorDisable
@@ -39,18 +40,18 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = requireArguments().getInt(EXTRA_ID)
         viewModel.user(id).observe(this, Observer {
-            it.onSuccess(::showOrder)
+            it.onSuccess(::showPayment)
                 .onFailure(::showError)
         })
     }
 
-    private fun showOrder(order: Order?) {
-        order?.let {
-            payment_img_mask.setImageUrl(order.user.img)
-            payment_txt_username.text = order.user.name
+    private fun showPayment(payment: Payment?) {
+        payment?.apply {
+            payment_img_mask.setImageUrl(user.img)
+            payment_txt_username.text = user.name
             payment_txt_value.afterTextChanged {
-                it.removeMask().toFloat().let {
-                    order.value = it
+                it.removeMask().let {
+                    value = it
                     if (it > 0) {
                         payment_txt_value.applyColorEnable()
                         payment_txt_real.applyColorEnable()
@@ -62,18 +63,18 @@ class PaymentFragment : Fragment() {
                     }
                 }
             }
-            payment_txt_card.text = order.card.brand.plus(order.card.number.toString().takeLast(4))
+            payment_txt_card.text = card.brand.plus(card.number.toString().takeLast(4))
             payment_btn_pay.setOnClickListener {
-                viewModel.savePayment(order)
-                    .observe(this, Observer {
-                        it.onSuccess(::showPayment).onFailure (::showError)
+                viewModel.savePayment(this)
+                    .observe(this@PaymentFragment, Observer {
+                        it.onSuccess(::showTransaction).onFailure (::showError)
                     })
             }
         }
     }
 
-    private fun showPayment(pair: Pair<Payment, Router>) {
-        pair.second.navigate(pair.first.id)
+    private fun showTransaction(pair: Pair<Transaction, Router>) {
+        pair.second.navigate(pair.first)
     }
 
     private fun showError(throwable: Throwable) {

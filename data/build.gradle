@@ -2,6 +2,7 @@ import dependencies.Dependencies
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: "$rootDir/tools/base.gradle"
 
 android {
@@ -20,6 +21,8 @@ dependencies {
     implementation Dependencies.GSON
     implementation Dependencies.OKHTTP
     implementation Dependencies.OKHTTP_LOGGER
+    implementation Dependencies.Room.RUNTIME
+    kapt Dependencies.Room.COMPILER
     implementation Dependencies.Koin.SCOPE
     implementation Dependencies.COROUTINES.CORE
     implementation Dependencies.FLOW_ADAPTER
