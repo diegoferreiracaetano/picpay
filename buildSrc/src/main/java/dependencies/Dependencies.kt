@@ -50,6 +50,7 @@ object Dependencies {
     object Room {
         const val COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"
         const val RUNTIME = "androidx.room:room-runtime:${Versions.ROOM}"
+        const val ROOM = "androidx.room:room-ktx:${Versions.ROOM}"
     }
 
     object Test {

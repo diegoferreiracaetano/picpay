@@ -9,11 +9,17 @@ import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.commons.format
 import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
-import com.diegoferreiracaetano.domain.receipt.Receipt
+import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.receipt.R
-import java.text.DateFormat
-import kotlinx.android.synthetic.main.fragment_receipt.*
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_amount
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_card
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_date
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_image
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_name
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_transaction
+import kotlinx.android.synthetic.main.fragment_receipt.receipt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DateFormat
 
 class ReceiptFragment : Fragment() {
 
@@ -29,22 +35,20 @@ class ReceiptFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.payment   ().observe(this, Observer {
-
+        val id = requireArguments().getLong(EXTRA_ID)
+        viewModel.transaction(id).observe(this, Observer {
+            it.onSuccess(::showPayment)
         })
     }
 
-    private fun showPayment(payment: Receipt) {
-        receipt_name.text = payment.user.name
-        receipt_image.setImageUrl(payment.user.img)
-        receipt_date.text = payment.date.format(DateFormat.SHORT, DateFormat.SHORT)
-        receipt_transaction.text = payment.transaction.toString()
-        receipt_card.text = payment.card.number.formatCard()
-        receipt_value.text = payment.value.format()
-        receipt_amount.text = payment.total.format()
-    }
-
-    private fun showError(throwable: Throwable) {
+    private fun showPayment(transaction: Transaction) {
+        receipt_name.text = transaction.user.name
+        receipt_image.setImageUrl(transaction.user.img)
+        receipt_date.text = transaction.date.format(DateFormat.SHORT, DateFormat.SHORT)
+        receipt_transaction.text = transaction.id.toString()
+        receipt_card.text = transaction.card?.number?.formatCard()
+        receipt_value.text = transaction.value.format()
+        receipt_amount.text = transaction.value.format()
     }
 
     companion object {

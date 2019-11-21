@@ -1,11 +1,14 @@
 package com.diegoferreiracaetano.payment.ui
 
+import android.net.Uri
+import android.net.UrlQuerySanitizer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.removeMask
 import com.diegoferreiracaetano.commons.removeSymbol
 import com.diegoferreiracaetano.commons.setImageUrl
@@ -16,6 +19,7 @@ import com.diegoferreiracaetano.payment.util.afterTextChanged
 import com.diegoferreiracaetano.payment.util.applyColorDisable
 import com.diegoferreiracaetano.payment.util.applyColorEnable
 import com.diegoferreiracaetano.router.Router
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_payment.payment_btn_pay
 import kotlinx.android.synthetic.main.fragment_payment.payment_img_mask
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_card
@@ -73,8 +77,11 @@ class PaymentFragment : Fragment() {
         }
     }
 
-    private fun showTransaction(pair: Pair<Transaction, Router>) {
-        pair.second.navigate(pair.first)
+    private fun showTransaction(pair: Pair<Long, Router?>) {
+        if(pair.second != null)
+            navigate(pair.second!!, pair.first)
+        else
+            Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showError(throwable: Throwable) {

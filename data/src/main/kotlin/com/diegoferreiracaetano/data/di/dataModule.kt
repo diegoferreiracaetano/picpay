@@ -1,12 +1,16 @@
 package com.diegoferreiracaetano.data.di
 
+import androidx.room.Room
 import com.diegoferreiracaetano.data.BuildConfig
+import com.diegoferreiracaetano.data.local.AppDatabase
 import com.diegoferreiracaetano.data.local.card.CardRepositoryLocal
+import com.diegoferreiracaetano.data.local.transaction.TransactionRepositoryLocal
 import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.payment.PaymentRepositoryRemote
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
 import com.diegoferreiracaetano.domain.card.CardRepository
 import com.diegoferreiracaetano.domain.payment.PaymentRepository
+import com.diegoferreiracaetano.domain.transaction.TransactionRepository
 import com.diegoferreiracaetano.domain.user.UserRepository
 import java.util.concurrent.TimeUnit
 import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
@@ -58,6 +62,19 @@ val dataModule: Module = module {
             .build()
     }
 
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, "database-name")
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
+
+    single { get<AppDatabase>().cardDao() }
+
+    single { get<AppDatabase>().transactionDao() }
+
+    single { get<AppDatabase>().userDao() }
+
     single { get<Retrofit>().create(PicpayApi::class.java) }
 
     single<UserRepository> { UserRepositoryRemote(get()) }
@@ -65,4 +82,6 @@ val dataModule: Module = module {
     single<PaymentRepository> { PaymentRepositoryRemote(get()) }
 
     single<CardRepository> { CardRepositoryLocal(get()) }
+
+    single<TransactionRepository> { TransactionRepositoryLocal(get()) }
 }

@@ -8,20 +8,29 @@ apply from: "$rootDir/tools/base.gradle"
 android {
     defaultConfig {
         buildConfigField 'String', 'END_POINT', '"http://careers.picpay.com"'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":domain")
-    implementation Dependencies.HAWK
+
     implementation Dependencies.RETROFIT
     implementation Dependencies.RETROFIT_GSON
     implementation Dependencies.GSON
     implementation Dependencies.OKHTTP
     implementation Dependencies.OKHTTP_LOGGER
     implementation Dependencies.Room.RUNTIME
+    implementation Dependencies.Room.ROOM
     kapt Dependencies.Room.COMPILER
     implementation Dependencies.Koin.SCOPE
     implementation Dependencies.COROUTINES.CORE

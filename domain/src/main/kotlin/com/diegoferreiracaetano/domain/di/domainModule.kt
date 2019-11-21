@@ -4,7 +4,7 @@ import com.diegoferreiracaetano.domain.card.CardInteractor
 import com.diegoferreiracaetano.domain.card.SaveCardInteractor
 import com.diegoferreiracaetano.domain.card.WelcomdCardInteractor
 import com.diegoferreiracaetano.domain.payment.SavePaymentInteractor
-import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
+import com.diegoferreiracaetano.domain.transaction.FindTransactionByIdInteractor
 import com.diegoferreiracaetano.domain.user.ContactsInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 import org.koin.core.module.Module
@@ -18,11 +18,11 @@ val domainModule: Module = module {
 
     single { FindContactsByIdInteractor(get(), get()) }
 
+    single { FindTransactionByIdInteractor(get()) }
+
     single { CardInteractor(get()) }
 
     single { SaveCardInteractor(get(), get(named("payment"))) }
 
-    single { SavePaymentInteractor(get(), get(named("receipt"))) }
-
-    single { ReceiptInteractor() }
+    single { SavePaymentInteractor(get(), get(), get(named("receipt"))) }
 }

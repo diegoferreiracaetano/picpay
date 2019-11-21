@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.map
 class SaveCardInteractor(
     private val cardRepository: CardRepository,
     private val router: Router
-) : Interactor<Card, Pair<Boolean, Router>> {
+) : Interactor<Card, Pair<Long, Router>> {
 
     override fun execute(request: Card) = cardRepository.save(request).map{
         it to router

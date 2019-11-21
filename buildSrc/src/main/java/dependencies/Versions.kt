@@ -3,7 +3,7 @@ package dependencies
 object Versions {
 
     const val HAWK = "2.0.1"
-    const val KOTLIN = "1.3.50"
+    const val KOTLIN = "1.3.60"
     const val SUPPORT_LIBRARY = "1.0.0"
     const val APP_COMPAT = "1.0.2"
     const val LIFECYCLE = "2.2.0-alpha03"
@@ -23,7 +23,7 @@ object Versions {
     const val ROBOLECTRIC_SHAOW = "3.3.2"
     const val ANDROIDX_TEST = "1.0.0"
     const val JUNIT_EXT = "1.1.0"
-    const val ROOM = "2.0.0"
+    const val ROOM = "2.2.0-alpha02"
     const val ORCHESTRATOR = "1.0.2"
     const val CORE_TEST = "1.1.0"
     const val CORE_TEST_ARCH = "2.0.1"

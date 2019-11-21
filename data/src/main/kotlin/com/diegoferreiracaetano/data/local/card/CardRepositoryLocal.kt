@@ -1,26 +1,15 @@
 package com.diegoferreiracaetano.data.local.card
 
-import android.content.Context
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.card.CardRepository
-import com.orhanobut.hawk.Hawk
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 
-internal class CardRepositoryLocal(context: Context): CardRepository {
-
-    init {
-        Hawk.init(context).build()
-    }
+internal class CardRepositoryLocal(private val dao: CardDao): CardRepository {
 
     override fun save(card: Card) = flow {
-        emit(Hawk.put(CARD, card.transform()))
+        emit(dao.insert(card.transform()))
     }
 
-    override fun card() = flow {
-        emit(if(Hawk.contains(CARD)) Hawk.get<CardEntity>(CARD).transform()  else null)
-    }
-
-    companion object {
-        private const val CARD = "CARD"
-    }
+    override fun card() = dao.card().map { it?.transform() }
 }
