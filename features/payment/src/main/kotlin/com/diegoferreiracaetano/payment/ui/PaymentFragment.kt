@@ -42,7 +42,7 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = requireArguments().getInt(EXTRA_ID)
+        val id = requireArguments().getLong(EXTRA_ID)
         viewModel.user(id).observe(this, Observer {
             it.onSuccess(::showPayment)
                 .onFailure(::showError)
@@ -85,6 +85,7 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showError(throwable: Throwable) {
+        Snackbar.make(requireView(), throwable.message.toString(), Snackbar.LENGTH_LONG).show()
     }
 
     companion object {

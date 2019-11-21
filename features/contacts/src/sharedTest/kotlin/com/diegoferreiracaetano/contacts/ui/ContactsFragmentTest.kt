@@ -11,7 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diegoferreiracaetano.Mock
 import com.diegoferreiracaetano.contacts.R
-import com.diegoferreiracaetano.domain.user.ContactsInteractor
+import com.diegoferreiracaetano.domain.user.UserInteractor
 import com.diegoferreiracaetano.domain.user.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -28,12 +28,12 @@ import org.koin.test.AutoCloseKoinTest
 class ContactsFragmentTest : AutoCloseKoinTest() {
 
     private val repository = mockk<UserRepository>()
-    private lateinit var interactor: ContactsInteractor
+    private lateinit var interactor: UserInteractor
     private lateinit var viewModel: ContactsViewModel
 
     @Before
     fun before() {
-        interactor = ContactsInteractor(repository)
+        interactor = UserInteractor(repository)
         viewModel = ContactsViewModel(interactor)
         startKoin { }
 

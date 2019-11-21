@@ -4,19 +4,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.domain.user.User
-import com.diegoferreiracaetano.router.Router
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_contacts.view.contact_img_user
 import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_name
 import kotlinx.android.synthetic.main.item_contacts.view.contact_txt_nickname
 
 internal class ContactsAdapter(
-    private var items: Pair<List<User>, Router>
+    private var items: List<User>
 ) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
+
+    var onItemClick: ((User) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -25,14 +25,16 @@ internal class ContactsAdapter(
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount() = items.first.size
+    override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user = items.first[position]
+        val user = items[position]
         holder.image.setImageUrl(user.img)
         holder.nickname.text = user.name
         holder.name.text = user.username
-        holder.itemView.navigate(items.second, user.id)
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(user)
+        }
     }
 
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

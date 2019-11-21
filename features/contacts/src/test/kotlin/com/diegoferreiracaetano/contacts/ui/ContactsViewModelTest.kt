@@ -3,7 +3,7 @@ package com.diegoferreiracaetano.contacts.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.Mock
-import com.diegoferreiracaetano.domain.user.ContactsInteractor
+import com.diegoferreiracaetano.domain.user.UserInteractor
 import com.diegoferreiracaetano.domain.user.User
 import io.mockk.coEvery
 import io.mockk.every
@@ -25,7 +25,7 @@ internal class ContactsViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    private val interactor = mockk<ContactsInteractor>()
+    private val interactor = mockk<UserInteractor>()
     private val observe = mockk<Observer<Result<List<User>>>>()
     private val observeString = mockk<Observer<String>>()
     private lateinit var viewModel: ContactsViewModel

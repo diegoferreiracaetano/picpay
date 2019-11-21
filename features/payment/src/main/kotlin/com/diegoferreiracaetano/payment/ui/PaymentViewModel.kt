@@ -9,7 +9,7 @@ import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 internal class PaymentViewModel(private val interactor: FindContactsByIdInteractor,
                                 private val saveOrderInteractor: SavePaymentInteractor) : ViewModel() {
 
-    fun user(int: Int) = interactor.execute(int).asLiveData()
+    fun user(id: Long) = interactor.execute(id).asLiveData()
 
     fun savePayment(payment: Payment) = saveOrderInteractor.execute(payment).asLiveData()
 }

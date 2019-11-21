@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.GONE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.unaccent
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.util.applyBackground
@@ -25,6 +26,7 @@ import timber.log.Timber
 class ContactsFragment : Fragment() {
 
     private val viewModel: ContactsViewModel by viewModel()
+    private lateinit var contactsAdapter: ContactsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,7 +64,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        viewModel.fetchContacts().observe(this, Observer {
+        viewModel.users().observe(this, Observer {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         })
@@ -72,7 +74,6 @@ class ContactsFragment : Fragment() {
         contact_error.visibility = GONE
         contact_container.visibility = VISIBLE
         shimmer_view_container.startShimmer()
-        viewModel.fetchContacts()
     }
 
     private fun stopShimmer() {
@@ -80,16 +81,28 @@ class ContactsFragment : Fragment() {
         shimmer_view_container.stopShimmer()
     }
 
-    private fun showUser(users: Pair<List<User>, Router>) {
+    private fun showUser(users: List<User>) {
         stopShimmer()
-        contact_recycle.adapter = ContactsAdapter(users)
+        showAdapter(users)
         filter(users)
     }
 
-    private fun filter(users: Pair<List<User>, Router>) {
+    private fun showAdapter(users: List<User>) {
+        contactsAdapter = ContactsAdapter(users)
+        contactsAdapter.onItemClick = {
+            viewModel.save(it).observe(this, Observer {
+                it.onSuccess {
+                    navigate(it.second, it.first)
+                }.onFailure (::showError)
+            })
+        }
+        contact_recycle.adapter = contactsAdapter
+    }
+
+    private fun filter(users: List<User>) {
         viewModel.search.observe(this, Observer {
-            val filter = users.first.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
-            contact_recycle.adapter = ContactsAdapter(Pair(filter, users.second))
+            val filter = users.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
+            showAdapter(filter)
         })
     }
 

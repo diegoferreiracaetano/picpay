@@ -21,9 +21,9 @@
           android:id="@+id/deepLinkPayment"
           app:uri="android-app://payment/id/{id}"
           android:autoVerify="true" />
-        <argument
-          android:name="id"
-          app:argType="integer" />
+      <argument
+        android:name="id"
+        app:argType="long" />
     </fragment>
     <fragment
       android:id="@+id/receiptFragment"
@@ -47,9 +47,9 @@
           android:id="@+id/deepLinkWelcomeCard"
           app:uri="android-app://card/welcome/{id}"
           android:autoVerify="true" />
-        <argument
-          android:name="id"
-          app:argType="integer" />
+      <argument
+        android:name="id"
+        app:argType="long" />
     </fragment>
 
     <fragment
@@ -61,9 +61,9 @@
           android:id="@+id/deepLinkCard"
           app:uri="android-app://card/id/{id}"
           android:autoVerify="true" />
-        <argument
-          android:name="id"
-          app:argType="integer" />
+      <argument
+        android:name="id"
+        app:argType="long" />
     </fragment>
 
 </navigation>

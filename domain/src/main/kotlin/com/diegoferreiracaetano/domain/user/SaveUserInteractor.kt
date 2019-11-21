@@ -6,19 +6,19 @@ import com.diegoferreiracaetano.router.Router
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.map
 
-class ContactsInteractor(
+class SaveUserInteractor(
     private val userRepository: UserRepository,
     private val cardRepository: CardRepository,
     private val cardRouter: Router,
     private val paymentRouter: Router
-) : Interactor<Unit, Pair<List<User>, Router>> {
+) : Interactor<User, Pair<Long, Router>> {
 
-    override fun execute(request: Unit) = userRepository.users().flatMapMerge{ users->
+    override fun execute(request: User) = userRepository.save(request).flatMapMerge{ userId->
         cardRepository.card().map{
             if(it == null)
-                users to cardRouter
+                userId to cardRouter
             else
-                users to  paymentRouter
+                userId to  paymentRouter
         }
     }
 }

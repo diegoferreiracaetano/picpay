@@ -13,6 +13,7 @@ import com.diegoferreiracaetano.card.util.CreditCardNumberFormattingTextWatcher
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.router.Router
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_card.card_btn
 import kotlinx.android.synthetic.main.fragment_card.card_cvv
 import kotlinx.android.synthetic.main.fragment_card.card_date
@@ -60,6 +61,7 @@ class CardFragment : Fragment() {
     }
 
     private fun showError(throwable: Throwable) {
+        Snackbar.make(requireView(), throwable.message.toString(), Snackbar.LENGTH_LONG).show()
     }
 
     private fun showButton() = (card_number.editText!!.text.isNotEmpty() &&

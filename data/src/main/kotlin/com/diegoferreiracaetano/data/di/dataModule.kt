@@ -5,6 +5,7 @@ import com.diegoferreiracaetano.data.BuildConfig
 import com.diegoferreiracaetano.data.local.AppDatabase
 import com.diegoferreiracaetano.data.local.card.CardRepositoryLocal
 import com.diegoferreiracaetano.data.local.transaction.TransactionRepositoryLocal
+import com.diegoferreiracaetano.data.local.user.UserRepositoryLocal
 import com.diegoferreiracaetano.data.remote.PicpayApi
 import com.diegoferreiracaetano.data.remote.payment.PaymentRepositoryRemote
 import com.diegoferreiracaetano.data.remote.user.UserRepositoryRemote
@@ -17,6 +18,7 @@ import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -78,6 +80,8 @@ val dataModule: Module = module {
     single { get<Retrofit>().create(PicpayApi::class.java) }
 
     single<UserRepository> { UserRepositoryRemote(get()) }
+
+    single<UserRepository>(named("local")) { UserRepositoryLocal(get()) }
 
     single<PaymentRepository> { PaymentRepositoryRemote(get()) }
 

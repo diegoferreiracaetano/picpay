@@ -11,11 +11,11 @@ import org.junit.Test
 internal class ContactsInteractorTest {
 
     private val repository = mockk<UserRepository>()
-    private lateinit var interactor: ContactsInteractor
+    private lateinit var interactor: UserInteractor
 
     @Before
     fun setUp() {
-        interactor = ContactsInteractor(repository)
+        interactor = UserInteractor(repository)
     }
 
     @Test
