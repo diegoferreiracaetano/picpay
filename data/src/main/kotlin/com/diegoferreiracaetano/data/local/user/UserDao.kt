@@ -12,7 +12,10 @@ internal interface UserDao {
     @Query("SELECT * FROM user WHERE id =:id")
     fun user(id: Long): Flow<UserEntity>
 
+    @Query("SELECT * FROM user WHERE nameQuery LIKE '%' || :string || '%' ORDER BY name")
+    fun users(string: String): Flow<List<UserEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(entity: UserEntity): Long
+    fun insert(entity: List<UserEntity>): List<Long>
 
 }

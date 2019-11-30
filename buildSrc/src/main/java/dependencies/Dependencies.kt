@@ -15,7 +15,7 @@ object Dependencies {
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     const val SHIMMER = "com.facebook.shimmer:shimmer:${Versions.SHIMMER}"
     const val FLOW_ADAPTER = "com.github.MohammadSianaki:Retrofit2-Flow-Call-Adapter:${Versions.FLOW_ADAPTER}"
-    const val HAWK = "com.orhanobut:hawk:${Versions.HAWK}"
+
 
     object Android {
         const val EXIF_INTERFACE = "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
@@ -27,6 +27,11 @@ object Dependencies {
         const val DESIGN = "com.android.support:design:${Versions.SUPPORT_LIBRARY}"
         const val CORE_COMMON = "androidx.arch.core:core-common:${Versions.CORE_ARCH}"
         const val CORE_RUNTIME = "androidx.arch.core:core-runtime:${Versions.CORE_ARCH}"
+    }
+
+    object Workmanager {
+        const val RUNTIME = "androidx.work:work-runtime-ktx:${Versions.WORKMANAGER}"
+        const val TEST = "androidx.work:work-testing:${Versions.WORKMANAGER}"
     }
 
     object Lifecycle {

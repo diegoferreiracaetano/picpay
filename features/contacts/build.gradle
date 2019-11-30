@@ -23,6 +23,7 @@ dependencies {
     implementation Dependencies.Koin.VIEW_MODEL
     implementation Dependencies.SHIMMER
     implementation Dependencies.TIMBER
+    implementation Dependencies.Workmanager.RUNTIME
 
     testImplementation Dependencies.Test.JUNIT
     testImplementation Dependencies.Test.JUNIT_EXT
@@ -33,6 +34,7 @@ dependencies {
     testImplementation Dependencies.Test.RUNNER
     testImplementation Dependencies.Test.ESPRESSO
     testImplementation Dependencies.Test.KOIN
+    testImplementation Dependencies.Workmanager.TEST
 
     debugImplementation Dependencies.Test.FRAGMENT_TEST
 

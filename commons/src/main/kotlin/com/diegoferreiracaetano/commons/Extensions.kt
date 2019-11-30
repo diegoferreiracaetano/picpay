@@ -20,8 +20,6 @@ import java.text.DateFormat
 import java.text.Normalizer
 import java.text.NumberFormat
 import java.util.*
-
-private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
 fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {
@@ -42,11 +40,6 @@ fun CircleImageView.setImageUrl(url: String?) {
             .skipMemoryCache(true)
             .into(this)
     }
-}
-
-fun CharSequence.unaccent(): String {
-    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
-    return REGEX_UNACCENT.replace(temp, "")
 }
 
 fun Float.format(): String = NumberFormat

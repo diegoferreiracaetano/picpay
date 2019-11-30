@@ -1,23 +1,43 @@
 package com.diegoferreiracaetano.contacts.ui
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.Operation
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
+import androidx.work.await
 import com.diegoferreiracaetano.commons.asLiveData
+import com.diegoferreiracaetano.contacts.work.SyncWorker
 import com.diegoferreiracaetano.domain.user.SaveUserInteractor
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.domain.user.UserInteractor
 
 internal class ContactsViewModel(
     private val userInteractor: UserInteractor,
-    private val saveUserInteractor: SaveUserInteractor) : ViewModel() {
+    workManager: WorkManager,
+    workRequest: OneTimeWorkRequest
+): ViewModel() {
 
-    private val _search = MutableLiveData<String>()
+    val job: LiveData<WorkInfo>
+    init {
+
+        workManager.enqueue(workRequest)
+
+        job = workManager.getWorkInfoByIdLiveData(workRequest.id)
+    }
+
+    private val _search = MutableLiveData<String>("")
     val search: LiveData<String> = _search
 
-    fun users() = userInteractor.execute(Unit).asLiveData()
-
-    fun save(user: User) = saveUserInteractor.execute(user).asLiveData()
+    fun users() = Transformations.switchMap(_search) {
+        userInteractor.execute(it).asLiveData()
+    }
 
     fun search(newText: String) {
         _search.postValue(newText)

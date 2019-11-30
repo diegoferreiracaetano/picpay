@@ -2,8 +2,7 @@ package dependencies
 
 object Versions {
 
-    const val HAWK = "2.0.1"
-    const val KOTLIN = "1.3.60"
+    const val KOTLIN = "1.3.61"
     const val SUPPORT_LIBRARY = "1.0.0"
     const val APP_COMPAT = "1.0.2"
     const val LIFECYCLE = "2.2.0-alpha03"
@@ -43,4 +42,5 @@ object Versions {
     const val MOCKITO_KOTLLIN = "2.1.0"
     const val JACOCO = "0.8.4"
     const val FLOW_ADAPTER = "0.2.0"
+    const val WORKMANAGER = "2.3.0-alpha01"
 }

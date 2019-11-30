@@ -9,12 +9,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.GONE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.work.Operation
+import androidx.work.WorkInfo
+import androidx.work.WorkInfo.State
 import com.diegoferreiracaetano.commons.navigate
-import com.diegoferreiracaetano.commons.unaccent
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.util.applyBackground
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.router.Router
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_contacts.contact_container
 import kotlinx.android.synthetic.main.fragment_contacts.contact_error
 import kotlinx.android.synthetic.main.fragment_contacts.contact_recycle
@@ -68,6 +71,15 @@ class ContactsFragment : Fragment() {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         })
+
+
+        viewModel.job.observe(this, Observer {
+            when(it.state) {
+                State.RUNNING -> startShimmer()
+                State.FAILED -> showError()
+                else -> stopShimmer()
+            }
+        })
     }
 
     private fun startShimmer() {
@@ -81,29 +93,19 @@ class ContactsFragment : Fragment() {
         shimmer_view_container.stopShimmer()
     }
 
-    private fun showUser(users: List<User>) {
+    private fun showUser(pair: Pair<List<User>, Router>) {
         stopShimmer()
-        showAdapter(users)
-        filter(users)
-    }
-
-    private fun showAdapter(users: List<User>) {
-        contactsAdapter = ContactsAdapter(users)
-        contactsAdapter.onItemClick = {
-            viewModel.save(it).observe(this, Observer {
-                it.onSuccess {
-                    navigate(it.second, it.first)
-                }.onFailure (::showError)
-            })
-        }
+        contactsAdapter = ContactsAdapter(pair.first)
         contact_recycle.adapter = contactsAdapter
+        contactsAdapter.onItemClick = {
+            navigate(pair.second, it.id)
+        }
     }
 
-    private fun filter(users: List<User>) {
-        viewModel.search.observe(this, Observer {
-            val filter = users.filter { user -> user.name.unaccent().contains(it, ignoreCase = true) }
-            showAdapter(filter)
-        })
+
+    private fun showError() {
+        stopShimmer()
+        Snackbar.make(requireView(), R.string.contacts_msg_error, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showError(error: Throwable) {
@@ -112,6 +114,7 @@ class ContactsFragment : Fragment() {
         contact_container.visibility = GONE
         contact_error.retry(View.OnClickListener {
             startShimmer()
+            setupAdapter()
         })
         Timber.e(error)
     }

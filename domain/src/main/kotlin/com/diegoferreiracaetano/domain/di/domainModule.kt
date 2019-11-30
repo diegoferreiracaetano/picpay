@@ -13,9 +13,9 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val domainModule: Module = module {
-    single { UserInteractor(get()) }
+    single { UserInteractor(get(named("local")), get(), get(named("card_welcome")), get(named("payment"))) }
 
-    single { SaveUserInteractor(get(named("local")), get(), get(named("card_welcome")), get(named("payment"))) }
+    single { SaveUserInteractor(get(), get(named("local"))) }
 
     single { WelcomdCardInteractor(get(named("card"))) }
 
