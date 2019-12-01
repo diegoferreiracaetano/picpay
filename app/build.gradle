@@ -11,7 +11,7 @@ dependencies {
     implementation project(":data")
     implementation project(":router")
     implementation project(":domain")
-    implementation project(":features:contacts")
+    implementation project(':features:users')
     implementation project(":features:payment")
     implementation project(":features:receipt")
     implementation project(":features:card")

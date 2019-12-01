@@ -1,0 +1,5 @@
+<resources>
+    <string name="user_title">Contatos</string>
+    <string name="user_title_search">A quem você deseja pagar?</string>
+    <string name="users_msg_error">Não foi possivel atualizar a lista</string>
+</resources>

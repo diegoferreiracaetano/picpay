@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
     tools:ignore="UnusedNavigation"
-    app:startDestination="@id/contactsFragment">
+    app:startDestination="@id/usersFragment">
 
     <fragment
-        android:id="@+id/contactsFragment"
-        android:name="com.diegoferreiracaetano.contacts.ui.ContactsFragment"
-        tools:layout="@layout/fragment_contacts"
+        android:id="@+id/usersFragment"
+        android:name="com.diegoferreiracaetano.users.ui.usersFragment"
+        tools:layout="@layout/fragment_users"
         android:label="ContactsFragment">
       <deepLink
         android:id="@+id/deepLinkUser"

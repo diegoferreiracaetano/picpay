@@ -6,4 +6,4 @@ include ':app', ':style', ':router',
         ':features:payment',
         ':features:receipt',
         ':features:card',
-        ':features:contacts'
+        ':features:users'
