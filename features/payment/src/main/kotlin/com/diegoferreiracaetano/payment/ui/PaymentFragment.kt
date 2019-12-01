@@ -1,20 +1,19 @@
 package com.diegoferreiracaetano.payment.ui
 
 import android.net.Uri
-import android.net.UrlQuerySanitizer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.removeMask
-import com.diegoferreiracaetano.commons.removeSymbol
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.payment.Payment
-import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.payment.R
 import com.diegoferreiracaetano.payment.util.afterTextChanged
 import com.diegoferreiracaetano.payment.util.applyColorDisable
@@ -28,6 +27,7 @@ import kotlinx.android.synthetic.main.fragment_payment.payment_txt_real
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_username
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class PaymentFragment : Fragment() {
 
@@ -79,13 +79,18 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showTransaction(pair: Pair<Long, Router?>) {
-        val a = pair
+       if(pair.second != null) {
+           val options = NavOptions.Builder()
+               .setPopUpTo(findNavController().graph.startDestination, true)
+               .build()
 
-
-        //if(pair.second != null)
-       //     navigate(pair.second!!, pair.first)
-      //  else
-       //     Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
+           navigate(
+               pair.second!!,
+               pair.first,
+               options)
+       }
+       else
+           Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showError(throwable: Throwable) {

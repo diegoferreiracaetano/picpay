@@ -10,7 +10,14 @@
         android:id="@+id/contactsFragment"
         android:name="com.diegoferreiracaetano.contacts.ui.ContactsFragment"
         tools:layout="@layout/fragment_contacts"
-        android:label="ContactsFragment" >
+        android:label="ContactsFragment">
+      <deepLink
+        android:id="@+id/deepLinkUser"
+        app:uri="android-app://user/id/{id}"
+        android:autoVerify="true" />
+      <argument
+        android:name="id"
+        app:argType="long" />
     </fragment>
     <fragment
       android:id="@+id/paymentFragment"
@@ -24,11 +31,6 @@
       <argument
         android:name="id"
         app:argType="long" />
-        <action
-          android:id="@+id/action_paymentFragment_to_app_navigation"
-          app:destination="@id/app_navigation"
-          app:popUpTo="@id/app_navigation"
-          app:popUpToInclusive="true" />
     </fragment>
     <fragment
       android:id="@+id/receiptFragment"

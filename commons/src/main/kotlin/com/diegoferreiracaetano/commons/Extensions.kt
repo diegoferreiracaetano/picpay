@@ -8,6 +8,8 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -96,4 +98,8 @@ fun View.navigate(router: Router, any: Any) {
 
 fun Fragment.navigate(router: Router, any: Any) {
     findNavController().navigate(Uri.parse(router.navigate(any)))
+}
+
+fun Fragment.navigate(router: Router, any: Any, options: NavOptions) {
+    findNavController().navigate(Uri.parse(router.navigate(any)), options)
 }

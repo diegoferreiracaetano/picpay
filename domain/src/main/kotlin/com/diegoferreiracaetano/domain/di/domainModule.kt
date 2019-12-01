@@ -27,5 +27,5 @@ val domainModule: Module = module {
 
     single { SaveCardInteractor(get(), get(named("payment"))) }
 
-    single { SavePaymentInteractor(get(), get(), get(named("receipt"))) }
+    single { SavePaymentInteractor(get(), get(), get(named("user"))) }
 }
