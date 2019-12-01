@@ -44,6 +44,12 @@ class ContactsFragment : Fragment() {
         startShimmer()
         setupAdapter()
         setupSearchView()
+
+        val router = requireArguments().getString(EXTRA_ROUTER)
+        if(!router.isNullOrEmpty()) {
+            requireArguments().clear()
+            navigate(router)
+        }
     }
 
     override fun onStop() {
@@ -117,5 +123,9 @@ class ContactsFragment : Fragment() {
             setupAdapter()
         })
         Timber.e(error)
+    }
+
+    companion object {
+        private const val EXTRA_ROUTER = "router"
     }
 }

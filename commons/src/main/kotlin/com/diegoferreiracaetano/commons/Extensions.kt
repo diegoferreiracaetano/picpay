@@ -96,6 +96,10 @@ fun View.navigate(router: Router, any: Any) {
     }
 }
 
+fun Fragment.navigate(router: String) {
+    findNavController().navigate(Uri.parse(router))
+}
+
 fun Fragment.navigate(router: Router, any: Any) {
     findNavController().navigate(Uri.parse(router.navigate(any)))
 }

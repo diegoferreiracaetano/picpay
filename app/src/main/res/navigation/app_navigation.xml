@@ -13,11 +13,11 @@
         android:label="ContactsFragment">
       <deepLink
         android:id="@+id/deepLinkUser"
-        app:uri="android-app://user/id/{id}"
+        app:uri="android-app://user/router/{router}"
         android:autoVerify="true" />
       <argument
-        android:name="id"
-        app:argType="long" />
+        android:name="router"
+        app:argType="string" />
     </fragment>
     <fragment
       android:id="@+id/paymentFragment"
@@ -32,7 +32,7 @@
         android:name="id"
         app:argType="long" />
     </fragment>
-    <fragment
+    <dialog
       android:id="@+id/receiptFragment"
       android:name="com.diegoferreiracaetano.receipt.ui.ReceiptFragment"
       android:label="ReceiptFragment"
@@ -44,7 +44,7 @@
         <argument
           android:name="id"
           app:argType="long" />
-    </fragment>
+    </dialog>
     <fragment
       android:id="@+id/welcomeCardFragment"
       android:name="com.diegoferreiracaetano.card.ui.WelcomeCardFragment"

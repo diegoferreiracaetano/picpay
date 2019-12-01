@@ -78,16 +78,14 @@ class PaymentFragment : Fragment() {
         }
     }
 
-    private fun showTransaction(pair: Pair<Long, Router?>) {
+    private fun showTransaction(pair: Pair<Any, Router?>) {
        if(pair.second != null) {
            val options = NavOptions.Builder()
                .setPopUpTo(findNavController().graph.startDestination, true)
                .build()
 
-           navigate(
-               pair.second!!,
-               pair.first,
-               options)
+
+           navigate(pair.second!!, pair.first, options)
        }
        else
            Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()

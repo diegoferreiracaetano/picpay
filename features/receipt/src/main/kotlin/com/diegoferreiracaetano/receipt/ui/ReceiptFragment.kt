@@ -11,6 +11,7 @@ import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.receipt.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_amount
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_card
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_date
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_receipt.receipt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 
-class ReceiptFragment : Fragment() {
+class ReceiptFragment : BottomSheetDialogFragment() {
 
     private val viewModel: ReceiptViewModel by viewModel()
 

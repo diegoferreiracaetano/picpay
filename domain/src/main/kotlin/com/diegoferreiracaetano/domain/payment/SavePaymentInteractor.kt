@@ -14,14 +14,15 @@ import kotlinx.coroutines.flow.map
 class SavePaymentInteractor(
     private val paymentRepository: PaymentRepository,
     private val transactionRepository: TransactionRepository,
-    private val successRouter: Router
-) : Interactor<Payment, Pair<Long, Router?>> {
+    private val user: Router,
+    private val receipt: Router
+) : Interactor<Payment, Pair<Any, Router?>> {
 
     override fun execute(request: Payment) = paymentRepository.payment(request).flatMapMerge { transaction ->
         transaction.card = request.card
         transactionRepository.save(transaction).map {
             if(transaction.success && transaction.status == APPROVED)
-                transaction.id to successRouter
+                receipt.navigate(transaction.id) to user
             else
                 transaction.id to null
         }
