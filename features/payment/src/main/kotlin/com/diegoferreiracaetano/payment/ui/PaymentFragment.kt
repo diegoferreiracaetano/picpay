@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.removeMask
 import com.diegoferreiracaetano.commons.removeSymbol
@@ -78,10 +79,13 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showTransaction(pair: Pair<Long, Router?>) {
-        if(pair.second != null)
-            navigate(pair.second!!, pair.first)
-        else
-            Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
+        val a = pair
+
+
+        //if(pair.second != null)
+       //     navigate(pair.second!!, pair.first)
+      //  else
+       //     Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showError(throwable: Throwable) {

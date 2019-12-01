@@ -2,12 +2,18 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "10cc9a718672c076a528bdbd2c6544ad",
+    "identityHash": "3dd6ab61f9a14c5662e04a2a23e71f42",
     "entities": [
       {
         "tableName": "card",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`number` INTEGER NOT NULL, `brand` TEXT NOT NULL, `name` TEXT NOT NULL, `date` TEXT NOT NULL, `cvv` INTEGER NOT NULL, PRIMARY KEY(`number`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `brand` TEXT NOT NULL, `name` TEXT NOT NULL, `date` TEXT NOT NULL, `cvv` INTEGER NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "number",
             "columnName": "number",
@@ -41,16 +47,16 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "number"
+            "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "transaction",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `value` REAL NOT NULL, `success` INTEGER NOT NULL, `status` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `value` REAL NOT NULL, `success` INTEGER NOT NULL, `status` TEXT NOT NULL, `user_id` INTEGER NOT NULL, `user_name` TEXT NOT NULL, `user_nameQuery` TEXT NOT NULL, `user_username` TEXT NOT NULL, `user_img` TEXT, `card_id` INTEGER NOT NULL, `card_number` INTEGER NOT NULL, `card_brand` TEXT NOT NULL, `card_name` TEXT NOT NULL, `card_date` TEXT NOT NULL, `card_cvv` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -81,6 +87,72 @@
             "columnName": "status",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "user.id",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user.name",
+            "columnName": "user_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user.nameQuery",
+            "columnName": "user_nameQuery",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user.username",
+            "columnName": "user_username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user.img",
+            "columnName": "user_img",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "card.id",
+            "columnName": "card_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card.number",
+            "columnName": "card_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card.brand",
+            "columnName": "card_brand",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card.name",
+            "columnName": "card_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card.date",
+            "columnName": "card_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card.cvv",
+            "columnName": "card_cvv",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -94,7 +166,7 @@
       },
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL COLLATE BINARY, `username` TEXT NOT NULL, `img` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameQuery` TEXT NOT NULL, `username` TEXT NOT NULL, `img` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -105,6 +177,12 @@
           {
             "fieldPath": "name",
             "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameQuery",
+            "columnName": "nameQuery",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -127,14 +205,23 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_user_nameQuery",
+            "unique": false,
+            "columnNames": [
+              "nameQuery"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_user_nameQuery` ON `${TABLE_NAME}` (`nameQuery`)"
+          }
+        ],
         "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '10cc9a718672c076a528bdbd2c6544ad')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3dd6ab61f9a14c5662e04a2a23e71f42')"
     ]
   }
 }

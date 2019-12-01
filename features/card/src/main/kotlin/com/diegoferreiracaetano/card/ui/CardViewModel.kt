@@ -13,7 +13,7 @@ internal class CardViewModel(
     private val saveCardInteractor: SaveCardInteractor
 ) : ViewModel() {
 
-    fun welcomeCard(userId: Int) = welcomeCardInteractor.execute(userId).asLiveData()
+    fun welcomeCard(userId: Long) = welcomeCardInteractor.execute(userId).asLiveData()
 
     fun card() = cardInteractor.execute(Unit).asLiveData()
 

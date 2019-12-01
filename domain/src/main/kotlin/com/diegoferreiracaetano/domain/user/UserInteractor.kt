@@ -3,6 +3,7 @@ package com.diegoferreiracaetano.domain.user
 import com.diegoferreiracaetano.domain.Interactor
 import com.diegoferreiracaetano.domain.card.CardRepository
 import com.diegoferreiracaetano.router.Router
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.map
 
@@ -13,7 +14,7 @@ class UserInteractor(
     private val paymentRouter: Router
 ) : Interactor<String, Pair<List<User>, Router>> {
 
-    override fun execute(request: String) = userRepository.users(request).flatMapMerge{ userId->
+    override fun execute(request: String) = userRepository.users(request).flatMapLatest{ userId->
         cardRepository.card().map{
             if(it == null)
                 userId to cardRouter

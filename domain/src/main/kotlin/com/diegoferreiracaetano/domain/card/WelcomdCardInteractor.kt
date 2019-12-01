@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 
 class WelcomdCardInteractor(
     private val router: Router
-) : Interactor<Int, Pair<Int, Router>> {
+) : Interactor<Long, Pair<Long, Router>> {
 
-    override fun execute(request: Int) = flow { emit(Pair(request, router)) }
+    override fun execute(request: Long) = flow { emit(Pair(request, router)) }
 }

@@ -26,7 +26,7 @@ class WelcomeCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = requireArguments().getInt(EXTRA_ID)
+        val id = requireArguments().getLong(EXTRA_ID)
 
         viewModel.welcomeCard(id).observe(this, Observer {
             it.onSuccess {

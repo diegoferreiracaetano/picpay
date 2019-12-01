@@ -15,7 +15,7 @@ internal interface UserDao {
     @Query("SELECT * FROM user WHERE nameQuery LIKE '%' || :string || '%' ORDER BY name")
     fun users(string: String): Flow<List<UserEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(entity: List<UserEntity>): List<Long>
 
 }

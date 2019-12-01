@@ -65,7 +65,7 @@ class CardFragment : Fragment() {
     }
 
     private fun showSaveCard(card: Pair<Long, Router>) {
-        val id = requireArguments().getInt(EXTRA_ID)
+        val id = requireArguments().getLong(EXTRA_ID)
         navigate(card.second, id)
     }
 

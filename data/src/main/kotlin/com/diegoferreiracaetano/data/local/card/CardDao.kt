@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 internal interface CardDao {
 
-    @Query("SELECT * FROM card LIMIT 1")
+    @Query("SELECT * FROM card ORDER BY id DESC LIMIT 1 ")
     fun card(): Flow<CardEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
