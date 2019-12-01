@@ -93,6 +93,7 @@
                   android:id="@+id/contact_recycle"
                   android:layout_width="0dp"
                   android:layout_height="wrap_content"
+                  android:nestedScrollingEnabled="false"
                   app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                   app:layout_constraintBottom_toBottomOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
