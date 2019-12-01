@@ -17,7 +17,6 @@ import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.contacts.R
 import com.diegoferreiracaetano.contacts.util.applyBackground
 import com.diegoferreiracaetano.domain.user.User
-import com.diegoferreiracaetano.receipt.ui.ReceiptFragment
 import com.diegoferreiracaetano.router.Router
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_contacts.contact_container

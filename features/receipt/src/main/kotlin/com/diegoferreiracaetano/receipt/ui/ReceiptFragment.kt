@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.commons.format
 import com.diegoferreiracaetano.commons.formatCard
@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_receipt.receipt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 
+
 class ReceiptFragment : BottomSheetDialogFragment() {
 
     private val viewModel: ReceiptViewModel by viewModel()
@@ -32,6 +33,15 @@ class ReceiptFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_receipt, container, false)
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(
+            DialogFragment.STYLE_NORMAL,
+            R.style.AppBottomSheetDialogTheme
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

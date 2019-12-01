@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  tools:context=".ui.ReceiptFragment"
-  app:behavior_hideable="true"
-  app:behavior_peekHeight="56dp"
-  app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-  >
+  tools:context=".ui.ReceiptFragment">
+
+  <View
+    android:id="@+id/receipt_swipe"
+    android:layout_width="49dp"
+    android:layout_height="3dp"
+    android:layout_marginTop="8dp"
+    android:background="@color/secondary_text"
+    android:elevation="2dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
     android:id="@+id/receipt_title"
     style="@style/TextMedium"
     android:layout_width="0dp"
-    android:layout_height="wrap_content"
+    android:layout_height="56dp"
     android:background="#151516"
     android:gravity="center"
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
     android:text="@string/title_receipt"
+    android:textStyle="bold"
     app:layout_constraintBottom_toTopOf="@+id/receipt_image"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +49,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    tools:text="zelda.willians"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/receipt_image" />
+    app:layout_constraintTop_toBottomOf="@+id/receipt_image"
+    tools:text="zelda.willians" />
 
   <TextView
     android:id="@+id/receipt_date"
@@ -54,6 +61,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
+    android:textStyle="bold"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/receipt_name"
@@ -79,7 +87,7 @@
     app:layout_constraintEnd_toEndOf="@+id/receipt_date"
     app:layout_constraintStart_toEndOf="@+id/receipt_transaction_title"
     app:layout_constraintTop_toBottomOf="@+id/receipt_date"
-    tools:text="23000"/>
+    tools:text="23000" />
 
   <View
     android:id="@+id/view2"
@@ -134,9 +142,12 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginTop="8dp"
+    android:text="@string/receipet_total_pago"
+    android:layout_marginBottom="136dp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/view3"
-    android:text="@string/receipet_total_pago" />
+    app:layout_constraintTop_toBottomOf="@+id/view3" />
 
   <TextView
     android:id="@+id/receipt_amount"
@@ -145,6 +156,9 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
+    android:layout_marginBottom="136dp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/view3"
     tools:text="R$ 19,00" />
