@@ -21,5 +21,4 @@ val routerModule: Module = module {
     single<Router>(named("receipt")) { ReceiptRouter() }
 
     single<Router>(named("user")) { UserRouter() }
-
 }

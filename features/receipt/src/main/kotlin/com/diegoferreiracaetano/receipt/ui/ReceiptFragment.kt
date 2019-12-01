@@ -12,6 +12,7 @@ import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.receipt.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.text.DateFormat
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_amount
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_card
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_date
@@ -20,8 +21,6 @@ import kotlinx.android.synthetic.main.fragment_receipt.receipt_name
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_transaction
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.DateFormat
-
 
 class ReceiptFragment : BottomSheetDialogFragment() {
 
@@ -34,7 +33,6 @@ class ReceiptFragment : BottomSheetDialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_receipt, container, false)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

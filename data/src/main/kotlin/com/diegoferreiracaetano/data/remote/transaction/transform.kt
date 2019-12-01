@@ -5,7 +5,7 @@ import com.diegoferreiracaetano.data.remote.user.transform
 import com.diegoferreiracaetano.domain.transaction.StatusTransaction.APPROVED
 import com.diegoferreiracaetano.domain.transaction.StatusTransaction.FAILED
 import com.diegoferreiracaetano.domain.transaction.Transaction
-import java.util.*
+import java.util.Date
 
 private const val STATUS_OK = "Aprovada"
 
@@ -14,6 +14,6 @@ internal fun ConfirmationPaymentEntity.transform() = Transaction(
     date = Date(transaction.timestamp),
     value = transaction.value,
     success = transaction.success,
-    status = if(transaction.status == STATUS_OK) APPROVED else FAILED,
+    status = if (transaction.status == STATUS_OK) APPROVED else FAILED,
     user = transaction.user.transform()
 )

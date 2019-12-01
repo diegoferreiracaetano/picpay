@@ -9,22 +9,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.router.Router
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.DateFormat
+import java.text.NumberFormat
+import java.util.Date
+import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import java.text.DateFormat
-import java.text.Normalizer
-import java.text.NumberFormat
-import java.util.*
+
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
 fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {

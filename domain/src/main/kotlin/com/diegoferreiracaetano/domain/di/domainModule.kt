@@ -5,9 +5,9 @@ import com.diegoferreiracaetano.domain.card.SaveCardInteractor
 import com.diegoferreiracaetano.domain.card.WelcomdCardInteractor
 import com.diegoferreiracaetano.domain.payment.SavePaymentInteractor
 import com.diegoferreiracaetano.domain.transaction.FindTransactionByIdInteractor
-import com.diegoferreiracaetano.domain.user.UserInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 import com.diegoferreiracaetano.domain.user.SaveUserInteractor
+import com.diegoferreiracaetano.domain.user.UserInteractor
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

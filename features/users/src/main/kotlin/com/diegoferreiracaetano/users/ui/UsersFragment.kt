@@ -11,23 +11,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.work.WorkInfo.State
 import com.diegoferreiracaetano.commons.navigate
-import com.diegoferreiracaetano.users.R
-import com.diegoferreiracaetano.users.util.applyBackground
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.router.Router
+import com.diegoferreiracaetano.users.R
+import com.diegoferreiracaetano.users.util.applyBackground
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_users.searchView
 import kotlinx.android.synthetic.main.fragment_users.user_container
 import kotlinx.android.synthetic.main.fragment_users.user_error
 import kotlinx.android.synthetic.main.fragment_users.user_recycle
-import kotlinx.android.synthetic.main.fragment_users.searchView
 import kotlinx.android.synthetic.main.fragment_users_loading.shimmer_view_container
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class usersFragment : Fragment() {
+class UsersFragment : Fragment() {
 
-    private val viewModel: usersViewModel by viewModel()
-    private lateinit var usersAdapter: usersAdapter
+    private val viewModel: UsersViewModel by viewModel()
+    private lateinit var usersAdapter: UsersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class usersFragment : Fragment() {
         setupSearchView()
 
         val router = requireArguments().getString(EXTRA_ROUTER)
-        if(!router.isNullOrEmpty()) {
+        if (!router.isNullOrEmpty()) {
             requireArguments().clear()
             navigate(router)
         }
@@ -76,9 +76,8 @@ class usersFragment : Fragment() {
                 .onFailure(::showError)
         })
 
-
         viewModel.job.observe(this, Observer {
-            when(it.state) {
+            when (it.state) {
                 State.RUNNING -> startShimmer()
                 State.FAILED -> showError()
                 else -> stopShimmer()
@@ -99,13 +98,12 @@ class usersFragment : Fragment() {
 
     private fun showUser(pair: Pair<List<User>, Router>) {
         stopShimmer()
-        usersAdapter = usersAdapter(pair.first)
+        usersAdapter = UsersAdapter(pair.first)
         user_recycle.adapter = usersAdapter
         usersAdapter.onItemClick = {
             navigate(pair.second, it.id)
         }
     }
-
 
     private fun showError() {
         stopShimmer()

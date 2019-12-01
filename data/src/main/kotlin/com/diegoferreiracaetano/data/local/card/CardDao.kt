@@ -14,5 +14,4 @@ internal interface CardDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(cardEntity: CardEntity): Long
-
 }

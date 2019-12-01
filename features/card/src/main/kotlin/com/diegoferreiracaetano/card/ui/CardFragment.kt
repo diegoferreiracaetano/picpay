@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
-import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -41,15 +40,15 @@ class CardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         card_number.editText?.addTextChangedListener(CreditCardNumberFormattingTextWatcher())
         card_date.editText?.addTextChangedListener(CreditCardDateFormattingTextWatcher())
-        card_cvv.editText?.afterTextChanged{
-            if(it.length == CVV_LENGTH)
+        card_cvv.editText?.afterTextChanged {
+            if (it.length == CVV_LENGTH)
                 card_btn.visibility = VISIBLE
             else
-               card_btn.visibility = GONE
+                card_btn.visibility = GONE
         }
 
         card_btn.setOnClickListener {
-                if (card_btn.isVisible) {
+            if (card_btn.isVisible) {
                 viewModel.saveCard(Card(
                     number = card_number.editText?.text.toString().replace("\\s".toRegex(), "").toLong(),
                     name = card_name.editText?.text.toString(),

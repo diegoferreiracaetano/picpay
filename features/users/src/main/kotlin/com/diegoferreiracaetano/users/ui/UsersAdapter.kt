@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoferreiracaetano.commons.setImageUrl
-import com.diegoferreiracaetano.users.R
 import com.diegoferreiracaetano.domain.user.User
+import com.diegoferreiracaetano.users.R
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_users.view.user_img_user
 import kotlinx.android.synthetic.main.item_users.view.user_txt_name
 import kotlinx.android.synthetic.main.item_users.view.user_txt_nickname
 
-internal class usersAdapter(
+internal class UsersAdapter(
     private var items: List<User>
-) : RecyclerView.Adapter<usersAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     var onItemClick: ((User) -> Unit)? = null
 

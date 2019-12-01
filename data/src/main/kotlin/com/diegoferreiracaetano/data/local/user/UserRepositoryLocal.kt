@@ -3,7 +3,6 @@ package com.diegoferreiracaetano.data.local.user
 import com.diegoferreiracaetano.data.util.unaccent
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.domain.user.UserRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 

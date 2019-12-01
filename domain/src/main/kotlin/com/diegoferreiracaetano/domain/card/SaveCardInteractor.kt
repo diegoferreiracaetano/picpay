@@ -9,7 +9,7 @@ class SaveCardInteractor(
     private val router: Router
 ) : Interactor<Card, Pair<Long, Router>> {
 
-    override fun execute(request: Card) = cardRepository.save(request).map{
+    override fun execute(request: Card) = cardRepository.save(request).map {
         it to router
     }
 }

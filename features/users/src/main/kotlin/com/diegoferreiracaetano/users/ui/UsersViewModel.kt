@@ -10,11 +10,11 @@ import androidx.work.WorkManager
 import com.diegoferreiracaetano.commons.asLiveData
 import com.diegoferreiracaetano.domain.user.UserInteractor
 
-internal class usersViewModel(
+internal class UsersViewModel(
     private val userInteractor: UserInteractor,
     workManager: WorkManager,
     workRequest: OneTimeWorkRequest
-): ViewModel() {
+) : ViewModel() {
 
     val job: LiveData<WorkInfo>
     init {

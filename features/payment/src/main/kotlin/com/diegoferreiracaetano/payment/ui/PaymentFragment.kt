@@ -1,6 +1,5 @@
 package com.diegoferreiracaetano.payment.ui
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.removeMask
@@ -27,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_payment.payment_txt_real
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_username
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_value
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class PaymentFragment : Fragment() {
 
@@ -72,23 +69,21 @@ class PaymentFragment : Fragment() {
             payment_btn_pay.setOnClickListener {
                 viewModel.savePayment(this)
                     .observe(this@PaymentFragment, Observer {
-                        it.onSuccess(::showTransaction).onFailure (::showError)
+                        it.onSuccess(::showTransaction).onFailure(::showError)
                     })
             }
         }
     }
 
     private fun showTransaction(pair: Pair<Any, Router?>) {
-       if(pair.second != null) {
-           val options = NavOptions.Builder()
-               .setPopUpTo(findNavController().graph.startDestination, true)
-               .build()
+        if (pair.second != null) {
+            val options = NavOptions.Builder()
+                .setPopUpTo(findNavController().graph.startDestination, true)
+                .build()
 
-
-           navigate(pair.second!!, pair.first, options)
-       }
-       else
-           Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
+            navigate(pair.second!!, pair.first, options)
+        } else
+            Snackbar.make(requireView(), R.string.payment_fail, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showError(throwable: Throwable) {

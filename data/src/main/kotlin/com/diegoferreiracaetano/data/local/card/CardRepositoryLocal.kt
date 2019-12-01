@@ -5,7 +5,7 @@ import com.diegoferreiracaetano.domain.card.CardRepository
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
-internal class CardRepositoryLocal(private val dao: CardDao): CardRepository {
+internal class CardRepositoryLocal(private val dao: CardDao) : CardRepository {
 
     override fun save(card: Card) = flow {
         emit(dao.insert(card.transform()))

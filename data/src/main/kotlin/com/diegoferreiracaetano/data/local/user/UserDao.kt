@@ -17,5 +17,4 @@ internal interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(entity: List<UserEntity>): List<Long>
-
 }

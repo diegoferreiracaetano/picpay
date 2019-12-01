@@ -2,7 +2,6 @@ package com.diegoferreiracaetano.data.remote
 
 import com.diegoferreiracaetano.data.remote.payment.ConfirmationPaymentEntity
 import com.diegoferreiracaetano.data.remote.payment.PaymentEntity
-import com.diegoferreiracaetano.data.remote.transaction.TransactionEntity
 import com.diegoferreiracaetano.data.remote.user.UserEntity
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body

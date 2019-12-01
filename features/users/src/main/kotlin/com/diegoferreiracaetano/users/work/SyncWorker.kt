@@ -19,7 +19,7 @@ class SyncWorker(
         return try {
             saveUserInteractor.execute(Unit).collect()
             Result.success()
-        }catch (t: Throwable) {
+        } catch (t: Throwable) {
             Result.failure()
         }
     }
