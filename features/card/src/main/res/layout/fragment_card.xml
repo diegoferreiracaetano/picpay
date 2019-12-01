@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".ui.CardFragment">
 
-
-  <com.google.android.material.textfield.TextInputLayout
-    style="@style/TextMedium"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="24dp"
-    android:layout_marginEnd="16dp"
-    android:hint="@string/card_number"
-    android:textColorHint="@color/secondary_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView">
-
-    <com.google.android.material.textfield.TextInputEditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textColor="@color/primary_text" />
-  </com.google.android.material.textfield.TextInputLayout>
 
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
@@ -37,109 +19,128 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-    android:id="@+id/textView"
-    style="@style/TextHuge"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:text="@string/card_create"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/card_number"
-    style="@style/TextMedium"
+  <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="32dp"
-    android:layout_marginEnd="16dp"
-    android:hint="@string/card_number"
-    android:textColorHint="@color/secondary_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView">
+    android:layout_height="0dp"
+    android:layout_marginBottom="16dp"
+    app:layout_constraintBottom_toTopOf="@+id/card_btn"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+    tools:context=".ui.CardFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:singleLine="true"
-      android:inputType="number"
-      android:digits=" 1234567890"
-      android:maxLength="19"
-      android:textColor="@color/primary_text" />
-  </com.google.android.material.textfield.TextInputLayout>
+      tools:context=".ui.CardFragment">
 
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/card_name"
-    style="@style/TextMedium"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="32dp"
-    android:layout_marginEnd="16dp"
-    android:hint="@string/card_name"
-    android:textColorHint="@color/secondary_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/card_number">
 
-    <com.google.android.material.textfield.TextInputEditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:singleLine="true"
-      android:textColor="@color/primary_text" />
-  </com.google.android.material.textfield.TextInputLayout>
+      <TextView
+        android:id="@+id/textView"
+        style="@style/TextHuge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/card_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/card_date"
-    style="@style/TextMedium"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="32dp"
-    android:hint="@string/card_date"
-    android:textColorHint="@color/secondary_text"
-    app:layout_constraintEnd_toStartOf="@+id/card_cvv"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/card_name">
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_number"
+        style="@style/TextMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/card_number"
+        android:textColorHint="@color/secondary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-    <com.google.android.material.textfield.TextInputEditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:singleLine="true"
-      android:maxLength="5"
-      android:inputType="date"
-      android:textColor="@color/primary_text" />
+        <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:singleLine="true"
+          android:inputType="number"
+          android:digits=" 1234567890"
+          android:maxLength="19"
+          android:textColor="@color/primary_text" />
+      </com.google.android.material.textfield.TextInputLayout>
 
-  </com.google.android.material.textfield.TextInputLayout>
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_name"
+        style="@style/TextMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/card_name"
+        android:textColorHint="@color/secondary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_number">
 
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/card_cvv"
-    style="@style/TextMedium"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    android:layout_marginEnd="16dp"
-    android:hint="@string/card_cvv"
-    android:textColorHint="@color/secondary_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/card_date"
-    app:layout_constraintTop_toBottomOf="@+id/card_name">
+        <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:singleLine="true"
+          android:textColor="@color/primary_text" />
+      </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:singleLine="true"
-      android:textColor="@color/primary_text"
-      android:inputType="number"
-      android:maxLength="3"
-      />
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_date"
+        style="@style/TextMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:hint="@string/card_date"
+        android:textColorHint="@color/secondary_text"
+        app:layout_constraintEnd_toStartOf="@+id/card_cvv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_name">
 
-  </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:singleLine="true"
+          android:maxLength="5"
+          android:inputType="date"
+          android:textColor="@color/primary_text" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_cvv"
+        style="@style/TextMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/card_cvv"
+        android:textColorHint="@color/secondary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card_date"
+        app:layout_constraintTop_toBottomOf="@+id/card_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:singleLine="true"
+          android:textColor="@color/primary_text"
+          android:inputType="number"
+          android:maxLength="3" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+  </ScrollView>
 
   <Button
     android:id="@+id/card_btn"
@@ -150,8 +151,8 @@
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="16dp"
     android:text="@string/card_salve"
+    android:visibility="gone"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

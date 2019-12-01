@@ -3,13 +3,17 @@ package com.diegoferreiracaetano.card.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.diegoferreiracaetano.card.R
 import com.diegoferreiracaetano.card.util.CreditCardDateFormattingTextWatcher
 import com.diegoferreiracaetano.card.util.CreditCardNumberFormattingTextWatcher
+import com.diegoferreiracaetano.commons.afterTextChanged
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.router.Router
@@ -37,10 +41,15 @@ class CardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         card_number.editText?.addTextChangedListener(CreditCardNumberFormattingTextWatcher())
         card_date.editText?.addTextChangedListener(CreditCardDateFormattingTextWatcher())
-        showButton()
+        card_cvv.editText?.afterTextChanged{
+            if(it.length == CVV_LENGTH)
+                card_btn.visibility = VISIBLE
+            else
+               card_btn.visibility = GONE
+        }
 
         card_btn.setOnClickListener {
-            if (showButton()) {
+                if (card_btn.isVisible) {
                 viewModel.saveCard(Card(
                     number = card_number.editText?.text.toString().replace("\\s".toRegex(), "").toLong(),
                     name = card_name.editText?.text.toString(),
@@ -64,12 +73,8 @@ class CardFragment : Fragment() {
         Snackbar.make(requireView(), throwable.message.toString(), Snackbar.LENGTH_LONG).show()
     }
 
-    private fun showButton() = (card_number.editText!!.text.isNotEmpty() &&
-        card_name.editText!!.text.isNotEmpty() &&
-        card_date.editText!!.text.isNotEmpty() &&
-        card_cvv.editText!!.text.isNotEmpty())
-
     companion object {
         private const val EXTRA_ID = "id"
+        private const val CVV_LENGTH = 3
     }
 }
