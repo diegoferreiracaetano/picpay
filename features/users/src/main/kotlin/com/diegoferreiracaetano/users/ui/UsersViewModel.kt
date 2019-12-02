@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.diegoferreiracaetano.commons.asLiveData
 import com.diegoferreiracaetano.domain.user.UserInteractor
 
 internal class UsersViewModel(
@@ -28,7 +28,7 @@ internal class UsersViewModel(
     val search: LiveData<String> = _search
 
     fun users() = Transformations.switchMap(_search) {
-        userInteractor.execute(it).asLiveData()
+        userInteractor(it).asLiveData()
     }
 
     fun search(newText: String) {

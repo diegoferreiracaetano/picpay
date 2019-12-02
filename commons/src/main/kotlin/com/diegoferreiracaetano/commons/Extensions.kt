@@ -15,20 +15,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.router.Router
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.util.Date
 import java.util.Locale
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
 
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
 fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {
-
-    flowOn(Dispatchers.IO).flowOn(Dispatchers.Main)
 
     return liveData {
         try {

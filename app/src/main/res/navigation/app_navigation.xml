@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.diegoferreiracaetano.users.ui.usersFragment"
+        android:name="com.diegoferreiracaetano.users.ui.UsersFragment"
         tools:layout="@layout/fragment_users"
         android:label="ContactsFragment">
       <deepLink

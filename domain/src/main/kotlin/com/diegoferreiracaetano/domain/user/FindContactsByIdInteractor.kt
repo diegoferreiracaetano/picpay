@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.map
 class FindContactsByIdInteractor(
     private val userRepository: UserRepository,
     private val cardRepository: CardRepository
-) : Interactor<Long, Payment?> {
+) : Interactor<Long, Payment?>() {
 
-    override fun execute(request: Long) = userRepository.user(request).flatMapMerge { user ->
+    override fun execute(parameters: Long) = userRepository.user(parameters).flatMapMerge { user ->
         cardRepository.card().map { card ->
             card?.let { Payment(user, it) }
         }

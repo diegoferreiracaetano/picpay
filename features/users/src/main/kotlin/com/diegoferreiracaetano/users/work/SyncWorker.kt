@@ -16,12 +16,16 @@ class SyncWorker(
     private val saveUserInteractor: SaveUserInteractor by inject()
 
     override suspend fun doWork(): Result {
-        return try {
-            saveUserInteractor.execute(Unit).collect()
-            Result.success()
-        } catch (t: Throwable) {
-            Result.failure()
+
+        var result = Result.failure()
+
+        saveUserInteractor(Unit).collect {
+
+            result = if(it.isSuccess) Result.success() else Result.failure()
+
         }
+
+        return result
     }
 
     companion object {

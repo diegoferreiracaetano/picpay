@@ -12,10 +12,10 @@ class SavePaymentInteractor(
     private val transactionRepository: TransactionRepository,
     private val user: Router,
     private val receipt: Router
-) : Interactor<Payment, Pair<Any, Router?>> {
+) : Interactor<Payment, Pair<Any, Router?>>() {
 
-    override fun execute(request: Payment) = paymentRepository.payment(request).flatMapMerge { transaction ->
-        transaction.card = request.card
+    override fun execute(parameters: Payment) = paymentRepository.payment(parameters).flatMapMerge { transaction ->
+        transaction.card = parameters.card
         transactionRepository.save(transaction).map {
             if (transaction.success && transaction.status == APPROVED)
                 receipt.navigate(transaction.id) to user

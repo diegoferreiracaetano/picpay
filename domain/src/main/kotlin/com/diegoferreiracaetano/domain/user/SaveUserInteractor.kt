@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.flatMapMerge
 class SaveUserInteractor(
     private val repositoryRemote: UserRepository,
     private val repositoryLocal: UserRepository
-) : Interactor<Unit, List<Long>> {
+) : Interactor<Unit, List<Long>>() {
 
-    override fun execute(request: Unit) = repositoryRemote.users("").flatMapMerge {
+    override fun execute(parameters: Unit) = repositoryRemote.users("").flatMapMerge {
         repositoryLocal.save(it)
     }
 }

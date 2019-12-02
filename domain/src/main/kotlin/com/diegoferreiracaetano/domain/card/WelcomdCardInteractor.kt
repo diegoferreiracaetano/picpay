@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 
 class WelcomdCardInteractor(
     private val router: Router
-) : Interactor<Long, Pair<Long, Router>> {
+) : Interactor<Long, Pair<Long, Router>>() {
 
-    override fun execute(request: Long) = flow { emit(Pair(request, router)) }
+    override fun execute(parameters: Long) = flow { emit(Pair(parameters, router)) }
 }

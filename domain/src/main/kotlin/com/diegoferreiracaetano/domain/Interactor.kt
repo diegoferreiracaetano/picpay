@@ -1,7 +1,26 @@
 package com.diegoferreiracaetano.domain
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transform
 
-interface Interactor<P, T> {
-    fun execute(request: P): Flow<T>
+abstract class Interactor<P, R> {
+
+    operator fun invoke(parameters: P): Flow<Result<R>> {
+        return flow {
+            try {
+                execute(parameters)
+                    .flowOn(Dispatchers.IO)
+                    .collect{ emit(Result.success(it)) }
+            }catch (t: Throwable){
+                emit(Result.failure(t))
+            }
+        }
+    }
+
+    protected abstract fun execute(parameters: P): Flow<R>
 }

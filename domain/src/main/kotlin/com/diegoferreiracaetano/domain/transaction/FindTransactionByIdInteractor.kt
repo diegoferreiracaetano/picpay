@@ -4,7 +4,7 @@ import com.diegoferreiracaetano.domain.Interactor
 
 class FindTransactionByIdInteractor(
     private val repository: TransactionRepository
-) : Interactor<Long, Transaction> {
+) : Interactor<Long, Transaction>() {
 
-    override fun execute(request: Long) = repository.transaction(request)
+    override fun execute(parameters: Long) = repository.transaction(parameters)
 }

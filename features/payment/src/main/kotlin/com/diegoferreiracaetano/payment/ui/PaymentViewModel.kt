@@ -1,7 +1,7 @@
 package com.diegoferreiracaetano.payment.ui
 
 import androidx.lifecycle.ViewModel
-import com.diegoferreiracaetano.commons.asLiveData
+import androidx.lifecycle.asLiveData
 import com.diegoferreiracaetano.domain.payment.Payment
 import com.diegoferreiracaetano.domain.payment.SavePaymentInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
@@ -11,7 +11,7 @@ internal class PaymentViewModel(
     private val saveOrderInteractor: SavePaymentInteractor
 ) : ViewModel() {
 
-    fun user(id: Long) = interactor.execute(id).asLiveData()
+    fun user(id: Long) = interactor(id).asLiveData()
 
-    fun savePayment(payment: Payment) = saveOrderInteractor.execute(payment).asLiveData()
+    fun savePayment(payment: Payment) = saveOrderInteractor(payment).asLiveData()
 }
