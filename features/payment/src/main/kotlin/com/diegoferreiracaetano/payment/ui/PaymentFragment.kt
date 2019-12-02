@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.diegoferreiracaetano.commons.hideKeyboard
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.commons.removeMask
 import com.diegoferreiracaetano.commons.setImageUrl
+import com.diegoferreiracaetano.commons.showKeyboard
 import com.diegoferreiracaetano.domain.payment.Payment
 import com.diegoferreiracaetano.payment.R
 import com.diegoferreiracaetano.payment.util.afterTextChanged
@@ -47,10 +49,16 @@ class PaymentFragment : Fragment() {
         })
     }
 
+    override fun onStop() {
+        super.onStop()
+        payment_txt_value.hideKeyboard()
+    }
+
     private fun showPayment(payment: Payment?) {
         payment?.apply {
             payment_img_mask.setImageUrl(user.img)
             payment_txt_username.text = user.name
+            payment_txt_value.showKeyboard()
             payment_txt_value.afterTextChanged {
                 it.removeMask().let {
                     value = it
@@ -65,7 +73,7 @@ class PaymentFragment : Fragment() {
                     }
                 }
             }
-            payment_txt_card.text = card.brand.plus(card.number.toString().takeLast(4))
+            payment_txt_card.text = "${card.brand} ${card.number.toString().takeLast(4)}"
             payment_btn_pay.setOnClickListener {
                 viewModel.savePayment(this)
                     .observe(this@PaymentFragment, Observer {

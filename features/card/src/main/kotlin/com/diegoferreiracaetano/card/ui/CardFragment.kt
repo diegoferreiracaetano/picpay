@@ -13,7 +13,9 @@ import com.diegoferreiracaetano.card.R
 import com.diegoferreiracaetano.card.util.CreditCardDateFormattingTextWatcher
 import com.diegoferreiracaetano.card.util.CreditCardNumberFormattingTextWatcher
 import com.diegoferreiracaetano.commons.afterTextChanged
+import com.diegoferreiracaetano.commons.hideKeyboard
 import com.diegoferreiracaetano.commons.navigate
+import com.diegoferreiracaetano.commons.showKeyboard
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.router.Router
 import com.google.android.material.snackbar.Snackbar
@@ -36,8 +38,14 @@ class CardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_card, container, false)
     }
 
+    override fun onStop() {
+        super.onStop()
+        card_number.editText?.hideKeyboard()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        card_number.editText?.showKeyboard()
         card_number.editText?.addTextChangedListener(CreditCardNumberFormattingTextWatcher())
         card_date.editText?.addTextChangedListener(CreditCardDateFormattingTextWatcher())
         card_cvv.editText?.afterTextChanged {

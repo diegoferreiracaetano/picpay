@@ -1,10 +1,13 @@
 package com.diegoferreiracaetano.commons
 
+import android.content.Context
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
@@ -21,6 +24,7 @@ import java.text.DateFormat
 import java.text.NumberFormat
 import java.util.Date
 import java.util.Locale
+
 
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
@@ -101,4 +105,15 @@ fun Fragment.navigate(router: Router, any: Any) {
 
 fun Fragment.navigate(router: Router, any: Any, options: NavOptions) {
     findNavController().navigate(Uri.parse(router.navigate(any)), options)
+}
+
+fun View.showKeyboard() {
+    this.requestFocus()
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+}
+
+fun View.hideKeyboard() {
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
