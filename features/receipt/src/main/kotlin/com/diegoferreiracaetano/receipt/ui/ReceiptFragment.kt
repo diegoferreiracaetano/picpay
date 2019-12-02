@@ -12,6 +12,7 @@ import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.receipt.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import java.text.DateFormat
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_amount
 import kotlinx.android.synthetic.main.fragment_receipt.receipt_card
@@ -47,6 +48,7 @@ class ReceiptFragment : BottomSheetDialogFragment() {
         val id = requireArguments().getLong(EXTRA_ID)
         viewModel.transaction(id).observe(this, Observer {
             it.onSuccess(::showPayment)
+                .onFailure(::showError)
         })
     }
 
@@ -58,6 +60,10 @@ class ReceiptFragment : BottomSheetDialogFragment() {
         receipt_card.text = transaction.card?.number?.formatCard()
         receipt_value.text = transaction.value.format()
         receipt_amount.text = transaction.value.format()
+    }
+
+    private fun showError(throwable: Throwable) {
+        Snackbar.make(requireView(), throwable.message.toString(), Snackbar.LENGTH_LONG).show()
     }
 
     companion object {

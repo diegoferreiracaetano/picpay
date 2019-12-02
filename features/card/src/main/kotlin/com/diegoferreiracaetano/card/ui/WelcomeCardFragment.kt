@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.card.R
 import com.diegoferreiracaetano.commons.navigate
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_welcome_card.card_btn_create
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,8 +31,12 @@ class WelcomeCardFragment : Fragment() {
         viewModel.welcomeCard(id).observe(this, Observer {
             it.onSuccess {
                 card_btn_create.navigate(it.second, it.first)
-            }
+            }.onFailure(::showError)
         })
+    }
+
+    private fun showError(throwable: Throwable) {
+        Snackbar.make(requireView(), throwable.message.toString(), Snackbar.LENGTH_LONG).show()
     }
 
     companion object {
