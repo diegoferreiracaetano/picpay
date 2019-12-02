@@ -38,7 +38,8 @@ fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> {
 fun CircleImageView.setImageUrl(url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(context)
-            .load(url)            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .skipMemoryCache(true)
             .into(this)
     }
