@@ -21,8 +21,7 @@ class SyncWorker(
 
         saveUserInteractor(Unit).collect {
 
-            result = if(it.isSuccess) Result.success() else Result.failure()
-
+            result = if (it.isSuccess) Result.success() else Result.failure()
         }
 
         return result

@@ -18,13 +18,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.router.Router
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.util.Date
 import java.util.Locale
-
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
@@ -97,15 +96,13 @@ fun View.navigate(router: Router, any: Any) {
 
 fun Fragment.navigate(router: Router, any: Any) {
 
-    if(router.isStart()){
+    if (router.isStart()) {
         val options = NavOptions.Builder()
             .setPopUpTo(findNavController().graph.startDestination, true)
             .build()
         findNavController().navigate(Uri.parse(router.navigate(any)), options)
-    }
-    else
+    } else
         findNavController().navigate(Uri.parse(router.navigate(any)))
-
 }
 
 fun View.showKeyboard() {

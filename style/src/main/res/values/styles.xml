@@ -8,6 +8,11 @@
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
+    <style name="ThemeToolbar" parent="AppTheme">
+        <item name="colorControlNormal">@color/accent</item>
+        <item name="android:textColorSecondary">@color/accent</item>
+    </style>
+
     <style name="SearchViewStyle">
         <item name="android:background">@color/primary_secondary</item>
     </style>

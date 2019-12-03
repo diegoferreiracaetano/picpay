@@ -5,8 +5,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.transform
 
 abstract class Interactor<P, R> {
 
@@ -15,8 +13,8 @@ abstract class Interactor<P, R> {
             try {
                 execute(parameters)
                     .flowOn(Dispatchers.IO)
-                    .collect{ emit(Result.success(it)) }
-            }catch (t: Throwable){
+                    .collect { emit(Result.success(it)) }
+            } catch (t: Throwable) {
                 emit(Result.failure(t))
             }
         }

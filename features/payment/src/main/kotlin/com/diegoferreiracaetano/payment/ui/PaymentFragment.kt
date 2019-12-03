@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.diegoferreiracaetano.commons.hideKeyboard
 import com.diegoferreiracaetano.commons.navigate
@@ -22,6 +21,7 @@ import com.diegoferreiracaetano.router.Router
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_payment.payment_btn_pay
 import kotlinx.android.synthetic.main.fragment_payment.payment_img_mask
+import kotlinx.android.synthetic.main.fragment_payment.payment_toolbar
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_card
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_real
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_username
@@ -42,6 +42,11 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        payment_toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         val id = requireArguments().getLong(EXTRA_ID)
         viewModel.user(id).observe(this, Observer {
             it.onSuccess(::showPayment)

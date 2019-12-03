@@ -6,15 +6,28 @@
   android:layout_height="match_parent"
   tools:context=".ui.PaymentFragment">
 
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/payment_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeToolbar"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:navigationIcon="?attr/homeAsUpIndicator"
+    />
+
   <de.hdodenhof.circleimageview.CircleImageView
     android:id="@+id/payment_img_mask"
     android:layout_width="44dp"
     android:layout_height="44dp"
-    android:layout_marginTop="40dp"
     app:layout_constraintDimensionRatio="w,1:1"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/payment_toolbar"
     tools:src="@tools:sample/avatars" />
 
   <TextView

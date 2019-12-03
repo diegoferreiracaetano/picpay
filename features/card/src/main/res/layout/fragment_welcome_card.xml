@@ -8,28 +8,28 @@
 
 
   <androidx.appcompat.widget.Toolbar
-    android:id="@+id/card_toolbar"
+    android:id="@+id/welcome_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
-    android:theme="?attr/actionBarTheme"
+    android:theme="@style/ThemeToolbar"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
+    app:navigationIcon="?attr/homeAsUpIndicator"
     />
 
   <ImageView
     android:id="@+id/card_img"
     android:layout_width="100dp"
     android:layout_height="71dp"
-    android:layout_marginTop="78dp"
+    android:layout_marginTop="32dp"
+    android:contentDescription="@string/card_create_credit"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/card_toolbar"
-    app:srcCompat="@drawable/ic_fill_1"
-    android:contentDescription="@string/card_create_credit"
-    />
+    app:layout_constraintTop_toBottomOf="@+id/welcome_toolbar"
+    app:srcCompat="@drawable/ic_fill_1" />
 
   <TextView
     android:id="@+id/card_title"
