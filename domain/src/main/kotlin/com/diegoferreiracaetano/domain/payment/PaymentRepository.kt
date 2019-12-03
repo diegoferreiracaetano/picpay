@@ -4,5 +4,5 @@ import com.diegoferreiracaetano.domain.transaction.Transaction
 import kotlinx.coroutines.flow.Flow
 
 interface PaymentRepository {
-    fun payment(payment: Payment): Flow<Transaction>
+    fun sendPayment(payment: Payment): Flow<Transaction>
 }

@@ -13,11 +13,11 @@
         android:label="ContactsFragment">
       <deepLink
         android:id="@+id/deepLinkUser"
-        app:uri="android-app://user/router/{router}"
+        app:uri="android-app://user/id/{id}"
         android:autoVerify="true" />
       <argument
-        android:name="router"
-        app:argType="string" />
+        android:name="id"
+        app:argType="long" />
     </fragment>
     <fragment
       android:id="@+id/paymentFragment"

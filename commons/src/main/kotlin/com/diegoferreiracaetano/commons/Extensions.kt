@@ -95,16 +95,17 @@ fun View.navigate(router: Router, any: Any) {
     }
 }
 
-fun Fragment.navigate(router: String) {
-    findNavController().navigate(Uri.parse(router))
-}
-
 fun Fragment.navigate(router: Router, any: Any) {
-    findNavController().navigate(Uri.parse(router.navigate(any)))
-}
 
-fun Fragment.navigate(router: Router, any: Any, options: NavOptions) {
-    findNavController().navigate(Uri.parse(router.navigate(any)), options)
+    if(router.isStart()){
+        val options = NavOptions.Builder()
+            .setPopUpTo(findNavController().graph.startDestination, true)
+            .build()
+        findNavController().navigate(Uri.parse(router.navigate(any)), options)
+    }
+    else
+        findNavController().navigate(Uri.parse(router.navigate(any)))
+
 }
 
 fun View.showKeyboard() {

@@ -43,10 +43,14 @@ class UsersFragment : Fragment() {
         setupAdapter()
         setupSearchView()
 
-        val router = requireArguments().getString(EXTRA_ROUTER)
-        if (!router.isNullOrEmpty()) {
-            requireArguments().clear()
-            navigate(router)
+        val id = requireArguments().getLong(EXTRA_ID)
+
+        if(id.toInt() != 0) {
+            viewModel.receipt(id).observe(this, Observer {
+                it.onSuccess {
+                    navigate(it.second, it.first)
+                }.onFailure(::showError)
+            })
         }
     }
 
@@ -122,6 +126,6 @@ class UsersFragment : Fragment() {
     }
 
     companion object {
-        private const val EXTRA_ROUTER = "router"
+        private const val EXTRA_ID = "id"
     }
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 
 internal class PaymentRepositoryRemote(private val api: PicpayApi) : PaymentRepository {
 
-    override fun payment(payment: Payment) = api
+    override fun sendPayment(payment: Payment) = api
         .sendPayment(payment.transform())
         .map { it.transform() }
 }

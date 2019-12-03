@@ -5,11 +5,11 @@ import androidx.lifecycle.asLiveData
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.card.CardInteractor
 import com.diegoferreiracaetano.domain.card.SaveCardInteractor
-import com.diegoferreiracaetano.domain.card.WelcomdCardInteractor
+import com.diegoferreiracaetano.domain.card.WelcomeCardInteractor
 
 internal class CardViewModel(
     private val cardInteractor: CardInteractor,
-    private val welcomeCardInteractor: WelcomdCardInteractor,
+    private val welcomeCardInteractor: WelcomeCardInteractor,
     private val saveCardInteractor: SaveCardInteractor
 ) : ViewModel() {
 

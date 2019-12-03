@@ -2,8 +2,9 @@ package com.diegoferreiracaetano.domain.di
 
 import com.diegoferreiracaetano.domain.card.CardInteractor
 import com.diegoferreiracaetano.domain.card.SaveCardInteractor
-import com.diegoferreiracaetano.domain.card.WelcomdCardInteractor
+import com.diegoferreiracaetano.domain.card.WelcomeCardInteractor
 import com.diegoferreiracaetano.domain.payment.SavePaymentInteractor
+import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
 import com.diegoferreiracaetano.domain.transaction.FindTransactionByIdInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 import com.diegoferreiracaetano.domain.user.SaveUserInteractor
@@ -17,7 +18,7 @@ val domainModule: Module = module {
 
     single { SaveUserInteractor(get(), get(named("local"))) }
 
-    single { WelcomdCardInteractor(get(named("card"))) }
+    single { WelcomeCardInteractor(get(named("card"))) }
 
     single { FindContactsByIdInteractor(get(named("local")), get()) }
 
@@ -27,5 +28,7 @@ val domainModule: Module = module {
 
     single { SaveCardInteractor(get(), get(named("payment"))) }
 
-    single { SavePaymentInteractor(get(), get(), get(named("user")), get(named("receipt"))) }
+    single { ReceiptInteractor(get(named("receipt"))) }
+
+    single { SavePaymentInteractor(get(), get(), get(named("user"))) }
 }

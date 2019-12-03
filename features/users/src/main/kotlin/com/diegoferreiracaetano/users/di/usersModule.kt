@@ -10,7 +10,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val usersModule: Module = module {
-    viewModel { UsersViewModel(get(), get(), get()) }
+    viewModel { UsersViewModel(get(), get(), get(), get()) }
 
     single { WorkManager.getInstance(get()) }
 

@@ -8,10 +8,12 @@ import androidx.lifecycle.asLiveData
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
 import com.diegoferreiracaetano.domain.user.UserInteractor
 
 internal class UsersViewModel(
     private val userInteractor: UserInteractor,
+    private val receiptInteractor: ReceiptInteractor,
     workManager: WorkManager,
     workRequest: OneTimeWorkRequest
 ) : ViewModel() {
@@ -30,6 +32,8 @@ internal class UsersViewModel(
     fun users() = Transformations.switchMap(_search) {
         userInteractor(it).asLiveData()
     }
+
+    fun receipt(id: Long) = receiptInteractor(id).asLiveData()
 
     fun search(newText: String) {
         _search.postValue(newText)

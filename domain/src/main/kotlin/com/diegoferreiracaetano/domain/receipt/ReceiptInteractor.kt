@@ -1,10 +1,10 @@
-package com.diegoferreiracaetano.domain.card
+package com.diegoferreiracaetano.domain.receipt
 
 import com.diegoferreiracaetano.domain.Interactor
 import com.diegoferreiracaetano.router.Router
 import kotlinx.coroutines.flow.flow
 
-class WelcomdCardInteractor(
+class ReceiptInteractor(
     private val router: Router
 ) : Interactor<Long, Pair<Long, Router>>() {
 
