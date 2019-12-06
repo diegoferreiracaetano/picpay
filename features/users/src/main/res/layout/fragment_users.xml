@@ -38,7 +38,7 @@
                 <TextView
                   android:id="@+id/user_title"
                   style="@style/TextHuge"
-                  android:textColor="@color/primary_text"
+                  android:textColor="@color/text_toolbar_selected"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:fitsSystemWindows="true"

@@ -57,9 +57,11 @@ class ReceiptFragment : BottomSheetDialogFragment() {
         receipt_image.setImageUrl(transaction.user.img)
         receipt_date.text = transaction.date.format(DateFormat.SHORT, DateFormat.SHORT)
         receipt_transaction.text = transaction.id.toString()
-        receipt_card.text = transaction.card?.number?.formatCard()
         receipt_value.text = transaction.value.format()
         receipt_amount.text = transaction.value.format()
+        transaction.card?.let {
+            receipt_card.text = "Cartão ${it.brand} ${it.number.toString().takeLast(4)}"
+        }
     }
 
     private fun showError(throwable: Throwable) {

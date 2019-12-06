@@ -46,6 +46,7 @@ class UsersFragment : Fragment() {
         val id = requireArguments().getLong(EXTRA_ID)
 
         if (id.toInt() != 0) {
+            requireArguments().clear()
             viewModel.receipt(id).observe(this, Observer {
                 it.onSuccess {
                     navigate(it.second, it.first)

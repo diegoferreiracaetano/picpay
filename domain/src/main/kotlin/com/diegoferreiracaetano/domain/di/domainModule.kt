@@ -20,7 +20,7 @@ val domainModule: Module = module {
 
     single { WelcomeCardInteractor(get(named("card"))) }
 
-    single { FindContactsByIdInteractor(get(named("local")), get()) }
+    single { FindContactsByIdInteractor(get(named("local")), get(), get(named("card"))) }
 
     single { FindTransactionByIdInteractor(get()) }
 

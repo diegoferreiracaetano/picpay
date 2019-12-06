@@ -47,9 +47,29 @@ class CardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupEdit()
+        setupToolbar()
+        setupCard()
+    }
+
+    private fun setupCard() {
+        viewModel.card().observe(this, Observer {
+            it.onSuccess {
+                showCard(it)
+            }.onFailure {
+                showError(it)
+            }
+        })
+    }
+
+    private fun setupToolbar() {
         card_toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun setupEdit() {
         card_number.editText?.showKeyboard()
         card_number.editText?.addTextChangedListener(CreditCardNumberFormattingTextWatcher())
         card_date.editText?.addTextChangedListener(CreditCardDateFormattingTextWatcher())
@@ -63,6 +83,7 @@ class CardFragment : Fragment() {
         card_btn.setOnClickListener {
             if (card_btn.isVisible) {
                 viewModel.saveCard(Card(
+                    id = 0,
                     number = card_number.editText?.text.toString().replace("\\s".toRegex(), "").toLong(),
                     name = card_name.editText?.text.toString(),
                     date = card_date.editText?.text.toString(),
@@ -73,6 +94,15 @@ class CardFragment : Fragment() {
                         .onFailure(::showError)
                 })
             }
+        }
+    }
+
+    private fun showCard(card: Card?) {
+        card?.let {
+            card_number.editText?.setText(it.number.toString())
+            card_name.editText?.setText(it.name)
+            card_date.editText?.setText(it.date)
+            card_cvv.editText?.setText(it.cvv.toString())
         }
     }
 

@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_payment.payment_btn_pay
 import kotlinx.android.synthetic.main.fragment_payment.payment_img_mask
 import kotlinx.android.synthetic.main.fragment_payment.payment_toolbar
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_card
+import kotlinx.android.synthetic.main.fragment_payment.payment_txt_edit
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_real
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_username
 import kotlinx.android.synthetic.main.fragment_payment.payment_txt_value
@@ -59,14 +60,14 @@ class PaymentFragment : Fragment() {
         payment_txt_value.hideKeyboard()
     }
 
-    private fun showPayment(payment: Payment?) {
-        payment?.apply {
-            payment_img_mask.setImageUrl(user.img)
-            payment_txt_username.text = user.name
+    private fun showPayment(pair: Pair<Payment, Router>?) {
+        pair?.apply {
+            payment_img_mask.setImageUrl(first.user.img)
+            payment_txt_username.text = first.user.name
             payment_txt_value.showKeyboard()
             payment_txt_value.afterTextChanged {
                 it.removeMask().let {
-                    value = it
+                    first.value = it
                     if (it > 0) {
                         payment_txt_value.applyColorEnable()
                         payment_txt_real.applyColorEnable()
@@ -78,9 +79,12 @@ class PaymentFragment : Fragment() {
                     }
                 }
             }
-            payment_txt_card.text = "${card.brand} ${card.number.toString().takeLast(4)}"
+            payment_txt_card.text = "${first.card.brand} ${first.card.number.toString().takeLast(4)}"
+            payment_txt_edit.setOnClickListener {
+                navigate(pair.second, first.user.id)
+            }
             payment_btn_pay.setOnClickListener {
-                viewModel.savePayment(this)
+                viewModel.savePayment(this.first)
                     .observe(this@PaymentFragment, Observer {
                         it.onSuccess(::showTransaction).onFailure(::showError)
                     })

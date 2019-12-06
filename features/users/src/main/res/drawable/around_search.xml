@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-  <solid android:color="#2B2C2F"/>
+  <stroke android:color="@color/text_toolbar" android:width="2dp"/>
+  <solid android:color="@color/secondary_dark"/>
   <corners android:radius="20dp"/>
   <padding android:left="10dp"
     android:bottom="5dp"

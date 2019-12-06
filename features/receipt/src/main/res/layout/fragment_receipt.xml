@@ -22,7 +22,7 @@
     style="@style/TextMedium"
     android:layout_width="0dp"
     android:layout_height="56dp"
-    android:background="#151516"
+    android:background="@color/bg_dark"
     android:gravity="center"
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
