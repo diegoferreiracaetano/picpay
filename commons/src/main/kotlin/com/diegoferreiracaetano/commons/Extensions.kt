@@ -14,6 +14,7 @@ import androidx.lifecycle.liveData
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.diegoferreiracaetano.router.Router
@@ -24,6 +25,7 @@ import java.util.Date
 import java.util.Locale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onStart
 
 private val DEFAULT_LOCALE = Locale("pt", "BR")
 
@@ -92,6 +94,10 @@ fun View.navigate(router: Router, any: Any) {
     setOnClickListener {
         findNavController().navigate(Uri.parse(router.navigate(any)))
     }
+}
+
+fun RecyclerView.navigate(router: Router, any: Any) {
+    findNavController().navigate(Uri.parse(router.navigate(any)))
 }
 
 fun Fragment.navigate(router: Router, any: Any) {

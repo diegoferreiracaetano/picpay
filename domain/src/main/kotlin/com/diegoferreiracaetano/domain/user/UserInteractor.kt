@@ -12,7 +12,6 @@ class UserInteractor(
     private val cardRouter: Router,
     private val paymentRouter: Router
 ) : Interactor<String, Pair<List<User>, Router>>() {
-
     override fun execute(parameters: String) = userRepository.users(parameters).flatMapLatest { userId ->
         cardRepository.card().map {
             if (it == null)

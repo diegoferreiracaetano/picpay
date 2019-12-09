@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.domain
 
+import com.diegoferreiracaetano.router.Router
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -8,7 +9,9 @@ import kotlinx.coroutines.flow.flowOn
 
 abstract class Interactor<P, R> {
 
+
     operator fun invoke(parameters: P): Flow<Result<R>> {
+
         return flow {
             try {
                 execute(parameters)

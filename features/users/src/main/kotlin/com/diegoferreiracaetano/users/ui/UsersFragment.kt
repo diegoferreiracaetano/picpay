@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.GONE
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.work.WorkInfo.State
@@ -14,34 +15,39 @@ import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.router.Router
 import com.diegoferreiracaetano.users.R
+import com.diegoferreiracaetano.users.databinding.FragmentUsersBinding
 import com.diegoferreiracaetano.users.util.applyBackground
+import com.diegoferreiracaetano.users.util.loading
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_users.searchView
 import kotlinx.android.synthetic.main.fragment_users.user_container
-import kotlinx.android.synthetic.main.fragment_users.user_error
-import kotlinx.android.synthetic.main.fragment_users.user_recycle
 import kotlinx.android.synthetic.main.fragment_users_loading.shimmer_view_container
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.lang.Exception
 
 class UsersFragment : Fragment() {
 
     private val viewModel: UsersViewModel by viewModel()
     private lateinit var usersAdapter: UsersAdapter
+    private lateinit var binding: FragmentUsersBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_users, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, container, false)
+        binding.lifecycleOwner = this@UsersFragment
+        binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        startShimmer()
-        setupAdapter()
+
         setupSearchView()
+        view.loading(true)
 
         val id = requireArguments().getLong(EXTRA_ID)
 
@@ -50,14 +56,16 @@ class UsersFragment : Fragment() {
             viewModel.receipt(id).observe(this, Observer {
                 it.onSuccess {
                     navigate(it.second, it.first)
-                }.onFailure(::showError)
+                }.onFailure{
+                    showError()
+                }
             })
         }
     }
 
     override fun onStop() {
         super.onStop()
-        stopShimmer()
+        requireView().loading(false)
     }
 
     private fun setupSearchView() {
@@ -75,55 +83,9 @@ class UsersFragment : Fragment() {
         })
     }
 
-    private fun setupAdapter() {
-        viewModel.users().observe(this, Observer {
-            it.onSuccess(::showUser)
-                .onFailure(::showError)
-        })
-
-        viewModel.job.observe(this, Observer {
-            when (it.state) {
-                State.RUNNING -> startShimmer()
-                State.FAILED -> showError()
-                else -> stopShimmer()
-            }
-        })
-    }
-
-    private fun startShimmer() {
-        user_error.visibility = GONE
-        user_container.visibility = VISIBLE
-        shimmer_view_container.startShimmer()
-    }
-
-    private fun stopShimmer() {
-        shimmer_view_container.visibility = GONE
-        shimmer_view_container.stopShimmer()
-    }
-
-    private fun showUser(pair: Pair<List<User>, Router>) {
-        stopShimmer()
-        usersAdapter = UsersAdapter(pair.first)
-        user_recycle.adapter = usersAdapter
-        usersAdapter.onItemClick = {
-            navigate(pair.second, it.id)
-        }
-    }
 
     private fun showError() {
-        stopShimmer()
         Snackbar.make(requireView(), R.string.users_msg_error, Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun showError(error: Throwable) {
-        stopShimmer()
-        user_error.visibility = VISIBLE
-        user_container.visibility = GONE
-        user_error.retry(View.OnClickListener {
-            startShimmer()
-            setupAdapter()
-        })
-        Timber.e(error)
     }
 
     companion object {
