@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.diegoferreiracaetano.commons.format
-import com.diegoferreiracaetano.commons.formatCard
 import com.diegoferreiracaetano.commons.setImageUrl
 import com.diegoferreiracaetano.domain.transaction.Transaction
 import com.diegoferreiracaetano.receipt.R
