@@ -84,8 +84,9 @@ class UsersFragment : Fragment() {
         viewModel.job.observe(this, Observer {
             when (it.state) {
                 State.RUNNING -> startShimmer()
+                State.SUCCEEDED -> stopShimmer()
                 State.FAILED -> showError()
-                else -> stopShimmer()
+                else -> Unit
             }
         })
     }
