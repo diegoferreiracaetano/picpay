@@ -20,12 +20,8 @@ fun SearchView.applyBackground() {
     }
 }
 
-fun View.loading(boolean: Boolean) {
-    val simmer = (context as AppCompatActivity).findViewById<ShimmerFrameLayout>(R.id.user_loading)
-    if(boolean) simmer.visible(true) else simmer.visible(false)
-}
+fun ShimmerFrameLayout.loading(boolean: Boolean) {
 
-fun ShimmerFrameLayout.visible(boolean: Boolean) {
     if(boolean) {
         visibility = View.VISIBLE
         startShimmer()

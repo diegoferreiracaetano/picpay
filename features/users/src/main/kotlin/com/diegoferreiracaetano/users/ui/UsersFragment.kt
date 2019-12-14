@@ -29,7 +29,6 @@ import java.lang.Exception
 class UsersFragment : Fragment() {
 
     private val viewModel: UsersViewModel by viewModel()
-    private lateinit var usersAdapter: UsersAdapter
     private lateinit var binding: FragmentUsersBinding
 
     override fun onCreateView(
@@ -47,7 +46,6 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupSearchView()
-        view.loading(true)
 
         val id = requireArguments().getLong(EXTRA_ID)
 
@@ -61,11 +59,6 @@ class UsersFragment : Fragment() {
                 }
             })
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        requireView().loading(false)
     }
 
     private fun setupSearchView() {

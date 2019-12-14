@@ -10,8 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:show_job="@{viewModel.job}">
+      android:layout_height="match_parent">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
           android:id="@+id/user_container"
@@ -102,6 +101,7 @@
                       app:layout_constraintStart_toStartOf="parent"
                       app:layout_constraintTop_toTopOf="parent"
                       app:show_adapter='@{viewModel.users}'
+                      app:show_loading='@{viewModel.loading}'
                       tools:listitem="@layout/item_users" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
