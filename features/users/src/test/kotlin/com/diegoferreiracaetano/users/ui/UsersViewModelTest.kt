@@ -1,68 +1,106 @@
 package com.diegoferreiracaetano.users.ui
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
+import com.diegoferreiracaetano.Mock
+import com.diegoferreiracaetano.domain.ResultRouter
+import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
+import com.diegoferreiracaetano.domain.user.User
+import com.diegoferreiracaetano.domain.user.UserInteractor
+import com.diegoferreiracaetano.router.card.CardRouter
+import com.diegoferreiracaetano.toLiveDataTest
+import com.diegoferreiracaetano.toResultSuccessTest
+import com.diegoferreiracaetano.users.work.SyncWorker.Companion.TAG
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
+import io.mockk.verify
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
 internal class UsersViewModelTest {
 
-    /*  @get:Rule
-      val rule = InstantTaskExecutorRule()
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
-      private val interactor = mockk<UserInteractor>()
-      private val observe = mockk<Observer<Result<List<User>>>>()
-      private val observeString = mockk<Observer<String>>()
-      private lateinit var viewModel: UsersViewModel
+    private val userInteractor = mockk<UserInteractor>()
+    private val receiptInteractor = mockk<ReceiptInteractor>()
+    private val workManager = mockk<WorkManager>()
 
-      private val testDispatcher = TestCoroutineDispatcher()
+    private lateinit var viewModel: UsersViewModel
 
-      @Before
-      fun setUp() {
-          Dispatchers.setMain(testDispatcher)
-          viewModel = UsersViewModel(interactor)
-      }
+    private val testDispatcher = TestCoroutineDispatcher()
 
-      @After
-      fun tearDown() {
-          Dispatchers.resetMain()
-          testDispatcher.cleanupTestCoroutines()
-      }
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(testDispatcher)
+        viewModel = UsersViewModel(userInteractor, receiptInteractor, workManager)
+    }
 
-      @Test
-      fun `Given interactor users When call fetchusers Then verify result success`() {
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+    }
 
-          coEvery { interactor.execute(Unit) } returns Mock.users()
+    @Test
+    fun `Given interactor users When call users Then verify result success`() {
 
-          viewModel.fetchUsers()
-          viewModel.users.observeForever(observe)
+        val observer = mockk<Observer<Result<ResultRouter<List<User>>>>>()
+        val result = Mock.users().toResultSuccessTest(CardRouter())
 
-          verify { observe.onChanged(Result.success(Mock.users())) }
-      }
+        coEvery { userInteractor.invoke("") } returns result
+        viewModel.users().observeForever(observer)
 
-      @Test
-      fun `Given interactor users When call fetchusers Then verify result error`() {
+        coVerify { observer.onChanged(result.single()) }
+    }
 
-          val error = Throwable("error")
+    @Test
+    fun `Given interactor users When call search Then verify search`() {
 
-          coEvery { interactor.execute(Unit) } throws error
+        val observer = mockk<Observer<Result<ResultRouter<List<User>>>>>()
+        val result = Mock.users().toResultSuccessTest(CardRouter())
 
-          viewModel.fetchUsers()
-          viewModel.users.observeForever(observe)
+        coEvery { userInteractor.invoke("string") } returns result
 
-          verify { observe.onChanged(Result.failure(error)) }
-      }
+        viewModel.search("string")
+        viewModel.users().observeForever(observer)
 
-      @Test
-      fun `Given interactor users When call search Then verify search`() {
+        coVerify { observer.onChanged(result.single()) }
+    }
 
-          every { observeString.onChanged(any()) } returns Unit
+    @Test(expected = Throwable::class)
+    fun `Given interactor users When call users Then verify result error`() {
 
-          viewModel.search("string")
+        val observer = mockk<Observer<Result<ResultRouter<List<User>>>>>()
+        val result = Throwable("error")
 
-          viewModel.search.observeForever(observeString)
+        coEvery { userInteractor.invoke("") } throws result
+        viewModel.users().observeForever(observer)
 
-          verify { observeString.onChanged("string") }
-      }
+        verify { observer.onChanged(Result.failure(result)) }
+    }
 
+    @Test
+    fun `When call job Then verify return values`() {
 
-     */
+        val observer = mockk<Observer<List<WorkInfo>>>()
+        val result = listOf(Mock.job())
+
+        coEvery { workManager.getWorkInfosByTagLiveData(TAG) } returns result.toLiveDataTest()
+        viewModel.job().observeForever(observer)
+
+        coVerify { observer.onChanged(result) }
+    }
 }

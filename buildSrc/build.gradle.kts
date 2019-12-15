@@ -3,6 +3,5 @@ repositories {
 }
 
 plugins {
-    @Suppress("RemoveRedundantBackticks")
     `kotlin-dsl`
 }

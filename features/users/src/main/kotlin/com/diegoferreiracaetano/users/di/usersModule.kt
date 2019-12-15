@@ -1,5 +1,6 @@
 package com.diegoferreiracaetano.users.di
 
+import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.diegoferreiracaetano.users.ui.UsersViewModel
@@ -10,9 +11,13 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val usersModule: Module = module {
-    viewModel { UsersViewModel(get(), get(), get(), get()) }
+    viewModel { UsersViewModel(get(), get(), get()) }
 
-    single { WorkManager.getInstance(get()) }
+    single {
+        val workManager = WorkManager.getInstance(get())
+        workManager.enqueue(get<OneTimeWorkRequest>())
+        workManager
+    }
 
     single {
         OneTimeWorkRequestBuilder<SyncWorker>()

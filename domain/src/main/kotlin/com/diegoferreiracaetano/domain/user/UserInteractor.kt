@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.domain.user
 
 import com.diegoferreiracaetano.domain.Interactor
+import com.diegoferreiracaetano.domain.ResultRouter
 import com.diegoferreiracaetano.domain.card.CardRepository
 import com.diegoferreiracaetano.router.Router
 import kotlinx.coroutines.flow.flatMapLatest
@@ -11,14 +12,14 @@ class UserInteractor(
     private val cardRepository: CardRepository,
     private val cardRouter: Router,
     private val paymentRouter: Router
-) : Interactor<String, Pair<List<User>, Router>>() {
+) : Interactor<String, ResultRouter<List<User>>>() {
 
     override fun execute(parameters: String) = userRepository.users(parameters).flatMapLatest { userId ->
         cardRepository.card().map {
             if (it == null)
-                userId to cardRouter
+                ResultRouter.add(userId, cardRouter)
             else
-                userId to paymentRouter
+                ResultRouter.add(userId, paymentRouter)
         }
     }
 }

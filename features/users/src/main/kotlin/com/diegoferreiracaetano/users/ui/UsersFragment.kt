@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.work.WorkInfo.State
 import com.diegoferreiracaetano.commons.navigate
+import com.diegoferreiracaetano.domain.ResultRouter
 import com.diegoferreiracaetano.domain.user.User
-import com.diegoferreiracaetano.router.Router
 import com.diegoferreiracaetano.users.R
 import com.diegoferreiracaetano.users.util.applyBackground
 import com.google.android.material.snackbar.Snackbar
@@ -43,7 +43,7 @@ class UsersFragment : Fragment() {
         setupAdapter()
         setupSearchView()
 
-        val id = requireArguments().getLong(EXTRA_ID)
+        val id = requireArguments().getLong(EXTRA_ID, 0)
 
         if (id.toInt() != 0) {
             requireArguments().clear()
@@ -80,9 +80,8 @@ class UsersFragment : Fragment() {
             it.onSuccess(::showUser)
                 .onFailure(::showError)
         })
-
-        viewModel.job.observe(this, Observer {
-            when (it.state) {
+        viewModel.job().observe(this, Observer {
+            when (it.first().state) {
                 State.RUNNING -> startShimmer()
                 State.SUCCEEDED -> stopShimmer()
                 State.FAILED -> showError()
@@ -102,12 +101,12 @@ class UsersFragment : Fragment() {
         shimmer_view_container.stopShimmer()
     }
 
-    private fun showUser(pair: Pair<List<User>, Router>) {
+    private fun showUser(result: ResultRouter<List<User>>) {
         stopShimmer()
-        usersAdapter = UsersAdapter(pair.first)
+        usersAdapter = UsersAdapter(result.result)
         user_recycle.adapter = usersAdapter
         usersAdapter.onItemClick = {
-            navigate(pair.second, it.id)
+            navigate(result.router, it.id)
         }
     }
 
