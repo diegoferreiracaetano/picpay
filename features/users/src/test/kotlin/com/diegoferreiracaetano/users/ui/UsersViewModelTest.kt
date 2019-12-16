@@ -2,17 +2,14 @@ package com.diegoferreiracaetano.users.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import com.diegoferreiracaetano.Mock
 import com.diegoferreiracaetano.domain.ResultRouter
 import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
+import com.diegoferreiracaetano.domain.user.SyncUserInteractor
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.domain.user.UserInteractor
 import com.diegoferreiracaetano.router.card.CardRouter
-import com.diegoferreiracaetano.toLiveDataTest
 import com.diegoferreiracaetano.toResultSuccessTest
-import com.diegoferreiracaetano.users.work.SyncWorker.Companion.TAG
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -36,7 +33,7 @@ internal class UsersViewModelTest {
 
     private val userInteractor = mockk<UserInteractor>()
     private val receiptInteractor = mockk<ReceiptInteractor>()
-    private val workManager = mockk<WorkManager>()
+    private val syncUserInteractor = mockk<SyncUserInteractor>()
 
     private lateinit var viewModel: UsersViewModel
 
@@ -45,7 +42,7 @@ internal class UsersViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        viewModel = UsersViewModel(userInteractor, receiptInteractor, workManager)
+        viewModel = UsersViewModel(userInteractor, receiptInteractor, syncUserInteractor)
     }
 
     @After
@@ -90,17 +87,5 @@ internal class UsersViewModelTest {
         viewModel.users().observeForever(observer)
 
         verify { observer.onChanged(Result.failure(result)) }
-    }
-
-    @Test
-    fun `When call job Then verify return values`() {
-
-        val observer = mockk<Observer<List<WorkInfo>>>()
-        val result = listOf(Mock.job())
-
-        coEvery { workManager.getWorkInfosByTagLiveData(TAG) } returns result.toLiveDataTest()
-        viewModel.job().observeForever(observer)
-
-        coVerify { observer.onChanged(result) }
     }
 }

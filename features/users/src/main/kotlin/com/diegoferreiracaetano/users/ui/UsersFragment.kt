@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.GONE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.work.WorkInfo.State
 import com.diegoferreiracaetano.commons.navigate
 import com.diegoferreiracaetano.domain.ResultRouter
 import com.diegoferreiracaetano.domain.user.User
@@ -18,11 +17,9 @@ import com.diegoferreiracaetano.users.util.applyBackground
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_users.searchView
 import kotlinx.android.synthetic.main.fragment_users.user_container
-import kotlinx.android.synthetic.main.fragment_users.user_error
 import kotlinx.android.synthetic.main.fragment_users.user_recycle
 import kotlinx.android.synthetic.main.fragment_users_loading.shimmer_view_container
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class UsersFragment : Fragment() {
 
@@ -40,7 +37,8 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startShimmer()
-        setupAdapter()
+        setupUser()
+        setupJob()
         setupSearchView()
 
         val id = requireArguments().getLong(EXTRA_ID, 0)
@@ -50,7 +48,7 @@ class UsersFragment : Fragment() {
             viewModel.receipt(id).observe(this, Observer {
                 it.onSuccess {
                     navigate(it.second, it.first)
-                }.onFailure(::showError)
+                }.onFailure { showError() }
             })
         }
     }
@@ -75,23 +73,21 @@ class UsersFragment : Fragment() {
         })
     }
 
-    private fun setupAdapter() {
+    private fun setupUser() {
         viewModel.users().observe(this, Observer {
             it.onSuccess(::showUser)
-                .onFailure(::showError)
+                .onFailure { showError() }
         })
+    }
+
+    private fun setupJob() {
         viewModel.job().observe(this, Observer {
-            when (it.first().state) {
-                State.RUNNING -> startShimmer()
-                State.SUCCEEDED -> stopShimmer()
-                State.FAILED -> showError()
-                else -> Unit
-            }
+            it.onSuccess(::showJob)
+                .onFailure { showError() }
         })
     }
 
     private fun startShimmer() {
-        user_error.visibility = GONE
         user_container.visibility = VISIBLE
         shimmer_view_container.startShimmer()
     }
@@ -110,20 +106,14 @@ class UsersFragment : Fragment() {
         }
     }
 
+    private fun showJob(boolean: Boolean) {
+        if (boolean)
+            stopShimmer()
+    }
+
     private fun showError() {
         stopShimmer()
         Snackbar.make(requireView(), R.string.users_msg_error, Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun showError(error: Throwable) {
-        stopShimmer()
-        user_error.visibility = VISIBLE
-        user_container.visibility = GONE
-        user_error.retry(View.OnClickListener {
-            startShimmer()
-            setupAdapter()
-        })
-        Timber.e(error)
     }
 
     companion object {

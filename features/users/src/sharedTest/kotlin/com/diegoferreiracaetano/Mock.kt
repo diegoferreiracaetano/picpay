@@ -1,15 +1,17 @@
 package com.diegoferreiracaetano
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import androidx.work.Data
-import androidx.work.WorkInfo
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.matcher.BoundedMatcher
 import com.diegoferreiracaetano.domain.ResultRouter
 import com.diegoferreiracaetano.domain.card.Card
 import com.diegoferreiracaetano.domain.user.User
 import com.diegoferreiracaetano.router.Router
-import java.util.UUID
 import kotlinx.coroutines.flow.flow
+import org.hamcrest.Description
+import org.hamcrest.Matcher
 
 internal object Mock {
 
@@ -29,14 +31,6 @@ internal object Mock {
         date = "11/11",
         cvv = 111
     )
-
-    fun job() = WorkInfo(
-        UUID.randomUUID(),
-        WorkInfo.State.SUCCEEDED,
-        Data.EMPTY,
-        emptyList(),
-        Data.EMPTY,
-        0)
 }
 
 internal fun <T> T.toResultSuccessTest(router: Router) = flow {
@@ -60,5 +54,20 @@ internal fun <T> T.toLiveDataResultTest(router: Router): LiveData<Result<ResultR
     val result = Result.success(ResultRouter.add(this, router))
     return liveData {
         emit(result)
+    }
+}
+
+fun atPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View?>? {
+    return object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
+
+        override fun describeTo(description: Description) {
+            description.appendText("has item at position $position: ")
+            itemMatcher.describeTo(description)
+        }
+
+        override fun matchesSafely(item: RecyclerView): Boolean {
+            val viewHolder = item.findViewHolderForAdapterPosition(position) ?: return false
+            return itemMatcher.matches(viewHolder.itemView)
+        }
     }
 }

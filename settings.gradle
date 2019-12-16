@@ -1,4 +1,4 @@
-include ':app', ':style', ':router',
+include ':app', ':style', ':router', ':work',
         ':buildSrc',
         ':commons',
         ':domain',

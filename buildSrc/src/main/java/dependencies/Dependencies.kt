@@ -63,6 +63,7 @@ object Dependencies {
         const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
         const val RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO}"
+        const val ESPRESSO_CONTRIB = "com.android.support.test.espresso:espresso-contrib:${Versions.ESPRESSO}"
         const val CORE = "android.arch.core:core-testing:${Versions.CORE_TEST}"
         const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
         const val ROBOELETRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"

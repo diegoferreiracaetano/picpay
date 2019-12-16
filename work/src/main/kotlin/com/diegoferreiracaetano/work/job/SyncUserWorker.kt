@@ -1,4 +1,4 @@
-package com.diegoferreiracaetano.users.work
+package com.diegoferreiracaetano.work.job
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.collect
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class SyncWorker(
+class SyncUserWorker(
     appContext: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(appContext, workerParams), KoinComponent {

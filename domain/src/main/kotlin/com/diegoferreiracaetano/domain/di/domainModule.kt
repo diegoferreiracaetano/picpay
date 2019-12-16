@@ -8,6 +8,7 @@ import com.diegoferreiracaetano.domain.receipt.ReceiptInteractor
 import com.diegoferreiracaetano.domain.transaction.FindTransactionByIdInteractor
 import com.diegoferreiracaetano.domain.user.FindContactsByIdInteractor
 import com.diegoferreiracaetano.domain.user.SaveUserInteractor
+import com.diegoferreiracaetano.domain.user.SyncUserInteractor
 import com.diegoferreiracaetano.domain.user.UserInteractor
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -17,6 +18,8 @@ val domainModule: Module = module {
     single { UserInteractor(get(named("local")), get(), get(named("card_welcome")), get(named("payment"))) }
 
     single { SaveUserInteractor(get(), get(named("local"))) }
+
+    single { SyncUserInteractor(get()) }
 
     single { WelcomeCardInteractor(get(named("card"))) }
 

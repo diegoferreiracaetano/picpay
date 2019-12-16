@@ -1,0 +1,16 @@
+import dependencies.Dependencies
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: "$rootDir/tools/base.gradle"
+
+dependencies {
+
+    implementation project(":domain")
+
+    implementation Dependencies.Android.APP_COMPAT
+    implementation Dependencies.Koin.SCOPE
+    implementation Dependencies.COROUTINES.CORE
+    implementation Dependencies.Workmanager.RUNTIME
+
+}
